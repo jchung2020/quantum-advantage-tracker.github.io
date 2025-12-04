@@ -33,6 +33,7 @@ body:
         If your instance is not listed, please follow the instructions in [/data/README.md](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/tree/main/data/README.md) to submit a new one.
       options:
         - peaked_circuit_heavy_hex_49x4020
+        - peaked_circuit_P9_Hqap_56x1917
     validations:
       required: true
 
