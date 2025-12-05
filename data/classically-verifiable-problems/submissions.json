@@ -45,5 +45,17 @@
     "institutions": "BlueQubit, University of Toronto, Vector Institute for Artificial Intelligence",
     "runtimeQuantum": 7200,
     "computeResourcesQuantum": "Quantinuum H2"
+  },
+  {
+    "createdAt": "2025-12-04T05:28:36Z",
+    "url": "https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/84",
+    "name": "Classical Solution for peaked_circuit_p9_hqap_56x1917",
+    "circuit": "peaked_circuit_P9_Hqap_56x1917",
+    "value": "100%",
+    "method": "TNS + BP on GPUs (extrapolated)",
+    "institutions": "BlueQubit, University of Toronto, Vector Institute for Artificial Intelligence",
+    "runtimeClassical": 1e+14,
+    "computeResourcesClassical": "cluster of NVIDIA H100 GPUs",
+    "notes": "Classical runtime is extrapolated."
   }
 ]
