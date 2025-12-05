@@ -42,7 +42,7 @@
     "value": "100%",
     "method": "Quantinuum H2",
     "authors": "Hayk Tepanyan",
-    "institutions": "BlueQubit\nUniversity of Toronto\nVector Institute for Artificial Intelligence",
+    "institutions": "BlueQubit, University of Toronto, Vector Institute for Artificial Intelligence",
     "runtimeQuantum": 7200,
     "computeResourcesQuantum": "Quantinuum H2"
   }
