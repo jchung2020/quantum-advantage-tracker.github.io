@@ -54,7 +54,7 @@
     "value": "100%",
     "method": "TNS + BP on GPUs (extrapolated)",
     "institutions": "BlueQubit, University of Toronto, Vector Institute for Artificial Intelligence",
-    "runtimeClassical": 100000000000000,
+    "runtimeClassical": 1e+14,
     "computeResourcesClassical": "cluster of NVIDIA H100 GPUs",
     "notes": "Classical runtime is extrapolated."
   }
