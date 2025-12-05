@@ -1,3 +1,4 @@
+import { RuntimeSeconds } from '@/components/RuntimeSeconds';
 import {
   Table,
   TableBody,
@@ -86,10 +87,12 @@ export function SubmissionsTable(props: {
                 <TableCell>{submission.value}</TableCell>
                 <TableCell>
                   <div>
-                    <span title="Quantum">Q</span>: {submission.runtimeQuantum || '-'}
+                    <span title="Quantum">Q</span>:{' '}
+                    <RuntimeSeconds value={submission.runtimeQuantum} />
                   </div>
                   <div>
-                    <span title="Classical">C</span>: {submission.runtimeClassical || '-'}
+                    <span title="Classical">C</span>:{' '}
+                    <RuntimeSeconds value={submission.runtimeClassical} />
                   </div>
                 </TableCell>
                 <TableCell className="whitespace-normal">
