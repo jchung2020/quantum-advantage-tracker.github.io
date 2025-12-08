@@ -48,4 +48,4 @@ where $\mathcal P \subset \Lambda$ is a set of sites on the lattice.
 
 ## Institutions
 
-Algorithmiq, IBM Quantum, Flatiron Institute
+Algorithmiq, IBM, Flatiron Institute
