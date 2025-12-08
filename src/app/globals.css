@@ -47,6 +47,17 @@
   --color-link-foreground: var(--link-foreground);
   --color-table-head: #343a3f;
   --color-table-head-foreground: #ffffff;
+
+  --animate-marquee: marquee 50s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
 }
 
 :root {

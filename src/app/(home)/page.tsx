@@ -21,14 +21,14 @@ export default function Home() {
             </Button>
           </div>
         </div>
-      </header>
 
-      <section className="px-6 py-10 text-center">
-        <div className="text-secondary-foreground text-sm">
-          Contributors include researchers from:
+        <div className="px-6 pb-20 text-center">
+          <div className="text-secondary-foreground text-sm">
+            Contributors include researchers from 10+ organizations
+          </div>
+          <Contributors />
         </div>
-        <Contributors />
-      </section>
+      </header>
 
       <section className="mx-auto max-w-2xl px-6 py-20 text-center">
         <h3 className="mb-6 text-4xl">What is quantum advantage?</h3>
