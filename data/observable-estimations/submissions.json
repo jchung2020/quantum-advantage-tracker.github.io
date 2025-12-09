@@ -105,7 +105,7 @@
     "circuit": "operator_loschmidt_echo_49x648",
     "observableValue": 0.808,
     "method": "Single-path Monte Carlo",
-    "institutions": "U Chicago, IBM, Algorithmiq, EPFL, Flatiron Institute",
+    "institutions": "University of Chicago, IBM, Algorithmiq, EPFL, Flatiron Institute",
     "runtimeClassical": 640,
     "computeResourcesClassical": "Apple M1 Max 64GB"
   },
@@ -116,7 +116,7 @@
     "circuit": "operator_loschmidt_echo_49x1296",
     "observableValue": 0.619,
     "method": "Single-path Monte Carlo",
-    "institutions": "U Chicago, IBM, Algorithmiq, EPFL, Flatiron Institute",
+    "institutions": "University of Chicago, IBM, Algorithmiq, EPFL, Flatiron Institute",
     "runtimeClassical": 1492,
     "computeResourcesClassical": "Apple M1 Max 64GB"
   },
@@ -127,7 +127,7 @@
     "circuit": "operator_loschmidt_echo_70x1872",
     "observableValue": 0.614,
     "method": "Single-path Monte Carlo",
-    "institutions": "U Chicago, IBM, Algorithmiq, EPFL, Flatiron Institute",
+    "institutions": "University of Chicago, IBM, Algorithmiq, EPFL, Flatiron Institute",
     "runtimeClassical": 1890,
     "computeResourcesClassical": "Apple M1 Max 64GB"
   },
