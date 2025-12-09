@@ -42,7 +42,7 @@
     "value": "100%",
     "method": "Quantinuum H2",
     "authors": "Hayk Tepanyan",
-    "institutions": "BlueQubit, University of Toronto, Vector Institute for Artificial Intelligence",
+    "institutions": "BlueQubit, University of Toronto, Vector Institute",
     "runtimeQuantum": 7200,
     "computeResourcesQuantum": "Quantinuum H2"
   },
@@ -53,7 +53,7 @@
     "circuit": "peaked_circuit_P9_Hqap_56x1917",
     "value": "100%",
     "method": "TNS + BP on GPUs (extrapolated)",
-    "institutions": "BlueQubit, University of Toronto, Vector Institute for Artificial Intelligence",
+    "institutions": "BlueQubit, University of Toronto, Vector Institute",
     "runtimeClassical": 1e+14,
     "computeResourcesClassical": "cluster of NVIDIA H100 GPUs",
     "notes": "Classical runtime is extrapolated."
