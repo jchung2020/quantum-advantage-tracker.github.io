@@ -1,4 +1,16 @@
+'use client';
+
 import { RuntimeSeconds } from '@/components/RuntimeSeconds';
+import { Button } from '@/components/ui/button';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import {
   Table,
   TableBody,
@@ -10,18 +22,117 @@ import {
 import type { Hamiltonians } from '@/types/hamiltonians';
 import type { VPSubmission } from '@/types/submissions';
 import { flattenInstances, formatDate, getHamiltonianUrl, sortSubmissions } from '@/utils';
-import { ArrowDownIcon } from 'lucide-react';
+import { ArrowDownIcon, RotateCcwIcon } from 'lucide-react';
+import { useMemo, useState } from 'react';
 
 export function SubmissionsTable(props: {
   submissions: VPSubmission[];
   hamiltonians: Hamiltonians;
 }) {
   const { submissions, hamiltonians } = props;
-  const hamiltonianInstances = flattenInstances(hamiltonians);
+  const hamiltonianInstances = useMemo(() => flattenInstances(hamiltonians), [hamiltonians]);
+  const hamiltonianOptions = useMemo(() => Object.keys(hamiltonians), [hamiltonians]);
+
+  const [hamiltonianFilter, setHamiltonianFilter] = useState(() => {
+    return hamiltonianOptions.length === 1 ? hamiltonianOptions[0] : 'all';
+  });
+
+  const [instanceFilter, setInstanceFilter] = useState(() => {
+    const initialHamiltonian = hamiltonianOptions.length === 1 ? hamiltonianOptions[0] : 'all';
+    const initialInstances =
+      initialHamiltonian === 'all'
+        ? hamiltonianInstances
+        : hamiltonians[initialHamiltonian]?.instances || [];
+    return initialInstances.length === 1 ? initialInstances[0].id : 'all';
+  });
+
+  const filteredSubmissions = useMemo(() => {
+    return submissions.filter((submission) => {
+      const instance = hamiltonianInstances.find((inst) => inst.id === submission.hamiltonian);
+      if (!instance) return false;
+
+      const matchesHamiltonian = hamiltonianFilter === 'all' || instance.type === hamiltonianFilter;
+      const matchesInstance = instanceFilter === 'all' || submission.hamiltonian === instanceFilter;
+
+      return matchesHamiltonian && matchesInstance;
+    });
+  }, [submissions, hamiltonianInstances, hamiltonianFilter, instanceFilter]);
+
+  const instanceOptions = useMemo(() => {
+    if (hamiltonianFilter === 'all') {
+      return hamiltonianInstances;
+    }
+    const filteredInstances = hamiltonians[hamiltonianFilter]?.instances || [];
+    return filteredInstances.map((instance) => ({ ...instance, type: hamiltonianFilter }));
+  }, [hamiltonianInstances, hamiltonians, hamiltonianFilter]);
+
+  const resetFilters = () => {
+    const newHamiltonian = hamiltonianOptions.length === 1 ? hamiltonianOptions[0] : 'all';
+    setHamiltonianFilter(newHamiltonian);
+
+    const newInstances =
+      newHamiltonian === 'all'
+        ? hamiltonianInstances
+        : hamiltonians[newHamiltonian]?.instances || [];
+    setInstanceFilter(newInstances.length === 1 ? newInstances[0].id : 'all');
+  };
 
   return (
     <div>
-      {/* Filters */}
+      <div className="flex flex-wrap items-center gap-4 pb-4">
+        <Select
+          value={hamiltonianFilter === 'all' ? '' : hamiltonianFilter}
+          onValueChange={(value) => {
+            setHamiltonianFilter(value);
+
+            const newInstances =
+              value === 'all' ? hamiltonianInstances : hamiltonians[value]?.instances || [];
+            if (newInstances.length === 1) {
+              setInstanceFilter(newInstances[0].id);
+            } else {
+              setInstanceFilter('all');
+            }
+          }}
+        >
+          <SelectTrigger className="w-80">
+            <SelectValue placeholder="Select a hamiltonian" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Hamiltonians</SelectLabel>
+              {hamiltonianOptions.map((hamiltonian) => (
+                <SelectItem key={hamiltonian} value={hamiltonian}>
+                  {hamiltonian}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+
+        <Select
+          value={instanceFilter === 'all' ? '' : instanceFilter}
+          onValueChange={setInstanceFilter}
+          disabled={hamiltonianFilter === 'all'}
+        >
+          <SelectTrigger className="w-80">
+            <SelectValue placeholder="Select a hamiltonian instance" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Hamiltonian instances</SelectLabel>
+              {instanceOptions.map((instance) => (
+                <SelectItem key={instance.id} value={instance.id}>
+                  {instance.id.replace(`${instance.type}_`, '')}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+
+        <Button size="lg" variant="ghost" onClick={resetFilters}>
+          Reset <RotateCcwIcon />
+        </Button>
+      </div>
 
       <Table className="min-w-330 table-fixed">
         <TableHeader>
@@ -48,10 +159,10 @@ export function SubmissionsTable(props: {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {submissions.length === 0 ? (
+          {filteredSubmissions.length === 0 ? (
             <TableBodyEmpty />
           ) : (
-            sortSubmissions(submissions).map((submission, index) => {
+            sortSubmissions(filteredSubmissions).map((submission, index) => {
               const hamiltonianInstance = hamiltonianInstances.find(
                 (instance) => instance.id === submission.hamiltonian,
               )!;
