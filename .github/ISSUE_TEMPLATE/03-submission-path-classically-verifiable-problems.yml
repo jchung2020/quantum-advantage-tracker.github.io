@@ -3,6 +3,7 @@ description: Submit a problem solution for the classically verifiable problems t
 labels: ['path: classically-verifiable-problems', 'submission']
 assignees:
   - d-kremer
+  - n-e-sherman
 body:
   - type: markdown
     attributes:

@@ -3,6 +3,7 @@ description: Submit a problem solution to the variational problems tracker - Cer
 labels: ['path: variational-problems', 'submission']
 assignees:
   - jrm874
+  - Roland-Farrell
 body:
   - type: markdown
     attributes:
