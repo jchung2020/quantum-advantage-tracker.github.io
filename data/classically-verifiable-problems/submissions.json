@@ -71,5 +71,18 @@
     "runtimeClassical": 0,
     "computeResourcesQuantum": "ibm_boston Heron R3 + custom calibrations",
     "computeResourcesClassical": "N/A"
+  },
+  {
+    "createdAt": "2026-01-13T19:52:42Z",
+    "url": "https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/98",
+    "name": "TNS + BP classical simulation for peaked_heavyhex_49_5072 circuit",
+    "circuit": "peaked_circuit_heavy_hex_49x5072",
+    "value": "100",
+    "method": "TNS + BP (extrapolated)",
+    "authors": "Nicholas E. Sherman",
+    "institutions": "BlueQubit",
+    "runtimeClassical": 1E+7,
+    "computeResourcesClassical": "H100 GPU",
+    "notes": "Classical runtime is extrapolated."
   }
 ]
