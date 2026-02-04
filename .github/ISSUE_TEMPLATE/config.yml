@@ -1,1 +1,6 @@
 blank_issues_enabled: false
+
+contact_links:
+  - name: How to submit a new circuit or hamiltonian?
+    url: https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/tree/main/data#readme
+    about: Documentation about how to submit a new circuit or hamiltonian.
