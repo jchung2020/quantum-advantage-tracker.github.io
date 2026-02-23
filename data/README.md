@@ -141,4 +141,35 @@ To submit a new hamiltonian, follow these steps:
 
 To submit a new hamiltonian instance to an existing hamiltonian, follow these steps:
 
-TODO
+1.  **Identify the hamiltonian**: Locate the existing hamiltonian directory within the appropriate path (e.g., `data/variational-problems/hamiltonians/existing_hamiltonian/`).
+
+2.  **Add hamiltonian files**: Place your hamiltonian files (e.g., `.qasm`) inside the existing hamiltonian directory.
+
+3.  **Update `hamiltonians.json`**: Open the `hamiltonians.json` file for that path. Find the entry for the existing hamiltonian and append your new instance to the `instances` array.
+
+    **Example:**
+
+    ```json
+    {
+      "existing_hamiltonian": {
+        "instances": [
+          {
+            "id": "existing_hamiltonian_instance_1",
+            ...
+          },
+          {
+            "id": "existing_hamiltonian_instance_2",
+            "path": "existing_hamiltonian_instance_2.qasm",
+            "hilbert_space_size": 8.86e15
+          }
+        ]
+      }
+    }
+    ```
+
+4.  **Update issue templates**: Add the new hamiltonian instance IDs to the relevant issue template in `.github/ISSUE_TEMPLATE/`. This ensures that users can select the new instances when submitting results.
+    - For `variational-problems`, update `02-submission-path-variational-problems.yml`.
+
+    Look for the `options` list under the `hamiltonian` dropdown and append your new instance IDs.
+
+5.  **Create a pull request**: Commit your changes and open a pull request.
