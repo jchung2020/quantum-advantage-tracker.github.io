@@ -54,7 +54,7 @@
     "value": "100%",
     "method": "TNS + BP on GPUs (extrapolated)",
     "institutions": "BlueQubit, University of Toronto, Vector Institute",
-    "runtimeClassical": 1e14,
+    "runtimeClassical": 1E+14,
     "computeResourcesClassical": "cluster of NVIDIA H100 GPUs",
     "notes": "Classical runtime is extrapolated."
   },
@@ -81,8 +81,20 @@
     "method": "TNS + BP (extrapolated)",
     "authors": "Nicholas E. Sherman",
     "institutions": "BlueQubit",
-    "runtimeClassical": 1e7,
+    "runtimeClassical": 1E+7,
     "computeResourcesClassical": "H100 GPU",
     "notes": "Classical runtime is extrapolated."
+  },
+  {
+    "createdAt": "2026-02-13T23:43:13Z",
+    "url": "https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/105",
+    "name": "tno_cancellation_49x5072",
+    "circuit": "peaked_circuit_heavy_hex_49x5072",
+    "value": "100",
+    "method": "TNO + Iterative Cancellation",
+    "authors": "David Kremer",
+    "institutions": "IBM",
+    "runtimeClassical": 17,
+    "computeResourcesClassical": "Intel Xeon 48 cores"
   }
 ]
