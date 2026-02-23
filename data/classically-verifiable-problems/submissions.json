@@ -96,5 +96,17 @@
     "institutions": "IBM",
     "runtimeClassical": 17,
     "computeResourcesClassical": "Intel Xeon 48 cores"
+  },
+  {
+    "createdAt": "2026-02-14T00:06:58Z",
+    "url": "https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/106",
+    "name": "mpo_unswapping_56_1917",
+    "circuit": "peaked_circuit_P9_Hqap_56x1917",
+    "value": "100",
+    "method": "MPO + Unswapping",
+    "authors": "David Kremer",
+    "institutions": "IBM",
+    "runtimeClassical": 4059,
+    "computeResourcesClassical": "Nvidia A100 80GB"
   }
 ]
