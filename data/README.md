@@ -106,7 +106,7 @@ To submit a new hamiltonian, follow these steps:
     - This file should describe the problem or experiment, provide any relevant mathematical background, and list the institutions involved.
     - You can use `data/variational-problems/hamiltonians/anderson_impurity_model/README.md` as a template.
 
-4.  **Add hamiltonian files**: Place your hamiltonian files (e.g., `.qasm` files) inside the directory you just created.
+4.  **Add hamiltonian files**: Place your hamiltonian files (e.g., `.fcidump` files) inside the directory you just created.
 
 5.  **Update `hamiltonians.json`**: Open the `hamiltonians.json` file located in the path root (e.g., `data/variational-problems/hamiltonians.json`). Add an entry for your new hamiltonian.
     - The key should match your hamiltonian directory name.
@@ -120,7 +120,7 @@ To submit a new hamiltonian, follow these steps:
         "instances": [
           {
             "id": "my_new_hamiltonian_instance_1",
-            "path": "instance_1.qasm",
+            "path": "my_new_hamiltonian_instance_1.fcidump",
             "hilbert_space_size": 8.86e15
           }
         ]
@@ -143,7 +143,7 @@ To submit a new hamiltonian instance to an existing hamiltonian, follow these st
 
 1.  **Identify the hamiltonian**: Locate the existing hamiltonian directory within the appropriate path (e.g., `data/variational-problems/hamiltonians/existing_hamiltonian/`).
 
-2.  **Add hamiltonian files**: Place your hamiltonian files (e.g., `.qasm`) inside the existing hamiltonian directory.
+2.  **Add hamiltonian files**: Place your hamiltonian files (e.g., `.fcidump`) inside the existing hamiltonian directory.
 
 3.  **Update `hamiltonians.json`**: Open the `hamiltonians.json` file for that path. Find the entry for the existing hamiltonian and append your new instance to the `instances` array.
 
@@ -159,7 +159,7 @@ To submit a new hamiltonian instance to an existing hamiltonian, follow these st
           },
           {
             "id": "existing_hamiltonian_instance_2",
-            "path": "existing_hamiltonian_instance_2.qasm",
+            "path": "existing_hamiltonian_instance_2.fcidump",
             "hilbert_space_size": 8.86e15
           }
         ]
