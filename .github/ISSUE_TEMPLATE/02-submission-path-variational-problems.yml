@@ -32,12 +32,18 @@ body:
 
         If your instance is not listed, please follow the instructions in [/data/README.md](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/tree/main/data/README.md) to submit a new one.
       options:
+        - 2fe_2s_30e_20o
         - 4fe_4s_54e_36o
         - anderson_impurity_model_4i_28b_32e
-        - 2fe_2s_30e_20o
-        - n2_3-00_14e_28o
-        - n2_2-10_14e_28o
+        - n2_0-80_14e_28o
+        - n2_0-90_14e_28o
+        - n2_1-00_14e_28o
+        - n2_1-10_14e_28o
         - n2_1-20_14e_28o
+        - n2_1-50_14e_28o
+        - n2_2-00_14e_28o
+        - n2_2-50_14e_28o
+        - n2_3-00_14e_28o
     validations:
       required: true
 
