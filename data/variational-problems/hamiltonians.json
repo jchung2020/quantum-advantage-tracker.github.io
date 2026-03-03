@@ -74,5 +74,14 @@
         "hilbert_space_size": 3.61e17
       }
     ]
+  },
+  "guided_sparse_ground_state_problem": {
+    "instances": [
+      {
+        "id": "guided_sparse_ground_state_problem_49Q_v1",
+        "path": "49Q_v1",
+        "hilbert_space_size": 5.62e14
+      }
+    ]
   }
 }

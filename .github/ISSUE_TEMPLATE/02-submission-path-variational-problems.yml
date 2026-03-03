@@ -35,6 +35,7 @@ body:
         - 2fe_2s_30e_20o
         - 4fe_4s_54e_36o
         - anderson_impurity_model_4i_28b_32e
+        - guided_sparse_ground_state_problem_49Q_v1
         - n2_0-80_14e_28o
         - n2_0-90_14e_28o
         - n2_1-00_14e_28o

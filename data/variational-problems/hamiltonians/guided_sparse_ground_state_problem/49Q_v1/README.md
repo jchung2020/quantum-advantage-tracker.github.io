@@ -1,0 +1,1 @@
+This is the 49 qubit synthetic Hamiltonian studied in (link here).
