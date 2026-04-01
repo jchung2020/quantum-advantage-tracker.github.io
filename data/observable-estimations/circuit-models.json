@@ -20,9 +20,7 @@
         "gates": 1872
       }
     ]
-  }
-},
-{
+  },
   "SU(2)Hadron-LSH": {
     "instances": [
       {
@@ -36,7 +34,7 @@
         "path": "x_100_meson.qasm",
         "qubits": 120,
         "gates": 60000
-      },
+      }
     ]
   }
 }
