@@ -5,6 +5,7 @@ export type CircuitModels = {
       path: string;
       qubits: number;
       gates: number;
+      category: string;
     }[];
   };
 };
