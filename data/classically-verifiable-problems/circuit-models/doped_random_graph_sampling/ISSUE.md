@@ -147,7 +147,7 @@ IBM, UChicago
 
 10^25 (Quimb Matrix Product State)
 
-10^25 (quizx Clifford + T)
+10^42 (quizx Clifford + T)
 
 ### Compute resources (quantum)
 
