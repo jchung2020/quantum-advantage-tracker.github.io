@@ -19,7 +19,7 @@ import { ArrowDownIcon, ArrowUpRight } from 'lucide-react';
 import { useMemo, useState, type ReactNode } from 'react';
 
 const DEFAULT_CATEGORY: Category = 'Active Candidates';
-const COLUMN_COUNT = 8;
+const COLUMN_COUNT = 9;
 
 type Instance = {
   id: string;
@@ -164,7 +164,7 @@ export function SubmissionsTable<T extends BaseSubmission, I extends Instance>(
               </a>
             </div>
           )}
-          <Table className="min-w-300 table-fixed">
+          <Table className="min-w-356 table-fixed">
             <TableHeader>
               <TableRow>
                 <TableHead className="w-26">
@@ -181,6 +181,7 @@ export function SubmissionsTable<T extends BaseSubmission, I extends Instance>(
                   (seconds)
                 </TableHead>
                 <TableHead className="w-56">Compute resources</TableHead>
+                <TableHead className="w-56">Notes</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -239,6 +240,9 @@ export function SubmissionsTable<T extends BaseSubmission, I extends Instance>(
                           <span title="Classical">C</span>:{' '}
                           {submission.computeResourcesClassical || '-'}
                         </div>
+                      </TableCell>
+                      <TableCell className="wrap-break-word whitespace-normal">
+                        {submission.notes || '-'}
                       </TableCell>
                     </TableRow>
                   );
