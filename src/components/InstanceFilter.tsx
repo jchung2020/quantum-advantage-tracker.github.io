@@ -29,33 +29,46 @@ export function InstanceFilter<T extends Instance>(props: {
       {instances.length === 0 ? (
         <p className="text-muted-foreground text-sm">No instances in this category.</p>
       ) : (
-        <RadioGroup
-          value={value ?? ''}
-          onValueChange={onChange}
-          className="max-h-125 grid-cols-1 gap-3 overflow-y-auto pr-1"
+        <div
+          className="max-h-125 overflow-y-auto pr-1"
+          style={{
+            background: `
+              linear-gradient(var(--background), var(--background)) center top / 100% 16px no-repeat,
+              linear-gradient(var(--background), var(--background)) center bottom / 100% 16px no-repeat,
+              radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, 0.18), transparent) center top / 100% 10px no-repeat,
+              radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, 0.18), transparent) center bottom / 100% 10px no-repeat
+            `,
+            backgroundAttachment: 'local, local, scroll, scroll',
+          }}
         >
-          {instances.map((instance) => {
-            const id = `instance-${instance.id}`;
-            return (
-              <FieldLabel key={instance.id} htmlFor={id}>
-                <Field orientation="horizontal">
-                  <FieldContent className="min-w-0">
-                    <FieldTitle className="block w-full truncate" title={instance.type}>
-                      {instance.type}
-                    </FieldTitle>
-                    <FieldDescription className="flex min-w-0 flex-col">
-                      <span className="truncate" title={stripType(instance.id, instance.type)}>
-                        {stripType(instance.id, instance.type)}
-                      </span>
-                      <span className="mt-1 text-sm">{instance.entries} entries</span>
-                    </FieldDescription>
-                  </FieldContent>
-                  <RadioGroupItem value={instance.id} id={id} />
-                </Field>
-              </FieldLabel>
-            );
-          })}
-        </RadioGroup>
+          <RadioGroup
+            value={value ?? ''}
+            onValueChange={onChange}
+            className="grid-cols-1 gap-3"
+          >
+            {instances.map((instance) => {
+              const id = `instance-${instance.id}`;
+              return (
+                <FieldLabel key={instance.id} htmlFor={id}>
+                  <Field orientation="horizontal">
+                    <FieldContent className="min-w-0">
+                      <FieldTitle className="block w-full truncate" title={instance.type}>
+                        {instance.type}
+                      </FieldTitle>
+                      <FieldDescription className="flex min-w-0 flex-col">
+                        <span className="truncate" title={stripType(instance.id, instance.type)}>
+                          {stripType(instance.id, instance.type)}
+                        </span>
+                        <span className="mt-1 text-sm">{instance.entries} entries</span>
+                      </FieldDescription>
+                    </FieldContent>
+                    <RadioGroupItem value={instance.id} id={id} />
+                  </Field>
+                </FieldLabel>
+              );
+            })}
+          </RadioGroup>
+        </div>
       )}
     </aside>
   );
