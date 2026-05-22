@@ -1,9 +1,12 @@
 import { Button } from '@/components/ui/button';
 import { GithubIcon } from '@/icons';
+import type { CVPSubmission } from '@/types/submissions';
 import type { Metadata } from 'next';
 import circuitModels from '../../../../data/classically-verifiable-problems/circuit-models.json' with { type: 'json' };
-import submissions from '../../../../data/classically-verifiable-problems/submissions.json' with { type: 'json' };
+import submissionsData from '../../../../data/classically-verifiable-problems/submissions.json' with { type: 'json' };
 import { SubmissionsTable } from './SubmissionsTable';
+
+const submissions = submissionsData as CVPSubmission[];
 
 export const metadata: Metadata = {
   title: 'Classically verifiable problems',

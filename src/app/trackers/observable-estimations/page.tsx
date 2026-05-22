@@ -1,9 +1,12 @@
 import { Button } from '@/components/ui/button';
 import { GithubIcon } from '@/icons';
+import type { OESubmission } from '@/types/submissions';
 import type { Metadata } from 'next';
 import circuitModels from '../../../../data/observable-estimations/circuit-models.json' with { type: 'json' };
-import submissions from '../../../../data/observable-estimations/submissions.json' with { type: 'json' };
+import submissionsData from '../../../../data/observable-estimations/submissions.json' with { type: 'json' };
 import { SubmissionsTable } from './SubmissionsTable';
+
+const submissions = submissionsData as OESubmission[];
 
 export const metadata: Metadata = {
   title: 'Observable estimations',

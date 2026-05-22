@@ -1,9 +1,12 @@
 import { Button } from '@/components/ui/button';
 import { GithubIcon } from '@/icons';
+import type { VPSubmission } from '@/types/submissions';
 import type { Metadata } from 'next';
 import hamiltonians from '../../../../data/variational-problems/hamiltonians.json' with { type: 'json' };
-import submissions from '../../../../data/variational-problems/submissions.json' with { type: 'json' };
+import submissionsData from '../../../../data/variational-problems/submissions.json' with { type: 'json' };
 import { SubmissionsTable } from './SubmissionsTable';
+
+const submissions = submissionsData as VPSubmission[];
 
 export const metadata: Metadata = {
   title: 'Variational problems',
