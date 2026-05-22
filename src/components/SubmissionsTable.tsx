@@ -152,7 +152,7 @@ export function SubmissionsTable<T extends BaseSubmission, I extends Instance>(
           })}
         >
           {selectedInstance && (
-            <div className="flex items-center justify-between gap-4 border-b px-4 py-6">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-x-4 border-b px-4 py-6">
               <h3 className="font-medium">{selectedInstance.id}</h3>
               <a
                 href={getInstanceUrl(selectedInstance)}
@@ -160,7 +160,7 @@ export function SubmissionsTable<T extends BaseSubmission, I extends Instance>(
                 rel="noopener noreferrer"
                 className="text-link-foreground inline-flex items-center gap-1 hover:underline"
               >
-                View on Github <ArrowUpRight size={16} />
+                View on Github <ArrowUpRight size={16} className='flex-none' />
               </a>
             </div>
           )}
