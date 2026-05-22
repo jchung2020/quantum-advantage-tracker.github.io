@@ -14,8 +14,8 @@ import {
 import { TableEmptyIcon } from '@/icons';
 import type { CircuitModels } from '@/types/circuitModels';
 import type { CVPSubmission } from '@/types/submissions';
-import { flattenInstances, formatDate, sortSubmissions } from '@/utils';
-import { ArrowDownIcon } from 'lucide-react';
+import { flattenInstances, formatDate, getCircuitInstanceUrl, sortSubmissions } from '@/utils';
+import { ArrowDownIcon, ArrowUpRight } from 'lucide-react';
 import { useMemo, useState } from 'react';
 
 const DEFAULT_CATEGORY: Category = 'Active Candidates';
@@ -51,6 +51,11 @@ export function SubmissionsTable(props: {
     return submissions.filter((submission) => submission.circuit === instanceFilter);
   }, [submissions, instanceFilter]);
 
+  const selectedInstance = useMemo(
+    () => circuitInstances.find((inst) => inst.id === instanceFilter) ?? null,
+    [circuitInstances, instanceFilter],
+  );
+
   const counts = useMemo(() => {
     const acc: Record<Category, number> = {
       'Active Candidates': 0,
@@ -84,7 +89,20 @@ export function SubmissionsTable(props: {
           onChange={setInstanceFilter}
         />
 
-        <div className="@container min-w-0 flex-1">
+        <div className="@container min-w-0 flex-1 overflow-hidden rounded-lg border md:mt-9">
+          {selectedInstance && (
+            <div className="flex items-center justify-between gap-4 border-b px-4 py-6">
+              <h3 className="font-medium">{selectedInstance.id}</h3>
+              <a
+                href={getCircuitInstanceUrl('classically-verifiable-problems', selectedInstance)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-link-foreground inline-flex items-center gap-1 hover:underline"
+              >
+                View on Github <ArrowUpRight size={16} />
+              </a>
+            </div>
+          )}
           <Table className="min-w-300 table-fixed">
             <TableHeader>
               <TableRow>
