@@ -58,7 +58,7 @@ export function InstanceFilter<T extends Instance>(props: {
           </div>
 
           <div
-            className="hidden max-h-125 overflow-y-auto pr-1 md:block"
+            className="hidden max-h-[calc(100dvh-5rem)] overflow-y-auto pr-1 md:block"
             style={{
               background: `
                 linear-gradient(var(--background), var(--background)) center top / 100% 16px no-repeat,
