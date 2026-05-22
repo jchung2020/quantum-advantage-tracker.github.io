@@ -1,6 +1,7 @@
 'use client';
 
-import { CategoryFilter, isCategory, type Category } from '@/components/CategoryFilter';
+import { CategoryFilter } from '@/components/CategoryFilter';
+import { isCategory, type Category } from '@/lib/categories';
 import { InstanceFilter } from '@/components/InstanceFilter';
 import { RuntimeSeconds } from '@/components/RuntimeSeconds';
 import {

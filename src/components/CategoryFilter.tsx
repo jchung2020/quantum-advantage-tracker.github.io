@@ -1,24 +1,7 @@
 'use client';
 
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-
-export const CATEGORIES = [
-  'Active Candidates',
-  'Baseline Benchmarks',
-  'Superseded Candidates',
-] as const;
-
-export type Category = (typeof CATEGORIES)[number];
-
-export function isCategory(value: string): value is Category {
-  return (CATEGORIES as readonly string[]).includes(value);
-}
-
-const LABELS: Record<Category, string> = {
-  'Active Candidates': 'Active',
-  'Baseline Benchmarks': 'Baseline',
-  'Superseded Candidates': 'Superseded',
-};
+import { CATEGORIES, CATEGORY_LABELS, type Category } from '@/lib/categories';
 
 export function CategoryFilter(props: {
   value: Category;
@@ -32,7 +15,7 @@ export function CategoryFilter(props: {
       <TabsList>
         {CATEGORIES.map((category) => (
           <TabsTrigger key={category} value={category}>
-            {LABELS[category]} ({counts[category]})
+            {CATEGORY_LABELS[category]} ({counts[category]})
           </TabsTrigger>
         ))}
       </TabsList>

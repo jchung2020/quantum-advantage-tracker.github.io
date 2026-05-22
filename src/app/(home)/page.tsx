@@ -1,25 +1,76 @@
 import { Button } from '@/components/ui/button';
+import { isCategory, type Category } from '@/lib/categories';
+import type { BaseSubmission } from '@/types/submissions';
+import { flattenInstances } from '@/utils';
 import { ChevronRightIcon } from 'lucide-react';
 import Link from 'next/link';
+import cvpCircuitModels from '../../../data/classically-verifiable-problems/circuit-models.json' with { type: 'json' };
+import cvpSubmissions from '../../../data/classically-verifiable-problems/submissions.json' with { type: 'json' };
+import oeCircuitModels from '../../../data/observable-estimations/circuit-models.json' with { type: 'json' };
+import oeSubmissions from '../../../data/observable-estimations/submissions.json' with { type: 'json' };
+import vpHamiltonians from '../../../data/variational-problems/hamiltonians.json' with { type: 'json' };
+import vpSubmissions from '../../../data/variational-problems/submissions.json' with { type: 'json' };
 import { Contributors } from './Contributors';
+import { TrackerCard } from './TrackerCard';
+
+function computeCounts<T extends BaseSubmission>(
+  submissions: T[],
+  instances: { id: string; category: string }[],
+  getInstanceId: (s: T) => string,
+): Record<Category, number> {
+  const counts: Record<Category, number> = {
+    'Active Candidates': 0,
+    'Baseline Benchmarks': 0,
+    'Superseded Candidates': 0,
+  };
+  const withSubmissions = new Set(submissions.map(getInstanceId));
+  for (const instance of instances) {
+    if (withSubmissions.has(instance.id) && isCategory(instance.category)) {
+      counts[instance.category]++;
+    }
+  }
+  return counts;
+}
 
 export default function Home() {
   return (
     <>
       <header className="bg-hero-gradient">
-        <div className="px-6 py-20 text-center">
+        <div className="px-6 pt-20 pb-12 text-center">
           <h1 className="mx-auto max-w-lg text-5xl">Benchmarking quantum advantage</h1>
           <h2 className="mx-auto my-6 max-w-xl">
             As claims of quantum advantage emerge, this project provides a platform-agnostic
             framework to collect, validate, and compare results.
           </h2>
-          <div>
-            <Button size="lg" asChild>
-              <Link href="/trackers">
-                View trackers <ChevronRightIcon />
-              </Link>
-            </Button>
-          </div>
+          <ul className="mx-auto mt-12 grid max-w-5xl gap-4 px-6 text-left md:grid-cols-3">
+            <TrackerCard
+              title="Observable estimations"
+              href="/trackers/observable-estimations"
+              counts={computeCounts(
+                oeSubmissions,
+                flattenInstances(oeCircuitModels),
+                (s) => s.circuit,
+              )}
+            />
+            <TrackerCard
+              title="Variational problems"
+              href="/trackers/variational-problems"
+              counts={computeCounts(
+                vpSubmissions,
+                flattenInstances(vpHamiltonians),
+                (s) => s.hamiltonian,
+              )}
+            />
+            <TrackerCard
+              title="Classically verifiable problems"
+              href="/trackers/classically-verifiable-problems"
+              counts={computeCounts(
+                cvpSubmissions,
+                flattenInstances(cvpCircuitModels),
+                (s) => s.circuit,
+              )}
+            />
+          </ul>
         </div>
 
         <div className="px-6 pb-20 text-center">
