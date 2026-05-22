@@ -61,13 +61,12 @@ function buildInstanceOptions<T extends BaseSubmission, I extends Instance>(
     }
   }
 
-  const tierOf = (id: string) =>
-    lastQuantumById[id] !== undefined ? 0 : lastAnyById[id] !== undefined ? 1 : 2;
+  const tierOf = (id: string) => (lastQuantumById[id] !== undefined ? 0 : 1);
   const tsOf = (id: string) => lastQuantumById[id] ?? lastAnyById[id] ?? 0;
 
   return instances
-    .filter((inst) => inst.category === category)
-    .map((inst) => ({ ...inst, entries: entriesById[inst.id] ?? 0 }))
+    .filter((inst) => inst.category === category && entriesById[inst.id] !== undefined)
+    .map((inst) => ({ ...inst, entries: entriesById[inst.id]! }))
     .toSorted((a, b) => {
       const tierDiff = tierOf(a.id) - tierOf(b.id);
       return tierDiff !== 0 ? tierDiff : tsOf(b.id) - tsOf(a.id);
@@ -117,9 +116,9 @@ export function SubmissionsTable<T extends BaseSubmission, I extends Instance>(
       'Baseline Benchmarks': 0,
       'Superseded Candidates': 0,
     };
-    for (const submission of submissions) {
-      const instance = instances.find((inst) => inst.id === getInstanceId(submission));
-      if (instance && isCategory(instance.category)) {
+    const instancesWithSubmissions = new Set(submissions.map(getInstanceId));
+    for (const instance of instances) {
+      if (instancesWithSubmissions.has(instance.id) && isCategory(instance.category)) {
         acc[instance.category]++;
       }
     }
