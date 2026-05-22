@@ -24,7 +24,8 @@ To submit a new circuit model, follow these steps:
 
 5.  **Update `circuit-models.json`**: Open the `circuit-models.json` file located in the path root (e.g., `data/observable-estimations/circuit-models.json`). Add an entry for your new model.
     - The key should match your model directory name.
-    - The `instances` array should list each circuit instance with its `id`, `path` (relative to the model directory), and other metadata like `qubits` and `gates`.
+    - The `instances` array should list each circuit instance with its `id`, `path` (relative to the model directory), `category`, and other metadata like `qubits` and `gates`.
+    - The `category` field is required and must be one of: `"Baseline Benchmarks"`, `"Active Candidates"`, or `"Superseded Candidates"`.
 
     **Example `circuit-models.json` entry:**
 
@@ -36,7 +37,8 @@ To submit a new circuit model, follow these steps:
             "id": "my_new_model_instance_1",
             "path": "instance_1.qasm",
             "qubits": 5,
-            "gates": 100
+            "gates": 100,
+            "category": "Active Candidates"
           }
         ]
       }
@@ -62,6 +64,7 @@ To submit a new circuit instance to an existing circuit model, follow these step
 2.  **Add circuit file**: Place your new circuit file (e.g., `.qasm`) inside the existing model directory.
 
 3.  **Update `circuit-models.json`**: Open the `circuit-models.json` file for that path. Find the entry for the existing model and append your new instance to the `instances` array.
+    - The `category` field is required and must be one of: `"Baseline Benchmarks"`, `"Active Candidates"`, or `"Superseded Candidates"`.
 
     **Example:**
 
@@ -77,7 +80,8 @@ To submit a new circuit instance to an existing circuit model, follow these step
             "id": "existing_model_instance_2",
             "path": "existing_model_instance_2.qasm",
             "qubits": 10,
-            "gates": 200
+            "gates": 200,
+            "category": "Active Candidates"
           }
         ]
       }
@@ -110,7 +114,8 @@ To submit a new hamiltonian, follow these steps:
 
 5.  **Update `hamiltonians.json`**: Open the `hamiltonians.json` file located in the path root (e.g., `data/variational-problems/hamiltonians.json`). Add an entry for your new hamiltonian.
     - The key should match your hamiltonian directory name.
-    - The `instances` array should list each hamiltonian instance with its `id`, `path` (relative to the hamiltonian directory), and other metadata like `hilbert_space_size`.
+    - The `instances` array should list each hamiltonian instance with its `id`, `path` (relative to the hamiltonian directory), `category`, and other metadata like `hilbert_space_size`.
+    - The `category` field is required and must be one of: `"Baseline Benchmarks"`, `"Active Candidates"`, or `"Superseded Candidates"`.
 
     **Example `hamiltonians.json` entry:**
 
@@ -121,7 +126,8 @@ To submit a new hamiltonian, follow these steps:
           {
             "id": "my_new_hamiltonian_instance_1",
             "path": "my_new_hamiltonian_instance_1.fcidump",
-            "hilbert_space_size": 8.86e15
+            "hilbert_space_size": 8.86e15,
+            "category": "Active Candidates"
           }
         ]
       }
@@ -146,6 +152,7 @@ To submit a new hamiltonian instance to an existing hamiltonian, follow these st
 2.  **Add hamiltonian files**: Place your hamiltonian files (e.g., `.fcidump`) inside the existing hamiltonian directory.
 
 3.  **Update `hamiltonians.json`**: Open the `hamiltonians.json` file for that path. Find the entry for the existing hamiltonian and append your new instance to the `instances` array.
+    - The `category` field is required and must be one of: `"Baseline Benchmarks"`, `"Active Candidates"`, or `"Superseded Candidates"`.
 
     **Example:**
 
@@ -160,7 +167,8 @@ To submit a new hamiltonian instance to an existing hamiltonian, follow these st
           {
             "id": "existing_hamiltonian_instance_2",
             "path": "existing_hamiltonian_instance_2.fcidump",
-            "hilbert_space_size": 8.86e15
+            "hilbert_space_size": 8.86e15,
+            "category": "Active Candidates"
           }
         ]
       }
