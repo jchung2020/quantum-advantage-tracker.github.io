@@ -165,7 +165,7 @@ export function SubmissionsTable<T extends BaseSubmission, I extends Instance>(
                           {formatDate(submission.createdAt)}
                         </time>
                       </TableCell>
-                      <TableCell className="whitespace-normal">
+                      <TableCell className="wrap-break-word whitespace-normal">
                         <a
                           href={submission.url}
                           target="_blank"
