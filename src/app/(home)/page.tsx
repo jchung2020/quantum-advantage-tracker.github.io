@@ -11,7 +11,7 @@ export default function Home() {
           <h1 className="mx-auto max-w-lg text-5xl">Benchmarking quantum advantage</h1>
           <h2 className="mx-auto my-6 max-w-xl">
             As claims of quantum advantage emerge, this project provides a platform-agnostic
-            framework to collect, validate, and compare experimental results.
+            framework to collect, validate, and compare results.
           </h2>
           <div>
             <Button size="lg" asChild>
@@ -70,10 +70,10 @@ export default function Home() {
         <ul className="mx-auto mt-20 grid max-w-7xl gap-4 text-left md:grid-cols-3">
           <li className="bg-secondary flex flex-col items-start gap-8 rounded-md border p-6">
             <div className="text-3xl md:max-w-72">Observable estimations 📊</div>
-            <div className="font-semibold">Trust through rigorous error control.</div>
+            <div className="font-semibold">Trust through rigorous error bars.</div>
             <div className="flex-1">
               Explore submissions that report expectation values for observables, and include
-              mathematically grounded error bars for validating quantum computations.
+              rigorous error bars for validating the quantum computation.
             </div>
             <Button asChild size="lg">
               <Link href="/trackers/observable-estimations">
@@ -87,8 +87,8 @@ export default function Home() {
               Certifiable quantum solutions via the variational principle.
             </div>
             <div className="flex-1">
-              Variational algorithm submissions offer guaranteed solution bounds and enable
-              benchmarking against classical methods - even when exact answers are unknown.
+              Variational solutions offer guaranteed upper bounds on ground-state energies and
+              enable benchmarking against classical methods - even when exact answers are unknown.
             </div>
             <Button asChild size="lg">
               <Link href="/trackers/variational-problems">
