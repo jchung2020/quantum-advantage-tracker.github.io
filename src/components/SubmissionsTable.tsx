@@ -14,6 +14,7 @@ import {
 import { TableEmptyIcon } from '@/icons';
 import type { BaseSubmission } from '@/types/submissions';
 import { formatDate, sortSubmissions } from '@/utils';
+import clsx from 'clsx';
 import { ArrowDownIcon, ArrowUpRight } from 'lucide-react';
 import { useMemo, useState, type ReactNode } from 'react';
 
@@ -110,13 +111,19 @@ export function SubmissionsTable<T extends BaseSubmission, I extends Instance>(
       </div>
 
       <div className="flex flex-col gap-6 md:flex-row">
-        <InstanceFilter
-          instances={instanceOptions}
-          value={instanceFilter}
-          onChange={setInstanceFilter}
-        />
+        {instanceOptions.length > 0 && (
+          <InstanceFilter
+            instances={instanceOptions}
+            value={instanceFilter}
+            onChange={setInstanceFilter}
+          />
+        )}
 
-        <div className="@container min-w-0 flex-1 overflow-hidden rounded-lg border md:mt-9">
+        <div
+          className={clsx('@container min-w-0 flex-1 overflow-hidden rounded-lg border', {
+            'md:mt-9': instanceOptions.length > 0,
+          })}
+        >
           {selectedInstance && (
             <div className="flex items-center justify-between gap-4 border-b px-4 py-6">
               <h3 className="font-medium">{selectedInstance.id}</h3>
