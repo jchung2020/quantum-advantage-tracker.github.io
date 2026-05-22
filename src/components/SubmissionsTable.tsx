@@ -41,6 +41,39 @@ type SubmissionsTableProps<T extends BaseSubmission, I extends Instance> = {
   };
 };
 
+function buildInstanceOptions<T extends BaseSubmission, I extends Instance>(
+  submissions: T[],
+  instances: I[],
+  getInstanceId: (submission: T) => string,
+  category: string,
+) {
+  const entriesById: Record<string, number> = {};
+  const lastQuantumById: Record<string, number> = {};
+  const lastAnyById: Record<string, number> = {};
+
+  for (const submission of submissions) {
+    const id = getInstanceId(submission);
+    const ts = new Date(submission.createdAt).getTime();
+    entriesById[id] = (entriesById[id] ?? 0) + 1;
+    if (ts > (lastAnyById[id] ?? -Infinity)) lastAnyById[id] = ts;
+    if (submission.runtimeQuantum !== undefined && ts > (lastQuantumById[id] ?? -Infinity)) {
+      lastQuantumById[id] = ts;
+    }
+  }
+
+  const tierOf = (id: string) =>
+    lastQuantumById[id] !== undefined ? 0 : lastAnyById[id] !== undefined ? 1 : 2;
+  const tsOf = (id: string) => lastQuantumById[id] ?? lastAnyById[id] ?? 0;
+
+  return instances
+    .filter((inst) => inst.category === category)
+    .map((inst) => ({ ...inst, entries: entriesById[inst.id] ?? 0 }))
+    .toSorted((a, b) => {
+      const tierDiff = tierOf(a.id) - tierOf(b.id);
+      return tierDiff !== 0 ? tierDiff : tsOf(b.id) - tsOf(a.id);
+    });
+}
+
 export function SubmissionsTable<T extends BaseSubmission, I extends Instance>(
   props: SubmissionsTableProps<T, I>,
 ) {
@@ -57,22 +90,16 @@ export function SubmissionsTable<T extends BaseSubmission, I extends Instance>(
   const [categoryFilter, setCategoryFilter] = useState<Category>(DEFAULT_CATEGORY);
 
   const firstInstanceOf = (category: Category) =>
-    instances.find((inst) => inst.category === category)?.id ?? null;
+    buildInstanceOptions(submissions, instances, getInstanceId, category)[0]?.id ?? null;
 
   const [instanceFilter, setInstanceFilter] = useState<string | null>(() =>
     firstInstanceOf(DEFAULT_CATEGORY),
   );
 
-  const instanceOptions = useMemo(() => {
-    const entriesById: Record<string, number> = {};
-    for (const submission of submissions) {
-      const id = getInstanceId(submission);
-      entriesById[id] = (entriesById[id] ?? 0) + 1;
-    }
-    return instances
-      .filter((inst) => inst.category === categoryFilter)
-      .map((inst) => ({ ...inst, entries: entriesById[inst.id] ?? 0 }));
-  }, [submissions, instances, categoryFilter, getInstanceId]);
+  const instanceOptions = useMemo(
+    () => buildInstanceOptions(submissions, instances, getInstanceId, categoryFilter),
+    [submissions, instances, categoryFilter, getInstanceId],
+  );
 
   const filteredSubmissions = useMemo(() => {
     if (!instanceFilter) return [];
