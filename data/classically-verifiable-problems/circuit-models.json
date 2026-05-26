@@ -31,7 +31,7 @@
         "path": "nq70_depth70_checks27_basis_fstate.qasm",
         "qubits": 70,
         "gates": 2415,
-        "category": "Baseline Benchmarks"
+        "category": "Active Candidates"
       }
     ]
   },
