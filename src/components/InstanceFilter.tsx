@@ -65,11 +65,7 @@ export function InstanceFilter<T extends Instance>(props: {
               backgroundAttachment: 'local, local, scroll, scroll',
             }}
           >
-            <RadioGroup
-              value={value ?? ''}
-              onValueChange={onChange}
-              className="grid-cols-1 gap-3"
-            >
+            <RadioGroup value={value ?? ''} onValueChange={onChange} className="grid-cols-1 gap-3">
               {instances.map((instance) => {
                 const id = `instance-${instance.id}`;
                 return (

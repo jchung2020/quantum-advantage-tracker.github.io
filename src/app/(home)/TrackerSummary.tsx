@@ -1,5 +1,7 @@
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { CATEGORIES, type Category } from '@/lib/categories';
+import clsx from 'clsx';
 import type { Route } from 'next';
 import Link from 'next/link';
 
@@ -19,20 +21,17 @@ export function TrackerSummary(props: {
   return (
     <li className="flex h-full flex-col items-center text-center">
       <div className="text-2xl font-semibold">{title}</div>
-      <div className="mt-2 mb-8 flex flex-wrap justify-center gap-2 text-xs">
+      <div className="mt-2 mb-8 flex flex-wrap justify-center gap-2">
         {CATEGORIES.map(({ value, label }) => {
           const isActiveBadge = value === 'Active Candidates';
           return (
-            <span
+            <Badge
               key={value}
-              className={
-                isActiveBadge
-                  ? 'rounded-full border border-transparent bg-green-200 px-2 py-0.5 text-green-900'
-                  : 'bg-background text-foreground rounded-full border px-2 py-0.5'
-              }
+              variant="outline"
+              className={clsx(isActiveBadge && 'border-transparent bg-green-200 text-green-900')}
             >
               {counts[value]} {label.toLowerCase()}
-            </span>
+            </Badge>
           );
         })}
       </div>
@@ -52,16 +51,11 @@ export function TrackerSummary(props: {
                 <div className="truncate font-medium" title={card.type}>
                   {card.type}
                 </div>
-                <div
-                  className="text-muted-foreground truncate text-sm"
-                  title={card.instanceLabel}
-                >
+                <div className="text-muted-foreground truncate text-sm" title={card.instanceLabel}>
                   {card.instanceLabel}
                 </div>
               </div>
-              <div className="text-muted-foreground shrink-0 text-sm">
-                {card.entries} entries
-              </div>
+              <div className="text-muted-foreground shrink-0 text-sm">{card.entries} entries</div>
             </div>
           ))
         )}

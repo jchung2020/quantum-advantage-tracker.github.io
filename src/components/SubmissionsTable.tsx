@@ -1,13 +1,6 @@
 'use client';
 
 import { CategoryFilter } from '@/components/CategoryFilter';
-import {
-  CATEGORIES,
-  categoryToSlug,
-  isCategory,
-  slugToCategory,
-  type Category,
-} from '@/lib/categories';
 import { InstanceFilter } from '@/components/InstanceFilter';
 import { RuntimeSeconds } from '@/components/RuntimeSeconds';
 import {
@@ -19,6 +12,13 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { TableEmptyIcon } from '@/icons';
+import {
+  CATEGORIES,
+  categoryToSlug,
+  isCategory,
+  slugToCategory,
+  type Category,
+} from '@/lib/categories';
 import type { BaseSubmission } from '@/types/submissions';
 import { buildInstanceOptions, formatDate, sortSubmissions } from '@/utils';
 import clsx from 'clsx';
@@ -143,7 +143,7 @@ function SubmissionsTableContent<T extends BaseSubmission, I extends Instance>(
           })}
         >
           {selectedInstance && (
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-x-4 border-b px-4 py-6">
+            <div className="flex flex-col items-center justify-between gap-x-4 border-b px-4 py-6 sm:flex-row">
               <h3 className="font-medium">{selectedInstance.id}</h3>
               <a
                 href={getInstanceUrl(selectedInstance)}
@@ -151,7 +151,7 @@ function SubmissionsTableContent<T extends BaseSubmission, I extends Instance>(
                 rel="noopener noreferrer"
                 className="text-link-foreground inline-flex items-center gap-1 hover:underline"
               >
-                View on Github <ArrowUpRight size={16} className='flex-none' />
+                View on Github <ArrowUpRight size={16} className="flex-none" />
               </a>
             </div>
           )}
@@ -180,9 +180,7 @@ function SubmissionsTableContent<T extends BaseSubmission, I extends Instance>(
                 <TableBodyEmpty />
               ) : (
                 sortSubmissions(filteredSubmissions).map((submission, index) => {
-                  const instance = instances.find(
-                    (inst) => inst.id === getInstanceId(submission),
-                  )!;
+                  const instance = instances.find((inst) => inst.id === getInstanceId(submission))!;
 
                   return (
                     <TableRow key={`submission-${index}`}>
