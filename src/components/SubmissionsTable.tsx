@@ -1,7 +1,13 @@
 'use client';
 
 import { CategoryFilter } from '@/components/CategoryFilter';
-import { isCategory, type Category } from '@/lib/categories';
+import {
+  CATEGORIES,
+  categoryToSlug,
+  isCategory,
+  slugToCategory,
+  type Category,
+} from '@/lib/categories';
 import { InstanceFilter } from '@/components/InstanceFilter';
 import { RuntimeSeconds } from '@/components/RuntimeSeconds';
 import {
@@ -17,7 +23,10 @@ import type { BaseSubmission } from '@/types/submissions';
 import { formatDate, sortSubmissions } from '@/utils';
 import clsx from 'clsx';
 import { ArrowDownIcon, ArrowUpRight } from 'lucide-react';
-import { useMemo, useState, type ReactNode } from 'react';
+import { parseAsStringLiteral, useQueryState } from 'nuqs';
+import { Suspense, useMemo, useState, type ReactNode } from 'react';
+
+const CATEGORY_SLUGS = CATEGORIES.map((c) => c.slug);
 
 const DEFAULT_CATEGORY: Category = 'Active Candidates';
 const COLUMN_COUNT = 9;
@@ -77,6 +86,16 @@ function buildInstanceOptions<T extends BaseSubmission, I extends Instance>(
 export function SubmissionsTable<T extends BaseSubmission, I extends Instance>(
   props: SubmissionsTableProps<T, I>,
 ) {
+  return (
+    <Suspense fallback={<div className="min-h-screen" />}>
+      <SubmissionsTableContent {...props} />
+    </Suspense>
+  );
+}
+
+function SubmissionsTableContent<T extends BaseSubmission, I extends Instance>(
+  props: SubmissionsTableProps<T, I>,
+) {
   const {
     submissions,
     instances,
@@ -87,13 +106,17 @@ export function SubmissionsTable<T extends BaseSubmission, I extends Instance>(
     valueColumn,
   } = props;
 
-  const [categoryFilter, setCategoryFilter] = useState<Category>(DEFAULT_CATEGORY);
+  const [categorySlug, setCategorySlug] = useQueryState(
+    'category',
+    parseAsStringLiteral(CATEGORY_SLUGS).withDefault(categoryToSlug(DEFAULT_CATEGORY)),
+  );
+  const categoryFilter: Category = slugToCategory(categorySlug);
 
   const firstInstanceOf = (category: Category) =>
     buildInstanceOptions(submissions, instances, getInstanceId, category)[0]?.id ?? null;
 
   const [instanceFilter, setInstanceFilter] = useState<string | null>(() =>
-    firstInstanceOf(DEFAULT_CATEGORY),
+    firstInstanceOf(categoryFilter),
   );
 
   const instanceOptions = useMemo(
@@ -127,7 +150,7 @@ export function SubmissionsTable<T extends BaseSubmission, I extends Instance>(
   }, [submissions, instances, getInstanceId]);
 
   const handleCategoryChange = (value: Category) => {
-    setCategoryFilter(value);
+    setCategorySlug(categoryToSlug(value));
     setInstanceFilter(firstInstanceOf(value));
   };
 

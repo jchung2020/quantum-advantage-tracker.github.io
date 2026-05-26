@@ -1,17 +1,20 @@
 export const CATEGORIES = [
-  'Active Candidates',
-  'Baseline Benchmarks',
-  'Superseded Candidates',
+  { value: 'Active Candidates', label: 'Active', slug: 'active' },
+  { value: 'Baseline Benchmarks', label: 'Baseline', slug: 'baseline' },
+  { value: 'Superseded Candidates', label: 'Superseded', slug: 'superseded' },
 ] as const;
 
-export type Category = (typeof CATEGORIES)[number];
-
-export const CATEGORY_LABELS: Record<Category, string> = {
-  'Active Candidates': 'Active',
-  'Baseline Benchmarks': 'Baseline',
-  'Superseded Candidates': 'Superseded',
-};
+export type Category = (typeof CATEGORIES)[number]['value'];
+export type CategorySlug = (typeof CATEGORIES)[number]['slug'];
 
 export function isCategory(value: string): value is Category {
-  return (CATEGORIES as readonly string[]).includes(value);
+  return CATEGORIES.some((c) => c.value === value);
+}
+
+export function slugToCategory(slug: CategorySlug): Category {
+  return CATEGORIES.find((c) => c.slug === slug)!.value;
+}
+
+export function categoryToSlug(category: Category): CategorySlug {
+  return CATEGORIES.find((c) => c.value === category)!.slug;
 }

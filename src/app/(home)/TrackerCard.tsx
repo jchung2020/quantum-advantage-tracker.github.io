@@ -1,4 +1,4 @@
-import { CATEGORIES, CATEGORY_LABELS, type Category } from '@/lib/categories';
+import { CATEGORIES, type Category } from '@/lib/categories';
 import { ChevronRightIcon } from 'lucide-react';
 import type { Route } from 'next';
 import Link from 'next/link';
@@ -23,18 +23,18 @@ export function TrackerCard(props: {
           />
         </div>
         <div className="flex flex-wrap gap-2 text-xs">
-          {CATEGORIES.map((category) => {
-            const isActiveBadge = category === 'Active Candidates';
+          {CATEGORIES.map(({ value, label }) => {
+            const isActiveBadge = value === 'Active Candidates';
             return (
               <span
-                key={category}
+                key={value}
                 className={
                   isActiveBadge
                     ? 'rounded-full bg-green-200 px-2 py-0.5 text-green-900'
                     : 'bg-secondary text-secondary-foreground rounded-full px-2 py-0.5'
                 }
               >
-                {counts[category]} {CATEGORY_LABELS[category].toLowerCase()}
+                {counts[value]} {label.toLowerCase()}
               </span>
             );
           })}

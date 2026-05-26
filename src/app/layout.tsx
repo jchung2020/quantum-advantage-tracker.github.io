@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import { NavMenu } from './NavMenu';
 
 import './globals.css';
@@ -25,23 +26,25 @@ export default function RootLayout(props: LayoutProps<'/'>) {
   return (
     <html lang="en">
       <body className={`${interSans.variable} font-sans antialiased`}>
-        <header>
-          <nav className="py-6">
-            <div className="mx-auto flex h-full max-w-7xl flex-col items-center justify-between gap-3 px-6 md:flex-row">
-              <Link href="/" className="font-semibold">
-                📐 Quantum Advantage Tracker
-              </Link>
+        <NuqsAdapter>
+          <header>
+            <nav className="py-6">
+              <div className="mx-auto flex h-full max-w-7xl flex-col items-center justify-between gap-3 px-6 md:flex-row">
+                <Link href="/" className="font-semibold">
+                  📐 Quantum Advantage Tracker
+                </Link>
 
-              <NavMenu />
-            </div>
-          </nav>
-        </header>
+                <NavMenu />
+              </div>
+            </nav>
+          </header>
 
-        <main>{props.children}</main>
+          <main>{props.children}</main>
 
-        <footer className="px-6 py-6 text-center">
-          <div>Quantum Advantage Tracker © 2025</div>
-        </footer>
+          <footer className="px-6 py-6 text-center">
+            <div>Quantum Advantage Tracker © 2025</div>
+          </footer>
+        </NuqsAdapter>
       </body>
     </html>
   );
