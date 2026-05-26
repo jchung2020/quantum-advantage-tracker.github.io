@@ -15,13 +15,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { stripType } from '@/utils';
 
 type Instance = { id: string; type: string; entries: number };
-
-function stripType(id: string, type: string): string {
-  if (!id.startsWith(type)) return id;
-  return id.slice(type.length).replace(/^[_-]+/, '');
-}
 
 export function InstanceFilter<T extends Instance>(props: {
   instances: T[];

@@ -20,7 +20,7 @@ import {
 } from '@/components/ui/table';
 import { TableEmptyIcon } from '@/icons';
 import type { BaseSubmission } from '@/types/submissions';
-import { formatDate, sortSubmissions } from '@/utils';
+import { buildInstanceOptions, formatDate, sortSubmissions } from '@/utils';
 import clsx from 'clsx';
 import { ArrowDownIcon, ArrowUpRight } from 'lucide-react';
 import { parseAsStringLiteral, useQueryState } from 'nuqs';
@@ -50,38 +50,6 @@ type SubmissionsTableProps<T extends BaseSubmission, I extends Instance> = {
     render: (submission: T) => ReactNode;
   };
 };
-
-function buildInstanceOptions<T extends BaseSubmission, I extends Instance>(
-  submissions: T[],
-  instances: I[],
-  getInstanceId: (submission: T) => string,
-  category: string,
-) {
-  const entriesById: Record<string, number> = {};
-  const lastQuantumById: Record<string, number> = {};
-  const lastAnyById: Record<string, number> = {};
-
-  for (const submission of submissions) {
-    const id = getInstanceId(submission);
-    const ts = new Date(submission.createdAt).getTime();
-    entriesById[id] = (entriesById[id] ?? 0) + 1;
-    if (ts > (lastAnyById[id] ?? -Infinity)) lastAnyById[id] = ts;
-    if (submission.runtimeQuantum !== undefined && ts > (lastQuantumById[id] ?? -Infinity)) {
-      lastQuantumById[id] = ts;
-    }
-  }
-
-  const tierOf = (id: string) => (lastQuantumById[id] !== undefined ? 0 : 1);
-  const tsOf = (id: string) => lastQuantumById[id] ?? lastAnyById[id] ?? 0;
-
-  return instances
-    .filter((inst) => inst.category === category && entriesById[inst.id] !== undefined)
-    .map((inst) => ({ ...inst, entries: entriesById[inst.id]! }))
-    .toSorted((a, b) => {
-      const tierDiff = tierOf(a.id) - tierOf(b.id);
-      return tierDiff !== 0 ? tierDiff : tsOf(b.id) - tsOf(a.id);
-    });
-}
 
 export function SubmissionsTable<T extends BaseSubmission, I extends Instance>(
   props: SubmissionsTableProps<T, I>,

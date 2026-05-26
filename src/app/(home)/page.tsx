@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { isCategory, type Category } from '@/lib/categories';
 import type { BaseSubmission } from '@/types/submissions';
-import { flattenInstances } from '@/utils';
+import { buildInstanceOptions, flattenInstances, stripType } from '@/utils';
 import { ChevronRightIcon } from 'lucide-react';
 import Link from 'next/link';
 import cvpCircuitModels from '../../../data/classically-verifiable-problems/circuit-models.json' with { type: 'json' };
@@ -11,7 +11,7 @@ import oeSubmissions from '../../../data/observable-estimations/submissions.json
 import vpHamiltonians from '../../../data/variational-problems/hamiltonians.json' with { type: 'json' };
 import vpSubmissions from '../../../data/variational-problems/submissions.json' with { type: 'json' };
 import { Contributors } from './Contributors';
-import { TrackerSummary } from './TrackerSummary';
+import { TrackerSummary, type ActiveCard } from './TrackerSummary';
 
 function computeCounts<T extends BaseSubmission>(
   submissions: T[],
@@ -32,7 +32,24 @@ function computeCounts<T extends BaseSubmission>(
   return counts;
 }
 
+function computeActiveCards<
+  T extends BaseSubmission,
+  I extends { id: string; type: string; category: string },
+>(submissions: T[], instances: I[], getInstanceId: (s: T) => string): ActiveCard[] {
+  return buildInstanceOptions(submissions, instances, getInstanceId, 'Active Candidates')
+    .slice(0, 2)
+    .map((inst) => ({
+      type: inst.type,
+      instanceLabel: stripType(inst.id, inst.type),
+      entries: inst.entries,
+    }));
+}
+
 export default function Home() {
+  const oeInstances = flattenInstances(oeCircuitModels);
+  const vpInstances = flattenInstances(vpHamiltonians);
+  const cvpInstances = flattenInstances(cvpCircuitModels);
+
   return (
     <>
       <header className="bg-hero-gradient">
@@ -58,29 +75,20 @@ export default function Home() {
           <TrackerSummary
             title="Observable estimations"
             href="/trackers/observable-estimations"
-            counts={computeCounts(
-              oeSubmissions,
-              flattenInstances(oeCircuitModels),
-              (s) => s.circuit,
-            )}
+            counts={computeCounts(oeSubmissions, oeInstances, (s) => s.circuit)}
+            activeCards={computeActiveCards(oeSubmissions, oeInstances, (s) => s.circuit)}
           />
           <TrackerSummary
             title="Variational problems"
             href="/trackers/variational-problems"
-            counts={computeCounts(
-              vpSubmissions,
-              flattenInstances(vpHamiltonians),
-              (s) => s.hamiltonian,
-            )}
+            counts={computeCounts(vpSubmissions, vpInstances, (s) => s.hamiltonian)}
+            activeCards={computeActiveCards(vpSubmissions, vpInstances, (s) => s.hamiltonian)}
           />
           <TrackerSummary
             title="Classically verifiable problems"
             href="/trackers/classically-verifiable-problems"
-            counts={computeCounts(
-              cvpSubmissions,
-              flattenInstances(cvpCircuitModels),
-              (s) => s.circuit,
-            )}
+            counts={computeCounts(cvpSubmissions, cvpInstances, (s) => s.circuit)}
+            activeCards={computeActiveCards(cvpSubmissions, cvpInstances, (s) => s.circuit)}
           />
         </ul>
       </section>
