@@ -11,7 +11,7 @@ import oeSubmissions from '../../../data/observable-estimations/submissions.json
 import vpHamiltonians from '../../../data/variational-problems/hamiltonians.json' with { type: 'json' };
 import vpSubmissions from '../../../data/variational-problems/submissions.json' with { type: 'json' };
 import { Contributors } from './Contributors';
-import { TrackerCard } from './TrackerCard';
+import { TrackerSummary } from './TrackerSummary';
 
 function computeCounts<T extends BaseSubmission>(
   submissions: T[],
@@ -42,35 +42,6 @@ export default function Home() {
             As claims of quantum advantage emerge, this project provides a platform-agnostic
             framework to collect, validate, and compare results.
           </h2>
-          <ul className="mx-auto mt-12 grid max-w-5xl gap-4 px-6 text-left md:grid-cols-3">
-            <TrackerCard
-              title="Observable estimations"
-              href="/trackers/observable-estimations"
-              counts={computeCounts(
-                oeSubmissions,
-                flattenInstances(oeCircuitModels),
-                (s) => s.circuit,
-              )}
-            />
-            <TrackerCard
-              title="Variational problems"
-              href="/trackers/variational-problems"
-              counts={computeCounts(
-                vpSubmissions,
-                flattenInstances(vpHamiltonians),
-                (s) => s.hamiltonian,
-              )}
-            />
-            <TrackerCard
-              title="Classically verifiable problems"
-              href="/trackers/classically-verifiable-problems"
-              counts={computeCounts(
-                cvpSubmissions,
-                flattenInstances(cvpCircuitModels),
-                (s) => s.circuit,
-              )}
-            />
-          </ul>
         </div>
 
         <div className="px-6 pb-20 text-center">
@@ -80,6 +51,39 @@ export default function Home() {
           <Contributors />
         </div>
       </header>
+
+      <section className="mx-auto px-6 py-20 text-center">
+        <h3 className="mb-12 text-4xl">Active advantage candidates</h3>
+        <ul className="mx-auto grid gap-12 md:grid-cols-3">
+          <TrackerSummary
+            title="Observable estimations"
+            href="/trackers/observable-estimations"
+            counts={computeCounts(
+              oeSubmissions,
+              flattenInstances(oeCircuitModels),
+              (s) => s.circuit,
+            )}
+          />
+          <TrackerSummary
+            title="Variational problems"
+            href="/trackers/variational-problems"
+            counts={computeCounts(
+              vpSubmissions,
+              flattenInstances(vpHamiltonians),
+              (s) => s.hamiltonian,
+            )}
+          />
+          <TrackerSummary
+            title="Classically verifiable problems"
+            href="/trackers/classically-verifiable-problems"
+            counts={computeCounts(
+              cvpSubmissions,
+              flattenInstances(cvpCircuitModels),
+              (s) => s.circuit,
+            )}
+          />
+        </ul>
+      </section>
 
       <section className="mx-auto max-w-2xl px-6 py-20 text-center">
         <h3 className="mb-6 text-4xl">What is quantum advantage?</h3>
