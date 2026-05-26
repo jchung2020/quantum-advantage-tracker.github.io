@@ -20,8 +20,8 @@ export function TrackerSummary(props: {
               key={value}
               className={
                 isActiveBadge
-                  ? 'rounded-full bg-green-200 px-2 py-0.5 text-green-900'
-                  : 'bg-secondary text-secondary-foreground rounded-full px-2 py-0.5'
+                  ? 'rounded-full border border-transparent bg-green-200 px-2 py-0.5 text-green-900'
+                  : 'rounded-full border bg-background px-2 py-0.5 text-foreground'
               }
             >
               {counts[value]} {label.toLowerCase()}
