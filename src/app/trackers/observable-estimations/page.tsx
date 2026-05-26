@@ -24,7 +24,7 @@ export default async function TrackersOE() {
           </h2>
 
           <div className="mx-auto flex flex-row flex-wrap justify-center gap-x-6 gap-y-3">
-            <Button variant="secondary" size="lg" asChild>
+            <Button variant="outline" size="lg" asChild>
               <a
                 href="https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/tree/main/data/observable-estimations/circuit-models"
                 target="_blank"
@@ -33,7 +33,7 @@ export default async function TrackersOE() {
                 View circuit instances <GithubIcon />
               </a>
             </Button>
-            <Button variant="secondary" size="lg" asChild>
+            <Button variant="outline" size="lg" asChild>
               <a
                 href="https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/new?template=01-submission-path-observable-estimations.yml"
                 target="_blank"
