@@ -36,7 +36,7 @@ export function SubmissionsTable(props: {
       }}
       chart={{
         getValue: (s) => s.energy,
-        yLabel: 'Energy',
+        yLabel: 'Energy (Eh)',
         yTooltipLabel: 'E',
       }}
     />
