@@ -144,7 +144,7 @@ function SubmissionsTableContent<T extends BaseSubmission, I extends Instance>(
         >
           {selectedInstance && (
             <div className="flex flex-col items-center justify-between gap-x-4 border-b px-4 py-6 sm:flex-row">
-              <h3 className="font-medium">{selectedInstance.id}</h3>
+              <h3 className="font-medium wrap-anywhere">{selectedInstance.id}</h3>
               <a
                 href={getInstanceUrl(selectedInstance)}
                 target="_blank"
