@@ -4,6 +4,12 @@ import { CategoryFilter } from '@/components/CategoryFilter';
 import { InstanceFilter } from '@/components/InstanceFilter';
 import { RuntimeSeconds } from '@/components/RuntimeSeconds';
 import { SubmissionsChart } from '@/components/SubmissionsChart';
+import { Button } from '@/components/ui/button';
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '@/components/ui/collapsible';
 import {
   Table,
   TableBody,
@@ -23,7 +29,7 @@ import {
 import type { BaseSubmission } from '@/types/submissions';
 import { buildInstanceOptions, formatDate, sortSubmissions } from '@/utils';
 import clsx from 'clsx';
-import { ArrowDownIcon, ArrowUpRight } from 'lucide-react';
+import { ArrowDownIcon, ArrowUpRight, ChevronRight } from 'lucide-react';
 import { parseAsStringLiteral, useQueryState } from 'nuqs';
 import { Suspense, useMemo, useState, type ReactNode } from 'react';
 
@@ -95,6 +101,8 @@ function SubmissionsTableContent<T extends BaseSubmission, I extends Instance>(
     firstInstanceOf(categoryFilter),
   );
 
+  const [chartOpen, setChartOpen] = useState(true);
+
   const instanceOptions = useMemo(
     () => buildInstanceOptions(submissions, instances, getInstanceId, categoryFilter),
     [submissions, instances, categoryFilter, getInstanceId],
@@ -151,8 +159,8 @@ function SubmissionsTableContent<T extends BaseSubmission, I extends Instance>(
           })}
         >
           {selectedInstance && (
-            <>
-              <div className="px-4 py-6">
+            <Collapsible open={chartOpen} onOpenChange={setChartOpen} className="border-b">
+              <div className="flex items-center justify-between gap-4 px-4 py-6">
                 <h3 className="font-medium wrap-anywhere">
                   <a
                     href={getInstanceUrl(selectedInstance)}
@@ -164,17 +172,27 @@ function SubmissionsTableContent<T extends BaseSubmission, I extends Instance>(
                     <ArrowUpRight size={16} className="flex-none" />
                   </a>
                 </h3>
+                <CollapsibleTrigger asChild>
+                  <Button variant="ghost" className="flex-none">
+                    {chartOpen ? 'Collapse chart' : 'Expand chart'}
+                    <ChevronRight
+                      className={clsx('transition-transform', chartOpen && 'rotate-90')}
+                    />
+                  </Button>
+                </CollapsibleTrigger>
               </div>
-              <div className="border-b px-4 py-6">
-                <SubmissionsChart
-                  submissions={filteredSubmissions}
-                  getValue={chart.getValue}
-                  yLabel={chart.yLabel}
-                  yTooltipLabel={chart.yTooltipLabel}
-                  yTooltipSuffix={chart.yTooltipSuffix}
-                />
-              </div>
-            </>
+              <CollapsibleContent>
+                <div className="px-4 pb-6">
+                  <SubmissionsChart
+                    submissions={filteredSubmissions}
+                    getValue={chart.getValue}
+                    yLabel={chart.yLabel}
+                    yTooltipLabel={chart.yTooltipLabel}
+                    yTooltipSuffix={chart.yTooltipSuffix}
+                  />
+                </div>
+              </CollapsibleContent>
+            </Collapsible>
           )}
           <Table className="min-w-356 table-fixed">
             <TableHeader>
