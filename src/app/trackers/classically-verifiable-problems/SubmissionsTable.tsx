@@ -21,6 +21,15 @@ export function SubmissionsTable(props: {
         header: 'Value',
         render: (s) => s.value,
       }}
+      chart={{
+        getValue: (s) => {
+          if (s.runtimeQuantum === undefined && s.runtimeClassical === undefined) return null;
+          return (s.runtimeQuantum ?? 0) + (s.runtimeClassical ?? 0);
+        },
+        yLabel: 'Runtime to solution',
+        yTooltipLabel: 'RT',
+        yTooltipSuffix: 's',
+      }}
     />
   );
 }

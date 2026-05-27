@@ -3,6 +3,7 @@
 import { CategoryFilter } from '@/components/CategoryFilter';
 import { InstanceFilter } from '@/components/InstanceFilter';
 import { RuntimeSeconds } from '@/components/RuntimeSeconds';
+import { SubmissionsChart } from '@/components/SubmissionsChart';
 import {
   Table,
   TableBody,
@@ -49,6 +50,12 @@ type SubmissionsTableProps<T extends BaseSubmission, I extends Instance> = {
     header: ReactNode;
     render: (submission: T) => ReactNode;
   };
+  chart: {
+    getValue: (submission: T) => number | null;
+    yLabel: string;
+    yTooltipLabel: string;
+    yTooltipSuffix?: string;
+  };
 };
 
 export function SubmissionsTable<T extends BaseSubmission, I extends Instance>(
@@ -72,6 +79,7 @@ function SubmissionsTableContent<T extends BaseSubmission, I extends Instance>(
     getQubits,
     getGates,
     valueColumn,
+    chart,
   } = props;
 
   const [categorySlug, setCategorySlug] = useQueryState(
@@ -143,17 +151,28 @@ function SubmissionsTableContent<T extends BaseSubmission, I extends Instance>(
           })}
         >
           {selectedInstance && (
-            <div className="flex flex-col items-center justify-between gap-x-4 border-b px-4 py-6 sm:flex-row">
-              <h3 className="font-medium wrap-anywhere">{selectedInstance.id}</h3>
-              <a
-                href={getInstanceUrl(selectedInstance)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-link-foreground inline-flex items-center gap-1 hover:underline"
-              >
-                View on Github <ArrowUpRight size={16} className="flex-none" />
-              </a>
-            </div>
+            <>
+              <div className="flex flex-col items-center justify-between gap-x-4 border-b px-4 py-6 sm:flex-row">
+                <h3 className="font-medium wrap-anywhere">{selectedInstance.id}</h3>
+                <a
+                  href={getInstanceUrl(selectedInstance)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-link-foreground inline-flex items-center gap-1 hover:underline"
+                >
+                  View on Github <ArrowUpRight size={16} className="flex-none" />
+                </a>
+              </div>
+              <div className="border-b px-4 py-6">
+                <SubmissionsChart
+                  submissions={filteredSubmissions}
+                  getValue={chart.getValue}
+                  yLabel={chart.yLabel}
+                  yTooltipLabel={chart.yTooltipLabel}
+                  yTooltipSuffix={chart.yTooltipSuffix}
+                />
+              </div>
+            </>
           )}
           <Table className="min-w-356 table-fixed">
             <TableHeader>
