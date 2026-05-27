@@ -105,8 +105,8 @@ function SubmissionsTableContent<T extends BaseSubmission, I extends Instance>(
   const counts = useMemo(() => {
     const acc: Record<Category, number> = {
       'Active Candidates': 0,
-      'Baseline Benchmarks': 0,
       'Superseded Candidates': 0,
+      'Baseline Benchmarks': 0,
     };
     const instancesWithSubmissions = new Set(submissions.map(getInstanceId));
     for (const instance of instances) {

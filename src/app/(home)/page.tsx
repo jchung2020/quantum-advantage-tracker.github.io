@@ -20,8 +20,8 @@ function computeCounts<T extends BaseSubmission>(
 ): Record<Category, number> {
   const counts: Record<Category, number> = {
     'Active Candidates': 0,
-    'Baseline Benchmarks': 0,
     'Superseded Candidates': 0,
+    'Baseline Benchmarks': 0,
   };
   const withSubmissions = new Set(submissions.map(getInstanceId));
   for (const instance of instances) {

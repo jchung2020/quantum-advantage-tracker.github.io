@@ -1,7 +1,7 @@
 export const CATEGORIES = [
   { value: 'Active Candidates', label: 'Active', slug: 'active' },
-  { value: 'Baseline Benchmarks', label: 'Baseline', slug: 'baseline' },
   { value: 'Superseded Candidates', label: 'Superseded', slug: 'superseded' },
+  { value: 'Baseline Benchmarks', label: 'Baseline', slug: 'baseline' },
 ] as const;
 
 export type Category = (typeof CATEGORIES)[number]['value'];
