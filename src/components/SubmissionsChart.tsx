@@ -52,7 +52,7 @@ export function SubmissionsChart<T extends BaseSubmission>(props: SubmissionsCha
   const domain: [number, number] = [minTs - padMs, maxTs + padMs];
 
   return (
-    <div className="h-64 w-full md:h-80 [&_*:focus]:outline-none">
+    <div className="h-64 w-full md:h-80 [&_*:focus]:outline-none [&_.recharts-symbols]:cursor-pointer">
       <ResponsiveContainer width="100%" height="100%">
         <ScatterChart margin={{ top: 16, right: 24, bottom: 16, left: 16 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
@@ -98,7 +98,15 @@ export function SubmissionsChart<T extends BaseSubmission>(props: SubmissionsCha
               <ChartTooltip yTooltipLabel={yTooltipLabel} yTooltipSuffix={yTooltipSuffix} />
             }
           />
-          <Scatter data={data} fill="var(--primary)" isAnimationActive={false} />
+          <Scatter
+            data={data}
+            fill="var(--primary)"
+            isAnimationActive={false}
+            onClick={(entry: { payload?: ChartDatum<T> }) => {
+              const url = entry?.payload?.submission.url;
+              if (url) window.open(url, '_blank', 'noopener,noreferrer');
+            }}
+          />
         </ScatterChart>
       </ResponsiveContainer>
     </div>
