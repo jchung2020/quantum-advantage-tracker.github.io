@@ -12,8 +12,6 @@ import {
   YAxis,
 } from 'recharts';
 
-const ONE_DAY_MS = 86_400_000;
-
 type ChartDatum<T> = {
   ts: number;
   y: number;
@@ -49,9 +47,19 @@ export function SubmissionsChart<T extends BaseSubmission>(props: SubmissionsCha
   const timestamps = data.map((d) => d.ts);
   const minTs = Math.min(...timestamps);
   const maxTs = Math.max(...timestamps);
-  const range = maxTs - minTs;
-  const padMs = range > 0 ? range * 0.05 : ONE_DAY_MS;
-  const domain: [number, number] = [minTs - padMs, maxTs + padMs];
+  const tsRange = maxTs - minTs;
+  const tsPad = tsRange > 0 ? tsRange * 0.05 : 86_400_000;
+  const xDomain: [number, number] = [minTs - tsPad, maxTs + tsPad];
+
+  let yDomain: [number, number] | ['auto', 'auto'] = ['auto', 'auto'];
+  if (yScale === 'log') {
+    const ys = data.map((d) => d.y);
+    const minY = Math.min(...ys);
+    const maxY = Math.max(...ys);
+    const logRange = Math.log10(maxY) - Math.log10(minY);
+    const factor = Math.pow(10, logRange > 0 ? logRange * 0.05 : 0.1);
+    yDomain = [minY / factor, maxY * factor];
+  }
 
   return (
     <div className="h-64 w-full md:h-80 [&_*:focus]:outline-none [&_.recharts-symbols]:cursor-pointer">
@@ -61,7 +69,7 @@ export function SubmissionsChart<T extends BaseSubmission>(props: SubmissionsCha
           <XAxis
             type="number"
             dataKey="ts"
-            domain={domain}
+            domain={xDomain}
             tickCount={10}
             tickFormatter={(ts: number) => tickDateFormatter.format(ts)}
             tick={{ fill: 'var(--muted-foreground)', fontSize: 12 }}
@@ -77,8 +85,7 @@ export function SubmissionsChart<T extends BaseSubmission>(props: SubmissionsCha
             type="number"
             dataKey="y"
             scale={yScale}
-            domain={['auto', 'auto']}
-            allowDataOverflow={false}
+            domain={yDomain}
             tickCount={8}
             tick={{ fill: 'var(--muted-foreground)', fontSize: 12 }}
             stroke="var(--border)"
