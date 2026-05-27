@@ -36,7 +36,7 @@ export function TrackerSummary(props: {
         })}
       </div>
 
-      <div className="mb-8 flex min-h-38 w-full flex-col items-stretch gap-3">
+      <div className="mb-8 flex md:min-h-38 w-full flex-col items-stretch gap-3">
         {activeCards.length === 0 ? (
           <div className="text-muted-foreground flex flex-1 items-center justify-center rounded-md border border-dashed px-4 py-6 text-sm">
             No active candidates recorded
