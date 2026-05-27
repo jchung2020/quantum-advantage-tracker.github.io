@@ -61,6 +61,7 @@ type SubmissionsTableProps<T extends BaseSubmission, I extends Instance> = {
     yLabel: string;
     yTooltipLabel: string;
     yTooltipSuffix?: string;
+    yScale?: 'linear' | 'log';
   };
 };
 
@@ -189,6 +190,7 @@ function SubmissionsTableContent<T extends BaseSubmission, I extends Instance>(
                     yLabel={chart.yLabel}
                     yTooltipLabel={chart.yTooltipLabel}
                     yTooltipSuffix={chart.yTooltipSuffix}
+                    yScale={chart.yScale}
                   />
                 </div>
               </CollapsibleContent>

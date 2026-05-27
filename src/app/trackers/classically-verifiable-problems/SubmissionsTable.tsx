@@ -29,6 +29,7 @@ export function SubmissionsTable(props: {
         yLabel: 'Runtime to solution (s)',
         yTooltipLabel: 'RT',
         yTooltipSuffix: 's',
+        yScale: 'log',
       }}
     />
   );

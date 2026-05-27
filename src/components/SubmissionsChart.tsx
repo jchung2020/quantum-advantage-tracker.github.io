@@ -26,6 +26,7 @@ type SubmissionsChartProps<T extends BaseSubmission> = {
   yLabel: string;
   yTooltipLabel: string;
   yTooltipSuffix?: string;
+  yScale?: 'linear' | 'log';
 };
 
 const tickDateFormatter = new Intl.DateTimeFormat('en-US', {
@@ -34,11 +35,12 @@ const tickDateFormatter = new Intl.DateTimeFormat('en-US', {
 });
 
 export function SubmissionsChart<T extends BaseSubmission>(props: SubmissionsChartProps<T>) {
-  const { submissions, getValue, yLabel, yTooltipLabel, yTooltipSuffix } = props;
+  const { submissions, getValue, yLabel, yTooltipLabel, yTooltipSuffix, yScale = 'linear' } = props;
 
   const data: ChartDatum<T>[] = submissions.flatMap((submission) => {
     const y = getValue(submission);
     if (y === null) return [];
+    if (yScale === 'log' && y <= 0) return [];
     return [{ ts: new Date(submission.createdAt).getTime(), y, submission }];
   });
 
@@ -74,7 +76,9 @@ export function SubmissionsChart<T extends BaseSubmission>(props: SubmissionsCha
           <YAxis
             type="number"
             dataKey="y"
+            scale={yScale}
             domain={['auto', 'auto']}
+            allowDataOverflow={false}
             tickCount={8}
             tick={{ fill: 'var(--muted-foreground)', fontSize: 12 }}
             stroke="var(--border)"
