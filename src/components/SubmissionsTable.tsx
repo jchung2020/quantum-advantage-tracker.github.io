@@ -152,16 +152,18 @@ function SubmissionsTableContent<T extends BaseSubmission, I extends Instance>(
         >
           {selectedInstance && (
             <>
-              <div className="flex flex-col items-center justify-between gap-x-4 border-b px-4 py-6 sm:flex-row">
-                <h3 className="font-medium wrap-anywhere">{selectedInstance.id}</h3>
-                <a
-                  href={getInstanceUrl(selectedInstance)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-link-foreground inline-flex items-center gap-1 hover:underline"
-                >
-                  View on Github <ArrowUpRight size={16} className="flex-none" />
-                </a>
+              <div className="px-4 py-6">
+                <h3 className="font-medium wrap-anywhere">
+                  <a
+                    href={getInstanceUrl(selectedInstance)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-link-foreground inline-flex items-center gap-1 hover:underline"
+                  >
+                    {selectedInstance.id}
+                    <ArrowUpRight size={16} className="flex-none" />
+                  </a>
+                </h3>
               </div>
               <div className="border-b px-4 py-6">
                 <SubmissionsChart

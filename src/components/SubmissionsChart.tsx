@@ -75,6 +75,7 @@ export function SubmissionsChart<T extends BaseSubmission>(props: SubmissionsCha
             type="number"
             dataKey="y"
             domain={['auto', 'auto']}
+            tickCount={8}
             tick={{ fill: 'var(--muted-foreground)', fontSize: 12 }}
             stroke="var(--border)"
             label={{
