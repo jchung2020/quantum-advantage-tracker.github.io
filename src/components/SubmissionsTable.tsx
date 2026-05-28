@@ -26,7 +26,7 @@ import type { BaseSubmission } from '@/types/submissions';
 import { buildInstanceOptions, formatDate, sortSubmissions } from '@/utils';
 import clsx from 'clsx';
 import { ArrowDownIcon, ArrowUpRight, ChevronRight } from 'lucide-react';
-import { parseAsStringLiteral, useQueryState } from 'nuqs';
+import { parseAsString, parseAsStringLiteral, useQueryState } from 'nuqs';
 import { Suspense, useMemo, useState, type ReactNode } from 'react';
 
 const CATEGORY_SLUGS = CATEGORIES.map((c) => c.slug);
@@ -91,12 +91,7 @@ function SubmissionsTableContent<T extends BaseSubmission, I extends Instance>(
   );
   const categoryFilter: Category = slugToCategory(categorySlug);
 
-  const firstInstanceOf = (category: Category) =>
-    buildInstanceOptions(submissions, instances, getInstanceId, category)[0]?.id ?? null;
-
-  const [instanceFilter, setInstanceFilter] = useState<string | null>(() =>
-    firstInstanceOf(categoryFilter),
-  );
+  const [instanceFilter, setInstanceFilter] = useQueryState('instance', parseAsString);
 
   const [chartOpen, setChartOpen] = useState(true);
 
@@ -105,14 +100,21 @@ function SubmissionsTableContent<T extends BaseSubmission, I extends Instance>(
     [submissions, instances, categoryFilter, getInstanceId],
   );
 
+  const effectiveInstance = useMemo(() => {
+    if (instanceFilter && instanceOptions.some((opt) => opt.id === instanceFilter)) {
+      return instanceFilter;
+    }
+    return instanceOptions[0]?.id ?? null;
+  }, [instanceFilter, instanceOptions]);
+
   const filteredSubmissions = useMemo(() => {
-    if (!instanceFilter) return [];
-    return submissions.filter((submission) => getInstanceId(submission) === instanceFilter);
-  }, [submissions, instanceFilter, getInstanceId]);
+    if (!effectiveInstance) return [];
+    return submissions.filter((submission) => getInstanceId(submission) === effectiveInstance);
+  }, [submissions, effectiveInstance, getInstanceId]);
 
   const selectedInstance = useMemo(
-    () => instances.find((inst) => inst.id === instanceFilter) ?? null,
-    [instances, instanceFilter],
+    () => instances.find((inst) => inst.id === effectiveInstance) ?? null,
+    [instances, effectiveInstance],
   );
 
   const counts = useMemo(() => {
@@ -132,7 +134,7 @@ function SubmissionsTableContent<T extends BaseSubmission, I extends Instance>(
 
   const handleCategoryChange = (value: Category) => {
     setCategorySlug(categoryToSlug(value));
-    setInstanceFilter(firstInstanceOf(value));
+    setInstanceFilter(null);
   };
 
   return (
@@ -145,7 +147,7 @@ function SubmissionsTableContent<T extends BaseSubmission, I extends Instance>(
         {instanceOptions.length > 0 && (
           <InstanceFilter
             instances={instanceOptions}
-            value={instanceFilter}
+            value={effectiveInstance}
             onChange={setInstanceFilter}
           />
         )}
