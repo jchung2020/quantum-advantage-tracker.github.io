@@ -71,8 +71,14 @@ export default function Home() {
       </header>
 
       <section className="mx-auto px-6 py-20 text-center">
-        <h3 className="mb-12 text-4xl">Active advantage candidates</h3>
-        <ul className="mx-auto grid max-w-7xl gap-12 md:grid-cols-3">
+        <div className="mx-auto max-w-2xl px-6">
+          <h3 className="mb-6 text-4xl">Active advantage candidates</h3>
+          <p>
+            Active candidates represent the highest bar, where quantum methods are credible
+            contenders but reliable classical benchmarks have yet to catch up.
+          </p>
+        </div>
+        <ul className="mx-auto grid max-w-7xl gap-12 pt-10 md:grid-cols-3">
           <TrackerSummary
             title="Observable estimations"
             href="/trackers/observable-estimations"
@@ -105,6 +111,57 @@ export default function Home() {
           Achieving this milestone requires more than raw performance. It demands trust in the
           output of noisy quantum devices and scientific rigor in how we validate results.
         </p>
+      </section>
+
+      <section className="mx-auto px-6 py-20 text-center">
+        <h3 className="mb-16 text-4xl">Key terms</h3>
+        <div className="relative mx-auto max-w-7xl">
+          <div
+            aria-hidden
+            className="border-foreground/30 absolute top-2 right-0 left-0 hidden border-t border-dashed md:block"
+          />
+          <ul className="grid gap-12 md:grid-cols-3">
+            <li className="relative flex flex-col items-center px-6">
+              <div
+                aria-hidden
+                className="border-foreground/30 absolute top-2 right-0 left-0 border-t border-dashed md:hidden"
+              />
+              <div className="bg-primary ring-background relative mb-8 size-4 rounded-full ring-8" />
+              <h4 className="mb-4 font-semibold">Active candidates</h4>
+              <p>
+                Problems that have met a higher bar of evidence suggesting quantum methods are
+                credible contenders for advantage. To be clear, problems in this category are not
+                provably examples of quantum advantage. These are merely problems where we do not
+                yet have reliable classical benchmarks.
+              </p>
+            </li>
+            <li className="relative flex flex-col items-center px-6">
+              <div
+                aria-hidden
+                className="border-foreground/30 absolute top-2 right-0 left-0 border-t border-dashed md:hidden"
+              />
+              <div className="bg-foreground ring-background relative mb-8 size-4 rounded-full ring-8" />
+              <h4 className="mb-4 font-semibold">Superseded candidates</h4>
+              <p>
+                Previously active candidates for which classical methods have caught up or exceeded
+                the quantum approach.
+              </p>
+            </li>
+            <li className="relative flex flex-col items-center px-6">
+              <div
+                aria-hidden
+                className="border-foreground/30 absolute top-2 right-0 left-0 border-t border-dashed md:hidden"
+              />
+              <div className="bg-foreground ring-background relative mb-8 size-4 rounded-full ring-8" />
+              <h4 className="mb-4 font-semibold">Baseline benchmarks</h4>
+              <p>
+                These represent problems of interest with sufficient documentation and scale and can
+                include problems where the state-of-the-art is clearly classical, tracked for
+                progress and calibration.
+              </p>
+            </li>
+          </ul>
+        </div>
       </section>
 
       <section className="py-20 text-center">
