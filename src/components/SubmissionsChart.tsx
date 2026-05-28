@@ -109,9 +109,7 @@ export function SubmissionsChart<T extends BaseSubmission>(props: SubmissionsCha
             cursor={{ stroke: 'var(--border)', strokeDasharray: '3 3' }}
             wrapperStyle={{ transition: 'none' }}
             isAnimationActive={false}
-            content={
-              <ChartTooltip yTooltipLabel={yTooltipLabel} yTooltipSuffix={yTooltipSuffix} />
-            }
+            content={<ChartTooltip yTooltipLabel={yTooltipLabel} yTooltipSuffix={yTooltipSuffix} />}
           />
           <Scatter
             data={data}

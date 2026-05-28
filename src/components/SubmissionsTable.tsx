@@ -5,11 +5,7 @@ import { InstanceFilter } from '@/components/InstanceFilter';
 import { RuntimeSeconds } from '@/components/RuntimeSeconds';
 import { SubmissionsChart } from '@/components/SubmissionsChart';
 import { Button } from '@/components/ui/button';
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/components/ui/collapsible';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import {
   Table,
   TableBody,
