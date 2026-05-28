@@ -10,6 +10,8 @@ const submissions = submissionsData as CVPSubmission[];
 
 export const metadata: Metadata = {
   title: 'Classically verifiable problems',
+  description:
+    'Submissions must demonstrate quantum advantage by scoring solutions against known answers or efficiently checkable witnesses.',
 };
 
 export default async function TrackersCVP() {

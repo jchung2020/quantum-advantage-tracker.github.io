@@ -10,6 +10,8 @@ const submissions = submissionsData as OESubmission[];
 
 export const metadata: Metadata = {
   title: 'Observable estimations',
+  description:
+    'Submissions in this tracker report expectation values for observables alongside rigorous error bars for validation.',
 };
 
 export default async function TrackersOE() {
