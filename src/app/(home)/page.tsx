@@ -71,7 +71,7 @@ export default function Home() {
 
       <section className="mx-auto px-6 py-20 text-center">
         <h3 className="mb-12 text-4xl">Active advantage candidates</h3>
-        <ul className="mx-auto grid gap-12 md:grid-cols-3">
+        <ul className="mx-auto grid gap-12 max-w-7xl md:grid-cols-3">
           <TrackerSummary
             title="Observable estimations"
             href="/trackers/observable-estimations"
