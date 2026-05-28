@@ -4,6 +4,7 @@ import type { BaseSubmission } from '@/types/submissions';
 import { formatDate, isQuantumSubmission } from '@/utils';
 import {
   CartesianGrid,
+  Legend,
   ResponsiveContainer,
   Scatter,
   ScatterChart,
@@ -16,7 +17,6 @@ type ChartDatum<T> = {
   ts: number;
   y: number;
   submission: T;
-  fill: string;
 };
 
 type SubmissionsChartProps<T extends BaseSubmission> = {
@@ -40,13 +40,13 @@ export function SubmissionsChart<T extends BaseSubmission>(props: SubmissionsCha
     const y = getValue(submission);
     if (y === null) return [];
     if (yScale === 'log' && y <= 0) return [];
-    const fill = isQuantumSubmission(submission)
-      ? 'var(--primary)'
-      : 'var(--color-classical-submission)';
-    return [{ ts: new Date(submission.createdAt).getTime(), y, submission, fill }];
+    return [{ ts: new Date(submission.createdAt).getTime(), y, submission }];
   });
 
   if (data.length === 0) return null;
+
+  const quantumData = data.filter((d) => isQuantumSubmission(d.submission));
+  const classicalData = data.filter((d) => !isQuantumSubmission(d.submission));
 
   const timestamps = data.map((d) => d.ts);
   const minTs = Math.min(...timestamps);
@@ -66,16 +66,12 @@ export function SubmissionsChart<T extends BaseSubmission>(props: SubmissionsCha
   }
 
   return (
-    <div className="h-64 w-full md:h-80 [&_*:focus]:outline-none [&_.recharts-symbols]:cursor-pointer">
+    <div className="h-64 w-full md:h-80 [&_*:focus]:outline-none [&_.recharts-scatter_.recharts-symbols]:cursor-pointer">
       {/* initialDimension silences Recharts' default `-1, -1` warning while keeping
           its "skip first render until measured" behavior — render needs both > 0,
           warn is suppressed if either > 0, so 1/0 gets us no warning and no flash. */}
-      <ResponsiveContainer
-        width="100%"
-        height="100%"
-        initialDimension={{ width: 1, height: 0 }}
-      >
-        <ScatterChart margin={{ top: 16, right: 24, bottom: 16, left: 16 }}>
+      <ResponsiveContainer width="100%" height="100%" initialDimension={{ width: 1, height: 0 }}>
+        <ScatterChart margin={{ top: 16, right: 24, bottom: 0, left: 16 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
           <XAxis
             type="number"
@@ -118,8 +114,28 @@ export function SubmissionsChart<T extends BaseSubmission>(props: SubmissionsCha
             isAnimationActive={false}
             content={<ChartTooltip yTooltipLabel={yTooltipLabel} yTooltipSuffix={yTooltipSuffix} />}
           />
+          <Legend
+            verticalAlign="bottom"
+            align="left"
+            iconType="square"
+            itemSorter={null}
+            wrapperStyle={{ fontSize: 12, paddingTop: 8 }}
+            formatter={(value) => <span className="text-foreground">{value}</span>}
+          />
           <Scatter
-            data={data}
+            name="Quantum"
+            data={quantumData}
+            fill="var(--primary)"
+            isAnimationActive={false}
+            onClick={(entry: { payload?: ChartDatum<T> }) => {
+              const url = entry?.payload?.submission.url;
+              if (url) window.open(url, '_blank', 'noopener,noreferrer');
+            }}
+          />
+          <Scatter
+            name="Classical"
+            data={classicalData}
+            fill="var(--color-classical-submission)"
             isAnimationActive={false}
             onClick={(entry: { payload?: ChartDatum<T> }) => {
               const url = entry?.payload?.submission.url;
@@ -143,12 +159,15 @@ function ChartTooltip<T extends BaseSubmission>(props: ChartTooltipProps<T>) {
   const { active, payload, yTooltipLabel, yTooltipSuffix } = props;
   if (!active || !payload?.length) return null;
 
-  const { submission, y, fill } = payload[0].payload;
+  const { submission, y } = payload[0].payload;
+  const borderLeftColor = isQuantumSubmission(submission)
+    ? 'var(--primary)'
+    : 'var(--color-classical-submission)';
 
   return (
     <div
       className="bg-popover text-popover-foreground animate-in fade-in border border-l-4 px-3 py-2 text-sm shadow-md duration-150"
-      style={{ borderLeftColor: fill }}
+      style={{ borderLeftColor }}
     >
       <div className="mb-1 font-medium">{submission.method}</div>
       <div className="grid grid-cols-[auto_1fr] gap-x-4">
