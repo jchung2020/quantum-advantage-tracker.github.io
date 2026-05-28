@@ -1,7 +1,7 @@
 'use client';
 
 import type { BaseSubmission } from '@/types/submissions';
-import { formatDate } from '@/utils';
+import { formatDate, isQuantumSubmission } from '@/utils';
 import {
   CartesianGrid,
   ResponsiveContainer,
@@ -40,7 +40,9 @@ export function SubmissionsChart<T extends BaseSubmission>(props: SubmissionsCha
     const y = getValue(submission);
     if (y === null) return [];
     if (yScale === 'log' && y <= 0) return [];
-    const fill = submission.runtimeQuantum != null ? 'var(--primary)' : 'var(--color-classical-submission)';
+    const fill = isQuantumSubmission(submission)
+      ? 'var(--primary)'
+      : 'var(--color-classical-submission)';
     return [{ ts: new Date(submission.createdAt).getTime(), y, submission, fill }];
   });
 

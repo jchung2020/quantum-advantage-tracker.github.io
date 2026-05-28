@@ -1,5 +1,9 @@
 import type { BaseSubmission } from '@/types/submissions';
 
+export function isQuantumSubmission(submission: BaseSubmission): boolean {
+  return submission.runtimeQuantum !== undefined;
+}
+
 export function formatDate(dateString: string) {
   const date = new Date(dateString);
   // The locale 'en-CA' naturally formats dates as YYYY-MM-DD
@@ -60,7 +64,7 @@ export function buildInstanceOptions<
     const ts = new Date(submission.createdAt).getTime();
     entriesById[id] = (entriesById[id] ?? 0) + 1;
     if (ts > (lastAnyById[id] ?? -Infinity)) lastAnyById[id] = ts;
-    if (submission.runtimeQuantum !== undefined && ts > (lastQuantumById[id] ?? -Infinity)) {
+    if (isQuantumSubmission(submission) && ts > (lastQuantumById[id] ?? -Infinity)) {
       lastQuantumById[id] = ts;
     }
   }
