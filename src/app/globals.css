@@ -47,6 +47,7 @@
   --color-link-foreground: var(--link-foreground);
   --color-table-head: #343a3f;
   --color-table-head-foreground: #ffffff;
+  --color-classical-submission: #393939;
 
   --animate-marquee: marquee 50s linear infinite;
 
