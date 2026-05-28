@@ -2,10 +2,12 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { CATEGORIES, type Category } from '@/lib/categories';
 import clsx from 'clsx';
+import { ChevronRightIcon } from 'lucide-react';
 import type { Route } from 'next';
 import Link from 'next/link';
 
 export type ActiveCard = {
+  id: string;
   type: string;
   instanceLabel: string;
   entries: number;
@@ -43,9 +45,10 @@ export function TrackerSummary(props: {
           </div>
         ) : (
           activeCards.map((card, idx) => (
-            <div
+            <Link
               key={idx}
-              className="bg-background flex items-center justify-between gap-3 rounded-md border px-4 py-3 text-left"
+              href={{ pathname: href, query: { instance: card.id } }}
+              className="bg-background hover:bg-accent flex items-center justify-between gap-3 rounded-md border px-4 py-3 text-left transition-colors"
             >
               <div className="min-w-0 flex-1">
                 <div className="truncate font-medium" title={card.type}>
@@ -56,7 +59,8 @@ export function TrackerSummary(props: {
                 </div>
               </div>
               <div className="text-muted-foreground shrink-0 text-sm">{card.entries} entries</div>
-            </div>
+              <ChevronRightIcon className="text-muted-foreground shrink-0" size={16} />
+            </Link>
           ))
         )}
       </div>

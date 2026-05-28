@@ -39,6 +39,7 @@ function computeActiveCards<
   return buildInstanceOptions(submissions, instances, getInstanceId, 'Active Candidates')
     .slice(0, 2)
     .map((inst) => ({
+      id: inst.id,
       type: inst.type,
       instanceLabel: stripType(inst.id, inst.type),
       entries: inst.entries,
