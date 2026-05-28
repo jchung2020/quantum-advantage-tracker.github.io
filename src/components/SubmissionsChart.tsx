@@ -67,7 +67,14 @@ export function SubmissionsChart<T extends BaseSubmission>(props: SubmissionsCha
 
   return (
     <div className="h-64 w-full md:h-80 [&_*:focus]:outline-none [&_.recharts-symbols]:cursor-pointer">
-      <ResponsiveContainer width="100%" height="100%">
+      {/* initialDimension silences Recharts' default `-1, -1` warning while keeping
+          its "skip first render until measured" behavior — render needs both > 0,
+          warn is suppressed if either > 0, so 1/0 gets us no warning and no flash. */}
+      <ResponsiveContainer
+        width="100%"
+        height="100%"
+        initialDimension={{ width: 1, height: 0 }}
+      >
         <ScatterChart margin={{ top: 16, right: 24, bottom: 16, left: 16 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
           <XAxis
