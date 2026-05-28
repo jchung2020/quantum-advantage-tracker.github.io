@@ -21,6 +21,18 @@
         "qubits": 56,
         "gates": 1917,
         "category": "Superseded candidates"
+      },
+      {
+        "id": "peaked_circuit_P11_Hqap_98x1999",
+        "path": "peaked_circuit_P11_Hqap_98x1999.qasm",
+        "qubits": 98,
+        "gates": 1999
+      },
+      {
+        "id": "peaked_circuit_P12_Hqap_98x2457",
+        "path": "peaked_circuit_P12_Hqap_98x2457.qasm",
+        "qubits": 98,
+        "gates": 2457
       }
     ]
   },
