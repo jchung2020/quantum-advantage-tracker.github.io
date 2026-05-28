@@ -7,6 +7,8 @@ import { SubmissionsTable } from './SubmissionsTable';
 
 export const metadata: Metadata = {
   title: 'Variational problems',
+  description:
+    'Submissions must provide upper bounds on the ground-state energy. Verified entries include evidence that the algorithm respects the variational principle.',
 };
 
 export default async function TrackersVP() {
