@@ -190,10 +190,9 @@ export default function Home() {
         <ul className="mx-auto mt-20 grid max-w-7xl gap-4 text-left md:grid-cols-3">
           <li className="bg-secondary flex flex-col items-start gap-8 rounded-md border p-6">
             <div className="text-3xl md:max-w-72">Observable estimations 📊</div>
-            <div className="font-semibold">Trust through rigorous error bars.</div>
             <div className="flex-1">
-              Explore submissions that report expectation values for observables, and include
-              rigorous error bars for validating the quantum computation.
+              Submissions in this tracker report expectation values for observables alongside
+              rigorous error bars for validation.
             </div>
             <Button asChild size="lg">
               <Link href="/trackers/observable-estimations">
@@ -203,12 +202,9 @@ export default function Home() {
           </li>
           <li className="bg-secondary flex flex-col items-start gap-8 rounded-md border p-6">
             <div className="text-3xl md:max-w-72">Variational problems 🌀</div>
-            <div className="font-semibold">
-              Certifiable quantum solutions via the variational principle.
-            </div>
             <div className="flex-1">
-              Variational solutions offer guaranteed upper bounds on ground-state energies and
-              enable benchmarking against classical methods - even when exact answers are unknown.
+              Submissions must provide upper bounds on the ground-state energy. Verified entries
+              include evidence that the algorithm respects the variational principle.
             </div>
             <Button asChild size="lg">
               <Link href="/trackers/variational-problems">
@@ -218,12 +214,9 @@ export default function Home() {
           </li>
           <li className="bg-secondary flex flex-col items-start gap-8 rounded-md border p-6">
             <div className="text-3xl md:max-w-80">Classically verifiable problems 🗝️</div>
-            <div className="font-semibold">
-              Leveraging classical resources to validate quantum outputs.
-            </div>
             <div className="flex-1">
-              Submissions in this path enable efficient validation of quantum outputs without
-              requiring full classical simulation of the quantum process.
+              Submissions must demonstrate quantum advantage by scoring solutions against known
+              answers or efficiently checkable witnesses.
             </div>
             <Button asChild size="lg">
               <Link href="/trackers/classically-verifiable-problems">

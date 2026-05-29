@@ -32,18 +32,21 @@ export default function Participate() {
           <p>Submissions are organized into three pathways:</p>
 
           <h4 className="mt-2 text-xl font-semibold">Observable estimations</h4>
-          <p>For problems where the goal is to estimate expectation values for observables.</p>
+          <p>
+            Submissions in this tracker report expectation values for observables alongside rigorous
+            error bars for validation.
+          </p>
 
           <h4 className="mt-2 text-xl font-semibold">Variational problems</h4>
           <p>
-            For problems where quantum methods produce candidate solutions variationally, that can
-            be compared against classical variational methods or known bounds.
+            Submissions must provide upper bounds on the ground-state energy. Verified entries
+            include evidence that the algorithm respects the variational principle.
           </p>
 
           <h4 className="mt-2 text-xl font-semibold">Classically verifiable problems</h4>
           <p>
-            For tasks where quantum outputs can be efficiently checked or validated classically,
-            even when reproducing the full quantum computation may be difficult.
+            Submissions must demonstrate quantum advantage by scoring solutions against known
+            answers or efficiently checkable witnesses.
           </p>
         </section>
 
