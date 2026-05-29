@@ -26,7 +26,7 @@ body:
 
         You can find information about all the available ones here: [/data/variational-problems/hamiltonians](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/tree/main/data/variational-problems/hamiltonians).
 
-        If your instance is not listed, please use [this submission template](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/new?template=04-submission-variational-problems-problem.yml).
+        Don't see your hamiltonian? [Submit it as a new problem](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/new?template=04-submission-variational-problems-problem.yml).
       options:
         - 2fe_2s_30e_20o
         - 4fe_4s_54e_36o

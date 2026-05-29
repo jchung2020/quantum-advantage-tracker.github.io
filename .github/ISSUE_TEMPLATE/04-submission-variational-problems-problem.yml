@@ -9,6 +9,8 @@ body:
 
         Please provide detailed information about your problem below.
 
+        > **Is your problem already listed in the tracker?** If so, use the [existing problem submission template](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/new?template=03-submission-variational-problems.yml) instead.
+
   - type: input
     id: hamiltonian
     attributes:
@@ -37,7 +39,7 @@ body:
     id: problemFiles
     attributes:
       label: Upload hamiltonian
-      # description: TODO
+      description: GitHub does not allow uploading `.fcidump` files directly. Please convert your hamiltonian file to a `.zip` archive before uploading.
     validations:
       required: true
 

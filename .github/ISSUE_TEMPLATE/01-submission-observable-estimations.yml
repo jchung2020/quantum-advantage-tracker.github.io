@@ -26,7 +26,7 @@ body:
 
         You can find information about all the available ones here: [/data/observable-estimations/circuit-models](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/tree/main/data/observable-estimations/circuit-models).
 
-        If your instance is not listed, please use [this submission template](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/new?template=02-submission-observable-estimations-problem.yml).
+        Don't see your circuit? [Submit it as a new problem](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/new?template=02-submission-observable-estimations-problem.yml).
       options:
         - operator_loschmidt_echo_70x1872
         - operator_loschmidt_echo_49x648

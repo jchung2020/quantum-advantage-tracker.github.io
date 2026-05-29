@@ -9,6 +9,8 @@ body:
 
         Please provide detailed information about your problem below.
 
+        > **Is your problem already listed in the tracker?** If so, use the [existing problem submission template](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/new?template=05-submission-classically-verifiable-problems.yml) instead.
+
   - type: input
     id: circuit
     attributes:
@@ -37,7 +39,7 @@ body:
     id: problemFiles
     attributes:
       label: Upload circuit
-      # description: TODO
+      description: GitHub does not allow uploading `.qasm` files directly. Please convert your circuit file to a `.zip` archive before uploading.
     validations:
       required: true
 

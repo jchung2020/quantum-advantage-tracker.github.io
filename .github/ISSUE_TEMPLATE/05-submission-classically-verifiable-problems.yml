@@ -26,7 +26,7 @@ body:
 
         You can find information about all the available ones here: [/data/classically-verifiable-problems/circuit-models](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/tree/main/data/classically-verifiable-problems/circuit-models).
 
-        If your instance is not listed, please use [this submission template](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/new?template=06-submission-classically-verifiable-problems-problem.yml).
+        Don't see your circuit? [Submit it as a new problem](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/new?template=06-submission-classically-verifiable-problems-problem.yml).
       options:
         - peaked_circuit_heavy_hex_49x4020
         - peaked_circuit_heavy_hex_49x5072
