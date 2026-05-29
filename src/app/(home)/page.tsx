@@ -114,7 +114,7 @@ export default function Home() {
       </section>
 
       <section className="mx-auto px-6 py-20 text-center">
-        <h3 className="mb-16 text-4xl">Key terms</h3>
+        <h3 className="mb-16 text-4xl">Submission categories</h3>
         <div className="relative mx-auto max-w-7xl">
           <div
             aria-hidden
@@ -129,10 +129,9 @@ export default function Home() {
               <div className="bg-primary ring-background relative mb-8 size-4 rounded-full ring-8" />
               <h4 className="mb-4 font-semibold">Active candidates</h4>
               <p>
-                Problems that have met a higher bar of evidence suggesting quantum methods are
-                credible contenders for advantage. To be clear, problems in this category are not
-                provably examples of quantum advantage. These are merely problems where we do not
-                yet have reliable classical benchmarks.
+                Problem instances where quantum computations currently appear to challenge leading
+                classical methods, and where further benchmarking is needed to determine whether an
+                advantage exists.
               </p>
             </li>
             <li className="relative flex flex-col items-center px-6">
@@ -143,8 +142,9 @@ export default function Home() {
               <div className="bg-foreground ring-background relative mb-8 size-4 rounded-full ring-8" />
               <h4 className="mb-4 font-semibold">Superseded candidates</h4>
               <p>
-                Previously active candidates for which classical methods have caught up or exceeded
-                the quantum approach.
+                Problem instances where quantum computations once appeared to challenge leading
+                classical methods, but for which subsequent classical progress has closed or
+                reversed the apparent gap.
               </p>
             </li>
             <li className="relative flex flex-col items-center px-6">
@@ -155,9 +155,9 @@ export default function Home() {
               <div className="bg-foreground ring-background relative mb-8 size-4 rounded-full ring-8" />
               <h4 className="mb-4 font-semibold">Baseline benchmarks</h4>
               <p>
-                These represent problems of interest with sufficient documentation and scale and can
-                include problems where the state-of-the-art is clearly classical, tracked for
-                progress and calibration.
+                Problem instances that provide useful reference points for comparing quantum and
+                classical methods, including examples where the state-of-the-art solutions are
+                classical.
               </p>
             </li>
           </ul>
