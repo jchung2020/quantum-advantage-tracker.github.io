@@ -26,13 +26,15 @@
         "id": "peaked_circuit_P11_Hqap_98x1999",
         "path": "peaked_circuit_P11_Hqap_98x1999.qasm",
         "qubits": 98,
-        "gates": 1999
+        "gates": 1999,
+        "category": "Active candidates"
       },
       {
         "id": "peaked_circuit_P12_Hqap_98x2457",
         "path": "peaked_circuit_P12_Hqap_98x2457.qasm",
         "qubits": 98,
-        "gates": 2457
+        "gates": 2457,
+        "category": "Active candidates"
       }
     ]
   },
