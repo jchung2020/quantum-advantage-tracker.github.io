@@ -183,4 +183,4 @@ We note ongoing work to extend this argument to coherent errors, which would eli
 
 ## Institutions
 
-IBM, UChicago
+IBM, University of Chicago

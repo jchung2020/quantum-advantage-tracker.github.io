@@ -117,7 +117,7 @@
     "value": "0.37",
     "method": "Quantum",
     "authors": "Ali Javadi-Abhari, Simon Martiel, Jay-U Chung, Alireza Seif, Soumik Ghosh",
-    "institutions": "IBM, UChicago",
+    "institutions": "IBM, University of Chicago",
     "runtimeQuantum": 1950,
     "computeResourcesQuantum": "IBM Heron R3",
     "computeResourcesClassical": "Intel Xeon Gold 6258R 28 cores with 1 TB memory (Qiskit Aer), Apple M1 Max 10 cores with 32 GB memory (Quimb)",
