@@ -128,18 +128,3 @@ body:
       description: Additional notes. Please keep to 60 characters
     validations:
       required: false
-
-  - type: markdown
-    attributes:
-      value: |
-        ---
-
-        ### What happens next?
-
-        Maintainers will review your submission for:
-        - ✅ Reproducibility
-        - ✅ Compliance with validation criteria (efficient verification)
-        - ✅ Data fidelity and traceability
-        - ✅ Transparent documentation of assumptions and uncertainties
-
-        Thank you for contributing to the Quantum Advantage Tracker! 🚀
