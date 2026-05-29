@@ -39,7 +39,7 @@ export default async function TrackersCVP() {
             </Button>
             <Button variant="outline" size="lg" asChild>
               <a
-                href="https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/new?template=03-submission-path-classically-verifiable-problems.yml"
+                href="https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/new/choose"
                 target="_blank"
                 rel="noopener noreferrer"
               >

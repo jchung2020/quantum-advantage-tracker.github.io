@@ -1,13 +1,58 @@
-name: 🌀 Path 2 - Variational problems submission
-description: Submit a problem solution to the variational problems tracker
-labels: ['path: variational-problems', 'submission']
+name: 🌀 Variational problems submission (new problem)
+description: Submit a problem and solution to the variational problems tracker
+labels: ['path: variational-problems', 'submission', 'problem submission']
 body:
   - type: markdown
     attributes:
       value: |
-        ## 🌀 Path 2 - Variational problems
+        # Problem description and hamiltonian
 
-        Thank you for submitting a solution to the **variational problems tracker**!
+        Please provide detailed information about your problem below.
+
+  - type: input
+    id: hamiltonian
+    attributes:
+      label: ID
+      description: The hamiltonian instance identifier
+      placeholder: my_new_model_60x2000
+    validations:
+      required: true
+
+  - type: dropdown
+    id: problemCategory
+    attributes:
+      label: Category
+      description: |
+        - **Active candidates**: Problem instances where quantum computations currently appear to challenge leading classical methods, and where further benchmarking is needed to determine whether an advantage exists.
+        - **Superseded candidates**: Problem instances where quantum computations once appeared to challenge leading classical methods, but for which subsequent classical progress has closed or reversed the apparent gap.
+        - **Baseline benchmarks**: Problem instances that provide useful reference points for comparing quantum and classical methods, including examples where the state-of-the-art solutions are classical.
+      options:
+        - Active candidates
+        - Superseded candidates
+        - Baseline benchmarks
+    validations:
+      required: true
+
+  - type: upload
+    id: problemFiles
+    attributes:
+      label: Upload hamiltonian
+      # description: TODO
+    validations:
+      required: true
+
+  - type: textarea
+    id: problemDescription
+    attributes:
+      label: Description
+      description: At least 1 page write-up including the problem statement, a short abstract, summary of methods used and at least one figure illustrating the main result (for instance, graphical comparison of quantum and classical solutions).
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        # Solution
 
         Please provide detailed information about your submission below.
 
@@ -16,33 +61,6 @@ body:
     attributes:
       label: Name
       description: Please provide a unique and identifiable name for your submission
-    validations:
-      required: true
-
-  - type: dropdown
-    id: hamiltonian
-    attributes:
-      label: Hamiltonian
-      description: |
-        The hamiltonian instance this submission addresses.
-
-        You can find information about all the available ones here: [/data/variational-problems/hamiltonians](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/tree/main/data/variational-problems/hamiltonians).
-
-        If your instance is not listed, please follow the instructions in [/data/README.md](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/tree/main/data/README.md) to submit a new one.
-      options:
-        - 2fe_2s_30e_20o
-        - 4fe_4s_54e_36o
-        - anderson_impurity_model_4i_28b_32e
-        - guided_sparse_ground_state_problem_49Q_v1
-        - n2_0-80_14e_28o
-        - n2_0-90_14e_28o
-        - n2_1-00_14e_28o
-        - n2_1-10_14e_28o
-        - n2_1-20_14e_28o
-        - n2_1-50_14e_28o
-        - n2_2-00_14e_28o
-        - n2_2-50_14e_28o
-        - n2_3-00_14e_28o
     validations:
       required: true
 
@@ -104,28 +122,12 @@ body:
     id: methodProof
     attributes:
       label: Method proof
-      description: Link to paper, code repository, or detailed explanation of the method (required for verification). If method is Quantum, please attach the circuit.
+      description: Link to paper, code repository, or detailed explanation of the method (required for verification)
       placeholder: |
         Provide at least one of:
         - Paper/preprint: https://arxiv.org/abs/...
         - Code repository: https://github.com/...
         - Method explanation: Detailed description of the approach
-    validations:
-      required: true
-
-  - type: input
-    id: authors
-    attributes:
-      label: Authors
-      description: The author(s) or individual(s) involved in the submission, separated by commas
-    validations:
-      required: false
-
-  - type: input
-    id: institutions
-    attributes:
-      label: Institutions
-      description: The institution(s) or organization(s) involved in the submission, separated by commas
     validations:
       required: true
 
@@ -172,3 +174,19 @@ body:
       description: Additional notes. Please keep to 60 characters
     validations:
       required: false
+
+  - type: input
+    id: authors
+    attributes:
+      label: Authors
+      description: The author(s) or individual(s) involved in the submission, separated by commas
+    validations:
+      required: false
+
+  - type: input
+    id: institutions
+    attributes:
+      label: Institutions
+      description: The institution(s) or organization(s) involved in the submission, separated by commas
+    validations:
+      required: true
