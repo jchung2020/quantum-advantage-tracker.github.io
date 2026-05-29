@@ -100,19 +100,6 @@ export default function Home() {
         </ul>
       </section>
 
-      <section className="mx-auto max-w-2xl px-6 py-20 text-center">
-        <h3 className="mb-6 text-4xl">What is quantum advantage?</h3>
-        <p>
-          Quantum advantage refers to an information processing task performed more efficiently,
-          cost-effectively, or accurately using a quantum computer than is known to be possible with
-          classical computers alone.
-        </p>
-        <p className="mt-4">
-          Achieving this milestone requires more than raw performance. It demands trust in the
-          output of noisy quantum devices and scientific rigor in how we validate results.
-        </p>
-      </section>
-
       <section className="mx-auto px-6 py-20 text-center">
         <h3 className="mb-16 text-4xl">Submission categories</h3>
         <div className="relative mx-auto max-w-7xl">
@@ -162,6 +149,19 @@ export default function Home() {
             </li>
           </ul>
         </div>
+      </section>
+
+      <section className="mx-auto max-w-2xl px-6 py-20 text-center">
+        <h3 className="mb-6 text-4xl">What is quantum advantage?</h3>
+        <p>
+          Quantum advantage refers to an information processing task performed more efficiently,
+          cost-effectively, or accurately using a quantum computer than is known to be possible with
+          classical computers alone.
+        </p>
+        <p className="mt-4">
+          Achieving this milestone requires more than raw performance. It demands trust in the
+          output of noisy quantum devices and scientific rigor in how we validate results.
+        </p>
       </section>
 
       <section className="py-20 text-center">
