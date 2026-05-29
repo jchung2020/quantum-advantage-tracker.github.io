@@ -24,7 +24,7 @@ export default function Home() {
 
         <div className="px-6 pb-20 text-center">
           <div className="text-secondary-foreground text-sm">
-            Contributors include researchers from 10+ organizations
+            Contributors include researchers from 15+ organizations
           </div>
           <Contributors />
         </div>
