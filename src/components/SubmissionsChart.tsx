@@ -117,7 +117,6 @@ export function SubmissionsChart<T extends BaseSubmission>(props: SubmissionsCha
           <Legend
             verticalAlign="bottom"
             align="left"
-            iconType="square"
             itemSorter={null}
             wrapperStyle={{ fontSize: 12, paddingTop: 8 }}
             formatter={(value) => <span className="text-foreground">{value}</span>}
