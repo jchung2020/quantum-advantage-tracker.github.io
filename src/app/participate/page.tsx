@@ -1,13 +1,15 @@
 import { Button } from '@/components/ui/button';
 import { GithubIcon } from '@/icons';
 import type { Metadata } from 'next';
-import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Participate',
   description:
-    'Learn how to contribute a new advantage candidate from the list of provided problem instances or your own circuit specs. All are welcome to participate.',
+    'You can contribute by submitting a new result, proposing a new problem instance, or joining the public review discussion on GitHub.',
 };
+
+const GITHUB_BASE =
+  'https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io';
 
 export default function Participate() {
   return (
@@ -15,168 +17,155 @@ export default function Participate() {
       <header className="bg-hero-gradient">
         <div className="px-6 py-20 text-center">
           <h1 className="mx-auto max-w-lg text-5xl">Submit your quantum advantage candidate</h1>
-          <h2 className="mx-auto my-6 max-w-xl">
-            Learn how to contribute a new advantage candidate from the list of provided problem
-            instances or your own circuit specs. All are welcome to participate.
+          <h2 className="mx-auto my-6 max-w-2xl">
+            You can contribute by submitting a new result, proposing a new problem instance, or
+            joining the public review discussion on GitHub.
           </h2>
         </div>
       </header>
 
-      <div className="mx-auto flex max-w-7xl flex-col gap-20 px-6 py-20">
-        <section className="flex flex-col gap-6">
+      <div className="mx-auto flex max-w-4xl flex-col gap-16 px-6 py-20">
+        <section className="flex flex-col gap-4">
           <h3 className="text-4xl">
-            <span className="text-primary">01</span> Choose a pathway and circuit instance
+            <span className="text-primary">01</span> Choose a pathway
           </h3>
-          <p className="max-w-2xl">
-            Select the pathway below that best aligns with your submission. Each link takes you to a
-            Github folder with circuit models and instances for you to run your experiment with.
+          <p>Submissions are organized into three pathways:</p>
+
+          <h4 className="mt-2 text-xl font-semibold">Observable estimations</h4>
+          <p>For problems where the goal is to estimate expectation values for observables.</p>
+
+          <h4 className="mt-2 text-xl font-semibold">Variational problems</h4>
+          <p>
+            For problems where quantum methods produce candidate solutions variationally, that can
+            be compared against classical variational methods or known bounds.
           </p>
-          <div className="flex flex-row flex-wrap gap-4">
-            <Button variant="secondary" size="lg" asChild>
-              <a
-                href="https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/tree/main/data/observable-estimations/circuit-models"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Observable estimations <GithubIcon />
-              </a>
-            </Button>
-            <Button variant="secondary" size="lg" asChild>
-              <a
-                href="https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/tree/main/data/variational-problems/hamiltonians"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Variational problems <GithubIcon />
-              </a>
-            </Button>
-            <Button variant="secondary" size="lg" asChild>
-              <a
-                href="https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/tree/main/data/classically-verifiable-problems/circuit-models"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Classically verifiable problems <GithubIcon />
-              </a>
-            </Button>
-          </div>
-          <p className="max-w-2xl">
-            To submit your own circuit model or instance, please read the documentation on how to do
-            it.
+
+          <h4 className="mt-2 text-xl font-semibold">Classically verifiable problems</h4>
+          <p>
+            For tasks where quantum outputs can be efficiently checked or validated classically,
+            even when reproducing the full quantum computation may be difficult.
           </p>
-          <div className="flex flex-row flex-wrap gap-4">
+        </section>
+
+        <section className="flex flex-col gap-4">
+          <h3 className="text-4xl">
+            <span className="text-primary">02</span> Choose a candidate type
+          </h3>
+          <p>Each submission is reviewed for one of three tracker categories:</p>
+
+          <h4 className="mt-2 text-xl font-semibold">Active candidates</h4>
+          <p>
+            Problem instances where quantum computations currently appear to challenge leading
+            classical methods, and where further benchmarking is needed to determine whether an
+            advantage exists.
+          </p>
+
+          <h4 className="mt-2 text-xl font-semibold">Superseded candidates</h4>
+          <p>
+            Problem instances where quantum computations once appeared to challenge leading
+            classical methods, but for which subsequent classical progress has closed or reversed
+            the apparent gap.
+          </p>
+
+          <h4 className="mt-2 text-xl font-semibold">Baseline benchmarks</h4>
+          <p>
+            Problem instances that provide useful reference points for comparing quantum and
+            classical methods, including examples where the state-of-the-art solutions are
+            classical.
+          </p>
+        </section>
+
+        <section className="flex flex-col gap-4">
+          <h3 className="text-4xl">
+            <span className="text-primary">03</span> Prepare your submission
+          </h3>
+          <p>If the problem is already listed in the tracker, provide:</p>
+          <ul className="ml-5 list-disc space-y-1">
+            <li>The problem instance being addressed</li>
+            <li>
+              A short summary of your method and main result (at least 1 page), including supporting
+              evidence such as figures, link to a paper and / or code
+            </li>
+            <li>Quantum and / or classical resource details, including hardware and runtime</li>
+          </ul>
+
+          <p className="mt-2">
+            If the problem is not yet listed, you should provide as well the problem details:
+          </p>
+          <ul className="ml-5 list-disc space-y-1">
+            <li>
+              A summary of the problem description (at least 1 page), including justification for
+              why the instance is nontrivial and relevant to quantum advantage
+            </li>
+            <li>The files describing the problem (quantum circuits or Hamiltonian)</li>
+            <li>Problem category (Baseline / Active / Superseded)</li>
+          </ul>
+        </section>
+
+        <section className="flex flex-col gap-4">
+          <h3 className="text-4xl">
+            <span className="text-primary">04</span> Submit through GitHub
+          </h3>
+          <p>
+            Open a new issue and choose the template that matches your pathway and whether the
+            problem instance already exists in the tracker.
+          </p>
+          <div>
             <Button variant="secondary" size="lg" asChild>
               <a
-                href="https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/tree/main/data/README.md"
+                href={`${GITHUB_BASE}/issues/new/choose`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Read the documentation <GithubIcon />
+                Open a submission issue <GithubIcon />
               </a>
             </Button>
           </div>
         </section>
-        <section className="flex flex-col gap-6">
+
+        <section className="flex flex-col gap-4">
           <h3 className="text-4xl">
-            <span className="text-primary">02</span> Enter your submission
+            <span className="text-primary">05</span> Review process
           </h3>
-          <p className="max-w-2xl">
-            Fill out the relevant issue template below and submit it. Don’t worry about filling out
-            any assignees, tags, etc. on the right side of the template.
+          <p>
+            Submitters indicate whether they are proposing a contribution for{' '}
+            <strong>Active Candidates</strong> or <strong>Baseline Benchmarks</strong>, and each
+            submission is evaluated by independent reviewers.
           </p>
-          <div className="flex flex-row flex-wrap gap-4">
-            <Button variant="secondary" size="lg" asChild>
-              <a
-                href="https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/new?template=01-submission-path-observable-estimations.yml"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Observable estimations <GithubIcon />
-              </a>
-            </Button>
-            <Button variant="secondary" size="lg" asChild>
-              <a
-                href="https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/new?template=02-submission-path-variational-problems.yml"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Variational problems <GithubIcon />
-              </a>
-            </Button>
-            <Button variant="secondary" size="lg" asChild>
-              <a
-                href="https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/new?template=03-submission-path-classically-verifiable-problems.yml"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Classically verifiable problems <GithubIcon />
-              </a>
-            </Button>
-          </div>
+          <p>
+            Reviewers assess whether the submitted benchmark is sufficiently documented and whether
+            the supporting quantum and classical evidence is appropriate for the proposed category.
+            For submissions seeking <strong>Active Candidate</strong> status, reviewers may request
+            additional clarification or classical benchmarking if they believe another established
+            method should be considered. Discussion and reviewer feedback takes place publicly on
+            GitHub so the broader community can follow and contribute to the evaluation.
+          </p>
+          <p>
+            Submissions may be accepted as <strong>Active Candidate</strong>, kept pending while
+            issues are resolved, included as <strong>Baseline Benchmarks</strong>, or reclassified
+            later if new evidence changes the assessment (e.g. an <strong>Active Candidate</strong>{' '}
+            may be reclassified as <strong>Superseded</strong> after a new classical method
+            submission).
+          </p>
         </section>
-        <section className="flex flex-col gap-6">
+
+        <section className="flex flex-col gap-4">
           <h3 className="text-4xl">
-            <span className="text-primary">03</span> Track your submission status
+            <span className="text-primary">06</span> Join the discussion
           </h3>
-          <div className="max-w-2xl">
-            <p className="font-medium">
-              There are two ways to track the status of your submission:
-            </p>
-            <ul className="ml-5 list-disc">
-              <li>
-                By looking up your submission name in the{' '}
-                <a
-                  href="https://github.com/orgs/quantum-advantage-tracker/projects/1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-link-foreground hover:underline"
-                >
-                  Github project board
-                </a>{' '}
-                and reviewing the status tag
-              </li>
-              <li>
-                Once your submission has been verified, it will show up in the{' '}
-                <Link href="/trackers" className="text-link-foreground hover:underline">
-                  Advantage Tracker
-                </Link>
-              </li>
-            </ul>
-            <p className="mt-6 font-medium">Status details:</p>
-            <ul className="ml-5 list-disc">
-              <li>Backlog: awaiting review or review in progress</li>
-              <li>In review: project reviewer has been assigned</li>
-              <li>Incomplete: submission missing details</li>
-              <li>Verified: submission approved and added to tracker</li>
-              <li>Closed: submission closed due to technical issues or incompleteness</li>
-            </ul>
-          </div>
-        </section>
-        <section className="flex flex-col gap-6">
-          <h3 className="text-4xl">
-            <span className="text-primary">04</span> Join the conversation
-          </h3>
-          <p className="max-w-2xl">
-            You can review and comment on{' '}
+          <p>
+            Review and discussion happen publicly on{' '}
             <a
-              href="https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues"
+              href={`${GITHUB_BASE}/issues`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-link-foreground hover:underline"
             >
-              other issues in the repo
-            </a>{' '}
-            to provide your thoughts or{' '}
-            <a
-              href="https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/discussions"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-link-foreground hover:underline"
-            >
-              contribute to the discussion board
+              GitHub
             </a>
             .
           </p>
+          <p>Community members are encouraged to comment on open submissions.</p>
         </section>
       </div>
     </>
