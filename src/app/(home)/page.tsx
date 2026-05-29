@@ -19,9 +19,9 @@ function computeCounts<T extends BaseSubmission>(
   getInstanceId: (s: T) => string,
 ): Record<Category, number> {
   const counts: Record<Category, number> = {
-    'Active Candidates': 0,
-    'Superseded Candidates': 0,
-    'Baseline Benchmarks': 0,
+    'Active candidates': 0,
+    'Superseded candidates': 0,
+    'Baseline benchmarks': 0,
   };
   const withSubmissions = new Set(submissions.map(getInstanceId));
   for (const instance of instances) {
@@ -36,7 +36,7 @@ function computeActiveCards<
   T extends BaseSubmission,
   I extends { id: string; type: string; category: string },
 >(submissions: T[], instances: I[], getInstanceId: (s: T) => string): ActiveCard[] {
-  return buildInstanceOptions(submissions, instances, getInstanceId, 'Active Candidates')
+  return buildInstanceOptions(submissions, instances, getInstanceId, 'Active candidates')
     .slice(0, 2)
     .map((inst) => ({
       id: inst.id,

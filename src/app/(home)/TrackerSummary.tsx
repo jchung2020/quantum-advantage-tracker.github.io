@@ -25,7 +25,7 @@ export function TrackerSummary(props: {
       <div className="text-2xl font-semibold">{title}</div>
       <div className="mt-2 mb-8 flex flex-wrap justify-center gap-2">
         {CATEGORIES.map(({ value, label }) => {
-          const isActiveBadge = value === 'Active Candidates';
+          const isActiveBadge = value === 'Active candidates';
           return (
             <Badge
               key={value}

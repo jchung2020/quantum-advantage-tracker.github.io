@@ -6,21 +6,21 @@
         "path": "peaked_circuit_heavy_hex_49x4020.qasm",
         "qubits": 49,
         "gates": 4020,
-        "category": "Baseline Benchmarks"
+        "category": "Baseline benchmarks"
       },
       {
         "id": "peaked_circuit_heavy_hex_49x5072",
         "path": "peaked_circuit_heavy_hex_49x5072.qasm",
         "qubits": 49,
         "gates": 5072,
-        "category": "Superseded Candidates"
+        "category": "Superseded candidates"
       },
       {
         "id": "peaked_circuit_P9_Hqap_56x1917",
         "path": "peaked_circuit_P9_Hqap_56x1917.qasm",
         "qubits": 56,
         "gates": 1917,
-        "category": "Superseded Candidates"
+        "category": "Superseded candidates"
       }
     ]
   },
@@ -31,7 +31,7 @@
         "path": "nq70_depth70_checks27_basis_fstate.qasm",
         "qubits": 70,
         "gates": 2415,
-        "category": "Active Candidates"
+        "category": "Active candidates"
       }
     ]
   },
@@ -42,7 +42,7 @@
         "path": "nq70_depth70_checks27_doped.qasm",
         "qubits": 70,
         "gates": 2415,
-        "category": "Baseline Benchmarks"
+        "category": "Baseline benchmarks"
       }
     ]
   }

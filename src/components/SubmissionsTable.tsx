@@ -31,7 +31,7 @@ import { Suspense, useMemo, useState, type ReactNode } from 'react';
 
 const CATEGORY_SLUGS = CATEGORIES.map((c) => c.slug);
 
-const DEFAULT_CATEGORY: Category = 'Active Candidates';
+const DEFAULT_CATEGORY: Category = 'Active candidates';
 const COLUMN_COUNT = 9;
 
 type Instance = {
@@ -119,9 +119,9 @@ function SubmissionsTableContent<T extends BaseSubmission, I extends Instance>(
 
   const counts = useMemo(() => {
     const acc: Record<Category, number> = {
-      'Active Candidates': 0,
-      'Superseded Candidates': 0,
-      'Baseline Benchmarks': 0,
+      'Active candidates': 0,
+      'Superseded candidates': 0,
+      'Baseline benchmarks': 0,
     };
     const instancesWithSubmissions = new Set(submissions.map(getInstanceId));
     for (const instance of instances) {
