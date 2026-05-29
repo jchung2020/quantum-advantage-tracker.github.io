@@ -109,4 +109,4 @@ Provided that classical simulations fail to faithfully sample from our state, we
 
 ## Institutions
 
-IBM, UChicago
+IBM, University of Chicago
