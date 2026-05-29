@@ -4,6 +4,7 @@ export type Hamiltonians = {
       id: string;
       path: string;
       hilbert_space_size: number;
+      category: string;
     }[];
   };
 };

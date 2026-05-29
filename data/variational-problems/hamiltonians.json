@@ -4,47 +4,56 @@
       {
         "id": "n2_3-00_14e_28o",
         "path": "n2_3-00_14e_28o.fcidump",
-        "hilbert_space_size": 1.4e12
+        "hilbert_space_size": 1.4e12,
+        "category": "Baseline benchmarks"
       },
       {
         "id": "n2_2-50_14e_28o",
         "path": "n2_2-50_14e_28o.fcidump",
-        "hilbert_space_size": 1.4e12
+        "hilbert_space_size": 1.4e12,
+        "category": "Baseline benchmarks"
       },
       {
         "id": "n2_2-00_14e_28o",
         "path": "n2_2-00_14e_28o.fcidump",
-        "hilbert_space_size": 1.4e12
+        "hilbert_space_size": 1.4e12,
+        "category": "Baseline benchmarks"
       },
       {
         "id": "n2_1-50_14e_28o",
         "path": "n2_1-50_14e_28o.fcidump",
-        "hilbert_space_size": 1.4e12
+        "hilbert_space_size": 1.4e12,
+        "category": "Baseline benchmarks"
       },
       {
         "id": "n2_1-20_14e_28o",
         "path": "n2_1-20_14e_28o.fcidump",
-        "hilbert_space_size": 1.4e12
+        "hilbert_space_size": 1.4e12,
+        "category": "Baseline benchmarks"
       },
       {
         "id": "n2_1-10_14e_28o",
         "path": "n2_1-10_14e_28o.fcidump",
-        "hilbert_space_size": 1.4e12
+        "hilbert_space_size": 1.4e12,
+        "category": "Baseline benchmarks"
       },
       {
         "id": "n2_1-00_14e_28o",
         "path": "n2_1-00_14e_28o.fcidump",
-        "hilbert_space_size": 1.4e12
+        "hilbert_space_size": 1.4e12,
+        "category": "Baseline benchmarks"
       },
       {
         "id": "n2_0-90_14e_28o",
         "path": "n2_0-90_14e_28o.fcidump",
-        "hilbert_space_size": 1.4e12
+        "hilbert_space_size": 1.4e12,
+        "category": "Baseline benchmarks"
       },
       {
         "id": "n2_0-80_14e_28o",
         "path": "n2_0-80_14e_28o.fcidump",
-        "hilbert_space_size": 1.4e12
+        "hilbert_space_size": 1.4e12,
+        "category": "Baseline benchmarks"
       }
     ]
   },
@@ -53,7 +62,8 @@
       {
         "id": "2fe_2s_30e_20o",
         "path": "2fe_2s_30e_20o.fcidump",
-        "hilbert_space_size": 2.4e8
+        "hilbert_space_size": 2.4e8,
+        "category": "Baseline benchmarks"
       }
     ]
   },
@@ -62,7 +72,8 @@
       {
         "id": "4fe_4s_54e_36o",
         "path": "4fe_4s_54e_36o.fcidump",
-        "hilbert_space_size": 8.86e15
+        "hilbert_space_size": 8.86e15,
+        "category": "Baseline benchmarks"
       }
     ]
   },
@@ -71,7 +82,8 @@
       {
         "id": "anderson_impurity_model_4i_28b_32e",
         "path": "anderson_impurity_model_4i_28b_32e.fcidump",
-        "hilbert_space_size": 3.61e17
+        "hilbert_space_size": 3.61e17,
+        "category": "Baseline benchmarks"
       }
     ]
   },
@@ -80,7 +92,8 @@
       {
         "id": "guided_sparse_ground_state_problem_49Q_v1",
         "path": "49Q_v1",
-        "hilbert_space_size": 5.62e14
+        "hilbert_space_size": 5.62e14,
+        "category": "Baseline benchmarks"
       }
     ]
   }
