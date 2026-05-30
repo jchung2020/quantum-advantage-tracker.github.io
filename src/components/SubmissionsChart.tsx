@@ -117,14 +117,14 @@ export function SubmissionsChart<T extends BaseSubmission>(props: SubmissionsCha
           <Legend
             verticalAlign="bottom"
             align="left"
-            itemSorter={null}
+            itemSorter={(item) => (item.value === 'Quantum' ? 0 : 1)}
             wrapperStyle={{ fontSize: 12, paddingTop: 8 }}
             formatter={(value) => <span className="text-foreground">{value}</span>}
           />
           <Scatter
-            name="Quantum"
-            data={quantumData}
-            fill="var(--primary)"
+            name="Classical"
+            data={classicalData}
+            fill="var(--color-classical-submission)"
             isAnimationActive={false}
             onClick={(entry: { payload?: ChartDatum<T> }) => {
               const url = entry?.payload?.submission.url;
@@ -132,9 +132,9 @@ export function SubmissionsChart<T extends BaseSubmission>(props: SubmissionsCha
             }}
           />
           <Scatter
-            name="Classical"
-            data={classicalData}
-            fill="var(--color-classical-submission)"
+            name="Quantum"
+            data={quantumData}
+            fill="var(--primary)"
             isAnimationActive={false}
             onClick={(entry: { payload?: ChartDatum<T> }) => {
               const url = entry?.payload?.submission.url;
