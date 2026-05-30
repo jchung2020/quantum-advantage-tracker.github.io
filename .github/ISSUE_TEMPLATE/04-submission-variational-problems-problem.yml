@@ -23,7 +23,7 @@ body:
   - type: upload
     id: problemFiles
     attributes:
-      label: Upload hamiltonian
+      label: Hamiltonian file
       description: GitHub does not allow uploading `.fcidump` files directly. Please convert your hamiltonian file to a `.zip` archive before uploading.
     validations:
       required: true

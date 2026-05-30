@@ -23,7 +23,7 @@ body:
   - type: upload
     id: problemFiles
     attributes:
-      label: Upload circuit
+      label: Circuit file
       description: GitHub does not allow uploading `.qasm` files directly. Please convert your circuit file to a `.zip` archive before uploading.
     validations:
       required: true
