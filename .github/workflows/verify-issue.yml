@@ -18,31 +18,29 @@ jobs:
       - name: Determine path based on labels
         id: path_selector
         run: |
-          ISSUE_TEMPLATE_PATH=""
-          SUBMISSIONS_PATH=""
+          declare -A TEMPLATES=(
+            ["observable-estimations:regular"]="01-submission-observable-estimations.yml"
+            ["observable-estimations:problem"]="02-submission-observable-estimations-problem.yml"
+            ["variational-problems:regular"]="03-submission-variational-problems.yml"
+            ["variational-problems:problem"]="04-submission-variational-problems-problem.yml"
+            ["classically-verifiable-problems:regular"]="05-submission-classically-verifiable-problems.yml"
+            ["classically-verifiable-problems:problem"]="06-submission-classically-verifiable-problems-problem.yml"
+          )
 
           JSON_LABELS='${{ toJSON(github.event.issue.labels.*.name) }}'
           readarray -t LABELS <<< "$(echo "$JSON_LABELS" | jq -r '.[]')"
 
+          PATH_LABEL=""
+          KIND="regular"
           for LABEL in "${LABELS[@]}"; do
             case "$LABEL" in
-              "path: observable-estimations")
-                ISSUE_TEMPLATE_PATH="01-submission-observable-estimations.yml"
-                SUBMISSIONS_PATH="data/observable-estimations/submissions.json"
-                break
-                ;;
-              "path: variational-problems")
-                ISSUE_TEMPLATE_PATH="02-submission-variational-problems.yml"
-                SUBMISSIONS_PATH="data/variational-problems/submissions.json"
-                break
-                ;;
-              "path: classically-verifiable-problems")
-                ISSUE_TEMPLATE_PATH="03-submission-classically-verifiable-problems.yml"
-                SUBMISSIONS_PATH="data/classically-verifiable-problems/submissions.json"
-                break
-                ;;
+              "path: "*)            PATH_LABEL="${LABEL#path: }" ;;
+              "problem submission") KIND="problem" ;;
             esac
           done
+
+          ISSUE_TEMPLATE_PATH="${TEMPLATES[${PATH_LABEL}:${KIND}]:-}"
+          SUBMISSIONS_PATH="data/${PATH_LABEL}/submissions.json"
 
           if [ -z "$ISSUE_TEMPLATE_PATH" ]; then
             echo "::error::No valid template label was found on the issue."
@@ -58,12 +56,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      # Workaround for https://github.com/issue-ops/parser/issues/216:
+      # the parser does not yet support `type: upload`, so we rewrite it to
+      # `type: textarea` in the checked-out template. The body content under
+      # the upload heading (the markdown that GitHub generates with links to
+      # user-attachments) is then captured as plain text.
+      - name: "Patch unsupported `type: upload` in template"
+        env:
+          TEMPLATE: .github/ISSUE_TEMPLATE/${{ steps.path_selector.outputs.selected_issue_template }}
+        run: |
+          sed -i 's/type: upload/type: textarea/g' "$TEMPLATE"
+
       - name: Parse issue body
         id: issue_form_parser
         uses: issue-ops/parser@v5
         with:
           body: ${{ github.event.issue.body }}
           issue-form-template: ${{ steps.path_selector.outputs.selected_issue_template }}
+
+      - name: Revert template patch
+        env:
+          TEMPLATE: .github/ISSUE_TEMPLATE/${{ steps.path_selector.outputs.selected_issue_template }}
+        run: |
+          git checkout -- "$TEMPLATE"
 
       - name: Modify parsed JSON
         id: modify_json
