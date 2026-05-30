@@ -6,7 +6,7 @@
         "path": "peaked_circuit_heavy_hex_49x4020.qasm",
         "qubits": 49,
         "gates": 4020,
-        "category": "Baseline benchmarks"
+        "category": "Superseded candidates"
       },
       {
         "id": "peaked_circuit_heavy_hex_49x5072",
