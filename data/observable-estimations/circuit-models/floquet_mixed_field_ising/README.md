@@ -132,11 +132,23 @@ The figures below show the estimated three observables across $N_c\in [1,16]$ Fl
 The faded dashed lines correspond to SPP (ORQA) results obtained with larger truncation thresholds ($\epsilon_0$) and smaller maximum Pauli weights ($W$), while the faded solid lines correspond to PEPS-BP results with smaller bond dimensions (BD).
 
 **Magnetization (M):**
-<img src="./figs/mag_tracker.png" alt="$Magnetization$" style="clip-path: inset(0 0 0 0);" width="900"/>
+
+<img src="figs/mag_tracker.png" alt="$Magnetization$" style="clip-path: inset(0 0 0 0);" width="800"/>
+
 **Average ZIZ ($ZZ_{d=2}$):**
-<img src="./figs/ziz_tracker.png" alt="$ZZ_{d=2}$" style="clip-path: inset(0 0 0 0);" width="900"/>
+
+<img src="figs/ziz_tracker.png" alt="$ZZ_{d=2}$" style="clip-path: inset(0 0 0 0);" width="800"/>
+
 **Average ZIIZ ($ZZ_{d=3}$):**
-<img src="./figs/ziiz_tracker.png" alt="$ZZ_{d=3}$" style="clip-path: inset(0 0 0 0);" width="900"/>
+
+<img src="figs/ziiz_tracker.png" alt="$ZZ_{d=3}$" style="clip-path: inset(0 0 0 0);" width="800"/>
+
+
+Despite the substantial computational resources employed, neither classical method achieves convincing convergence.
+PEPS-BP remains reliable only up to $N_c\sim 10$, beyond which convergence is lost both relative to the quantum data and across the different bond dimensions.
+Likewise, SPP simulations with $(W,\varepsilon_0)=(16,10^{-7})$ and $(20,10^{-9})$, tracking a peak of $3.5\times10^{10}$ and $7\times10^{11}$ Pauli paths,
+respectively, exhibit large discrepancies in addition to a phase offset, and incorrect oscillation amplitudes relative to the quantum results.
+Specifically they either overshoot or underestimate the quantum results where any local agreement with the quantum data appears to be incidental rather than being systematic.
 
 ## Institutions
 
