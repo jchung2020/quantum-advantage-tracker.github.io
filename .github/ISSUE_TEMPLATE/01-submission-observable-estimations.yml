@@ -1,13 +1,11 @@
-name: 📊 Path 1 - Observable estimations submission
+name: 📊 Observable estimations submission (existing problem)
 description: Submit a problem solution to the observable estimations tracker
 labels: ['path: observable-estimations', 'submission']
 body:
   - type: markdown
     attributes:
       value: |
-        ## 📊 Path 1 - Observable estimations
-
-        Thank you for submitting a solution to the **observable estimations tracker**!
+        ## 📊 Observable estimations
 
         Please provide detailed information about your submission below.
 
@@ -28,7 +26,7 @@ body:
 
         You can find information about all the available ones here: [/data/observable-estimations/circuit-models](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/tree/main/data/observable-estimations/circuit-models).
 
-        If your instance is not listed, please follow the instructions in [/data/README.md](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/tree/main/data/README.md) to submit a new one.
+        Don't see your circuit? [Submit it as a new problem](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/new?template=02-submission-observable-estimations-problem.yml).
       options:
         - operator_loschmidt_echo_70x1872
         - operator_loschmidt_echo_49x648
@@ -94,22 +92,6 @@ body:
       required: true
 
   - type: input
-    id: authors
-    attributes:
-      label: Authors
-      description: The author(s) or individual(s) involved in the submission, separated by commas
-    validations:
-      required: false
-
-  - type: input
-    id: institutions
-    attributes:
-      label: Institutions
-      description: The institution(s) or organization(s) involved in the submission, separated by commas
-    validations:
-      required: true
-
-  - type: input
     id: runtimeQuantum
     attributes:
       label: Quantum runtime (seconds)
@@ -153,17 +135,18 @@ body:
     validations:
       required: false
 
-  - type: markdown
+  - type: input
+    id: authors
     attributes:
-      value: |
-        ---
+      label: Authors
+      description: The author(s) or individual(s) involved in the submission, separated by commas
+    validations:
+      required: false
 
-        ### What happens next?
-
-        Maintainers will review your submission for:
-        - ✅ Reproducibility
-        - ✅ Compliance with validation criteria
-        - ✅ Data fidelity and traceability
-        - ✅ Transparent documentation of assumptions and uncertainties
-
-        Thank you for contributing to the Quantum Advantage Tracker! 🚀
+  - type: input
+    id: institutions
+    attributes:
+      label: Institutions
+      description: The institution(s) or organization(s) involved in the submission, separated by commas
+    validations:
+      required: true

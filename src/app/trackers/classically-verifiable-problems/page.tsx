@@ -1,27 +1,34 @@
+import { OrganizedInto } from '@/components/OrganizedInto';
 import { Button } from '@/components/ui/button';
 import { GithubIcon } from '@/icons';
+import type { CVPSubmission } from '@/types/submissions';
 import type { Metadata } from 'next';
 import circuitModels from '../../../../data/classically-verifiable-problems/circuit-models.json' with { type: 'json' };
-import submissions from '../../../../data/classically-verifiable-problems/submissions.json' with { type: 'json' };
+import submissionsData from '../../../../data/classically-verifiable-problems/submissions.json' with { type: 'json' };
 import { SubmissionsTable } from './SubmissionsTable';
+
+const submissions = submissionsData as CVPSubmission[];
 
 export const metadata: Metadata = {
   title: 'Classically verifiable problems',
+  description:
+    'Submissions must demonstrate quantum advantage by scoring solutions against known answers or efficiently checkable witnesses.',
 };
 
 export default async function TrackersCVP() {
   return (
     <>
       <div className="bg-hero-gradient">
-        <div className="flex flex-col gap-6 px-6 py-16 text-center">
-          <h1 className="mx-auto max-w-xl text-3xl">Classically verifiable problems 🗝️</h1>
-          <h2 className="mx-auto max-w-xl">
+        <div className="flex flex-col px-6 py-16 text-center">
+          <h1 className="mx-auto mb-6 max-w-xl text-3xl">Classically verifiable problems 🗝️</h1>
+          <h2 className="mx-auto mb-2 max-w-xl">
             Submissions must demonstrate quantum advantage by scoring solutions against known
             answers or efficiently checkable witnesses.
           </h2>
+          <OrganizedInto />
 
-          <div className="mx-auto flex flex-row flex-wrap justify-center gap-x-6 gap-y-3">
-            <Button variant="secondary" size="lg" asChild>
+          <div className="mx-auto mt-6 flex flex-row flex-wrap justify-center gap-x-6 gap-y-3">
+            <Button variant="outline" size="lg" asChild>
               <a
                 href="https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/tree/main/data/classically-verifiable-problems/circuit-models"
                 target="_blank"
@@ -30,9 +37,9 @@ export default async function TrackersCVP() {
                 View circuit instances <GithubIcon />
               </a>
             </Button>
-            <Button variant="secondary" size="lg" asChild>
+            <Button variant="outline" size="lg" asChild>
               <a
-                href="https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/new?template=03-submission-path-classically-verifiable-problems.yml"
+                href="https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/new/choose"
                 target="_blank"
                 rel="noopener noreferrer"
               >

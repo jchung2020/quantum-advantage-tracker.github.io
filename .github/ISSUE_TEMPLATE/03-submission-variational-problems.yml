@@ -1,13 +1,11 @@
-name: 🌀 Path 2 - Variational problems submission
+name: 🌀 Variational problems submission (existing problem)
 description: Submit a problem solution to the variational problems tracker
 labels: ['path: variational-problems', 'submission']
 body:
   - type: markdown
     attributes:
       value: |
-        ## 🌀 Path 2 - Variational problems
-
-        Thank you for submitting a solution to the **variational problems tracker**!
+        ## 🌀 Variational problems
 
         Please provide detailed information about your submission below.
 
@@ -28,7 +26,7 @@ body:
 
         You can find information about all the available ones here: [/data/variational-problems/hamiltonians](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/tree/main/data/variational-problems/hamiltonians).
 
-        If your instance is not listed, please follow the instructions in [/data/README.md](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/tree/main/data/README.md) to submit a new one.
+        Don't see your hamiltonian? [Submit it as a new problem](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/new?template=04-submission-variational-problems-problem.yml).
       options:
         - 2fe_2s_30e_20o
         - 4fe_4s_54e_36o
@@ -104,28 +102,12 @@ body:
     id: methodProof
     attributes:
       label: Method proof
-      description: Link to paper, code repository, or detailed explanation of the method (required for verification). If method is Quantum, please attach the circuit.
+      description: Link to paper, code repository, or detailed explanation of the method (required for verification)
       placeholder: |
         Provide at least one of:
         - Paper/preprint: https://arxiv.org/abs/...
         - Code repository: https://github.com/...
         - Method explanation: Detailed description of the approach
-    validations:
-      required: true
-
-  - type: input
-    id: authors
-    attributes:
-      label: Authors
-      description: The author(s) or individual(s) involved in the submission, separated by commas
-    validations:
-      required: false
-
-  - type: input
-    id: institutions
-    attributes:
-      label: Institutions
-      description: The institution(s) or organization(s) involved in the submission, separated by commas
     validations:
       required: true
 
@@ -173,17 +155,18 @@ body:
     validations:
       required: false
 
-  - type: markdown
+  - type: input
+    id: authors
     attributes:
-      value: |
-        ---
+      label: Authors
+      description: The author(s) or individual(s) involved in the submission, separated by commas
+    validations:
+      required: false
 
-        ### What happens next?
-
-        Maintainers will review your submission for:
-        - ✅ Reproducibility
-        - ✅ Compliance with validation criteria (variational property)
-        - ✅ Data fidelity and traceability
-        - ✅ Transparent documentation of assumptions and uncertainties
-
-        Thank you for contributing to the Quantum Advantage Tracker! 🚀
+  - type: input
+    id: institutions
+    attributes:
+      label: Institutions
+      description: The institution(s) or organization(s) involved in the submission, separated by commas
+    validations:
+      required: true

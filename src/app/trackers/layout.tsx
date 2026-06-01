@@ -1,12 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { ChevronRightIcon } from 'lucide-react';
-import type { Metadata } from 'next';
 import Link from 'next/link';
-
-export const metadata: Metadata = {
-  description:
-    'Track verifiable quantum advantage claims across three pathways, with clear evidence requirements and contributing institutions.',
-};
 
 export default function TrackersLayout(props: LayoutProps<'/trackers'>) {
   return (
