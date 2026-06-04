@@ -28,6 +28,24 @@ body:
     validations:
       required: true
 
+  - type: input
+    id: problemQubits
+    attributes:
+      label: Qubits
+      description: The number of qubits
+      placeholder: e.g., "60"
+    validations:
+      required: true
+
+  - type: input
+    id: problemGates
+    attributes:
+      label: Gates
+      description: The number of gates
+      placeholder: e.g., "2000"
+    validations:
+      required: true
+
   - type: dropdown
     id: problemCategory
     attributes:

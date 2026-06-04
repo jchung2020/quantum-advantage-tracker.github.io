@@ -1,6 +1,9 @@
 const inputJsonString = process.argv[2];
 const data = JSON.parse(inputJsonString);
 
+delete data.problemQubits;
+delete data.problemGates;
+delete data.problemHilbertSpaceSize;
 delete data.problemFiles;
 delete data.problemCategory;
 delete data.problemDescription;
