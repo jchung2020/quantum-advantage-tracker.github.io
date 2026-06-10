@@ -1,116 +1,193 @@
 name: Submissions workflow
 
 on:
-  issues:
-    types: [labeled]
+  issue_comment:
+    types: [created, edited]
+
+permissions:
+  issues: write
+  contents: write
 
 jobs:
-  process_verified_submission:
+  create_preview:
     runs-on: ubuntu-latest
 
-    if: contains(github.event.issue.labels.*.name, 'submission') && github.event.label.name == 'verified'
-
-    permissions:
-      pull-requests: write
-      contents: write
+    if: >-
+      github.event.action == 'created' &&
+      github.event.issue.pull_request == null &&
+      contains(github.event.issue.labels.*.name, 'submission') &&
+      contains(github.event.comment.body, 'I verified this submission') &&
+      contains(github.event.issue.assignees.*.login, github.event.comment.user.login)
 
     steps:
-      - name: Determine path based on labels
-        id: path_selector
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Parse submission
+        id: parse
+        uses: ./.github/actions/parse-submission
+
+      - name: Post preview comment
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PATH_LABEL: ${{ steps.parse.outputs.path_label }}
+          AUTHOR: ${{ github.event.comment.user.login }}
+          SUBMISSION: ${{ steps.parse.outputs.submission }}
+          TYPECHECK_PASSED: ${{ steps.parse.outputs.typecheck_passed }}
+          TYPECHECK_ERRORS: ${{ steps.parse.outputs.typecheck_errors }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
-          declare -A TEMPLATES=(
-            ["observable-estimations:regular"]="01-submission-observable-estimations.yml"
-            ["observable-estimations:problem"]="02-submission-observable-estimations-problem.yml"
-            ["variational-problems:regular"]="03-submission-variational-problems.yml"
-            ["variational-problems:problem"]="04-submission-variational-problems-problem.yml"
-            ["classically-verifiable-problems:regular"]="05-submission-classically-verifiable-problems.yml"
-            ["classically-verifiable-problems:problem"]="06-submission-classically-verifiable-problems-problem.yml"
-          )
-
-          JSON_LABELS='${{ toJSON(github.event.issue.labels.*.name) }}'
-          readarray -t LABELS <<< "$(echo "$JSON_LABELS" | jq -r '.[]')"
-
-          PATH_LABEL=""
-          KIND="regular"
-          for LABEL in "${LABELS[@]}"; do
-            case "$LABEL" in
-              "path: "*)            PATH_LABEL="${LABEL#path: }" ;;
-              "problem submission") KIND="problem" ;;
-            esac
-          done
-
-          ISSUE_TEMPLATE_PATH="${TEMPLATES[${PATH_LABEL}:${KIND}]:-}"
-          SUBMISSIONS_PATH="data/${PATH_LABEL}/submissions.json"
-
-          if [ -z "$ISSUE_TEMPLATE_PATH" ]; then
-            echo "::error::No valid template label was found on the issue."
-            echo "::error::Processing skipped as the correct form template cannot be determined."
+          node ./.github/actions/parse-submission/build-preview-body.js \
+            | gh issue comment "$ISSUE_NUMBER" --body-file -
+          if [ "$TYPECHECK_PASSED" != "true" ]; then
+            echo "::error::Typecheck failed; the preview was posted with the errors."
             exit 1
           fi
 
-          echo "selected_issue_template=$ISSUE_TEMPLATE_PATH" >> $GITHUB_OUTPUT
-          echo "Selected issue template: $ISSUE_TEMPLATE_PATH"
-          echo "selected_submissions_path=$SUBMISSIONS_PATH" >> $GITHUB_OUTPUT
-          echo "Selected submissions path: $SUBMISSIONS_PATH"
+  regenerate_preview:
+    runs-on: ubuntu-latest
+
+    if: >-
+      github.event.action == 'edited' &&
+      github.event.comment.user.login == 'github-actions[bot]' &&
+      contains(github.event.comment.body, '<!-- submission-preview') &&
+      contains(github.event.comment.body, '- [x] Regenerate JSON') &&
+      contains(github.event.changes.body.from, '- [ ] Regenerate JSON')
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Parse submission
+        id: parse
+        uses: ./.github/actions/parse-submission
+
+      - name: Update preview comment
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          COMMENT_ID: ${{ github.event.comment.id }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          PATH_LABEL: ${{ steps.parse.outputs.path_label }}
+          SUBMISSION: ${{ steps.parse.outputs.submission }}
+          TYPECHECK_PASSED: ${{ steps.parse.outputs.typecheck_passed }}
+          TYPECHECK_ERRORS: ${{ steps.parse.outputs.typecheck_errors }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          AUTHOR=$(printf '%s' "$COMMENT_BODY" | grep -oE 'Submission verified by @[A-Za-z0-9_-]+' | head -1 | sed -E 's/^Submission verified by @//')
+          if [ -z "$AUTHOR" ]; then
+            echo "::error::Could not extract original author from preview body."
+            exit 1
+          fi
+          export AUTHOR
+          node ./.github/actions/parse-submission/build-preview-body.js \
+            | gh api -X PATCH "repos/$REPO/issues/comments/$COMMENT_ID" -F body=@-
+          if [ "$TYPECHECK_PASSED" != "true" ]; then
+            echo "::error::Typecheck failed; the preview was updated with the errors."
+            exit 1
+          fi
+
+  apply_preview:
+    runs-on: ubuntu-latest
+
+    concurrency:
+      group: apply-submission
+      cancel-in-progress: false
+
+    if: >-
+      github.event.action == 'edited' &&
+      github.event.comment.user.login == 'github-actions[bot]' &&
+      contains(github.event.comment.body, '<!-- submission-preview') &&
+      contains(github.event.comment.body, 'status="ok"') &&
+      contains(github.event.comment.body, '- [x] Apply this submission') &&
+      contains(github.event.changes.body.from, '- [ ] Apply this submission')
+
+    steps:
+      - name: Extract submission and path from preview
+        id: extract
+        env:
+          COMMENT_BODY: ${{ github.event.comment.body }}
+        run: |
+          PATH_LABEL=$(printf '%s' "$COMMENT_BODY" | grep -oE 'submission-preview path="[^"]+"' | head -1 | sed -E 's/.*"([^"]+)".*/\1/')
+          if [ -z "$PATH_LABEL" ]; then
+            echo "::error::Could not extract path label from preview marker."
+            exit 1
+          fi
+          SUBMISSION=$(printf '%s' "$COMMENT_BODY" | awk '/^```json$/{flag=1;next} /^```$/{if(flag){exit}} flag')
+          if [ -z "$SUBMISSION" ]; then
+            echo "::error::Could not extract JSON block from preview."
+            exit 1
+          fi
+          echo "path_label=$PATH_LABEL" >> $GITHUB_OUTPUT
+          {
+            echo "submission<<__SUBMISSION_EOF__"
+            echo "$SUBMISSION"
+            echo "__SUBMISSION_EOF__"
+          } >> $GITHUB_OUTPUT
 
       - name: Checkout
         uses: actions/checkout@v6
 
-      # Workaround for https://github.com/issue-ops/parser/issues/216:
-      # the parser does not yet support `type: upload`, so we rewrite it to
-      # `type: textarea` in the checked-out template. The body content under
-      # the upload heading (the markdown that GitHub generates with links to
-      # user-attachments) is then captured as plain text.
-      - name: "Patch unsupported `type: upload` in template"
-        env:
-          TEMPLATE: .github/ISSUE_TEMPLATE/${{ steps.path_selector.outputs.selected_issue_template }}
-        run: |
-          sed -i 's/type: upload/type: textarea/g' "$TEMPLATE"
-
-      - name: Parse issue body
-        id: issue_form_parser
-        uses: issue-ops/parser@v5
-        with:
-          body: ${{ github.event.issue.body }}
-          issue-form-template: ${{ steps.path_selector.outputs.selected_issue_template }}
-
-      - name: Revert template patch
-        env:
-          TEMPLATE: .github/ISSUE_TEMPLATE/${{ steps.path_selector.outputs.selected_issue_template }}
-        run: |
-          git checkout -- "$TEMPLATE"
-
-      - name: Modify parsed JSON
-        id: modify_json
-        env:
-          INPUT_JSON: ${{ steps.issue_form_parser.outputs.json }}
-          ISSUE_CREATED_AT: ${{ github.event.issue.created_at }}
-          ISSUE_URL: ${{ github.event.issue.html_url }}
-        run: |
-          SUBMISSION=$(node .github/workflows/parse-submission.js "$INPUT_JSON")
-          echo "submission=$SUBMISSION" >> $GITHUB_OUTPUT
-
       - name: Modify submissions file
         env:
-          SUBMISSIONS_PATH: ${{ steps.path_selector.outputs.selected_submissions_path }}
-          SUBMISSION: ${{ steps.modify_json.outputs.submission }}
+          SUBMISSIONS_PATH: data/${{ steps.extract.outputs.path_label }}/submissions.json
+          SUBMISSION: ${{ steps.extract.outputs.submission }}
         run: |
           tmp_file=$(mktemp)
           jq ". += [${SUBMISSION}]" "$SUBMISSIONS_PATH" > "$tmp_file" && mv "$tmp_file" "$SUBMISSIONS_PATH"
 
-      - name: Create pull request
-        id: create_pull_request
-        uses: peter-evans/create-pull-request@v8
+      - uses: actions/setup-node@v6
         with:
-          commit-message: 'Add new submission from issue #${{ github.event.issue.number }}'
-          title: 'Add new submission from issue #${{ github.event.issue.number }}'
-          body: 'Closes #${{ github.event.issue.number }}.'
-          branch: submission-issue-${{ github.event.issue.number }}
+          node-version-file: 'package.json'
+          cache: 'npm'
 
-      # Disabled because of:
-      # https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow#triggering-a-workflow-from-a-workflow
-      # - name: Enable pull request auto-merge
-      #   if: steps.create_pull_request.outputs.pull-request-operation == 'created'
-      #   run: gh pr merge --merge --auto "${{ steps.create_pull_request.outputs.pull-request-number }}"
-      #   env:
-      #     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install deps
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Commit and push to main
+        id: push
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          SUBMISSIONS_PATH: data/${{ steps.extract.outputs.path_label }}/submissions.json
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add "$SUBMISSIONS_PATH"
+          git commit -m "Add new submission from issue #${ISSUE_NUMBER}"
+          git push origin HEAD:main
+          SHA=$(git rev-parse HEAD)
+          echo "sha=$SHA" >> $GITHUB_OUTPUT
+          echo "short_sha=${SHA:0:7}" >> $GITHUB_OUTPUT
+
+      - name: Close issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          gh issue close "$ISSUE_NUMBER" --reason completed
+
+      - name: Mark preview as applied
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          SERVER_URL: ${{ github.server_url }}
+          COMMENT_ID: ${{ github.event.comment.id }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          SHA: ${{ steps.push.outputs.sha }}
+          SHORT_SHA: ${{ steps.push.outputs.short_sha }}
+        run: |
+          NEW_BODY=$(printf '%s' "$COMMENT_BODY" \
+            | sed -E '/^- \[[ x]\] Apply this submission/d; /^- \[[ x]\] Regenerate JSON/d' \
+            | sed -E 's/status="ok"/status="applied"/')
+          {
+            printf '%s\n' "$NEW_BODY"
+            printf '✅ Applied in [`%s`](%s/%s/commit/%s)\n' "$SHORT_SHA" "$SERVER_URL" "$REPO" "$SHA"
+          } > /tmp/applied-body.md
+          gh api -X PATCH "repos/$REPO/issues/comments/$COMMENT_ID" -F body=@/tmp/applied-body.md

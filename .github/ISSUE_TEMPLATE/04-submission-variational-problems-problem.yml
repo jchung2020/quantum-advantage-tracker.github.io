@@ -28,6 +28,15 @@ body:
     validations:
       required: true
 
+  - type: input
+    id: problemHilbertSpaceSize
+    attributes:
+      label: Hilbert space size
+      description: The Hilbert space size
+      placeholder: e.g., "1.4e12"
+    validations:
+      required: true
+
   - type: dropdown
     id: problemCategory
     attributes:
