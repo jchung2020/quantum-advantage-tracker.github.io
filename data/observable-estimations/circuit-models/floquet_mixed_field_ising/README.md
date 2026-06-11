@@ -135,9 +135,11 @@ The faded dashed lines correspond to SPP (ORQA) results obtained with larger tru
 
 <img src="figs/mag_tracker.png" alt="$Magnetization$" style="clip-path: inset(0 0 0 0);" width="800"/>
 
+
 **Average ZIZ ($ZZ_{d=2}$):**
 
 <img src="figs/ziz_tracker.png" alt="$ZZ_{d=2}$" style="clip-path: inset(0 0 0 0);" width="800"/>
+
 
 **Average ZIIZ ($ZZ_{d=3}$):**
 

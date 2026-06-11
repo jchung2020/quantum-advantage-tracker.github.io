@@ -50,7 +50,8 @@
         "qubits": 51,
         "gates": 840,
         "floquet_cycles": 15,
-        "measured_observable": "magnetization"
+        "measured_observable": "magnetization",
+         "category": "Active candidates"
       },
       {
         "id": "floquet_mixed_field_ising_zzd2_51qx15c",
@@ -58,7 +59,8 @@
         "qubits": 51,
         "gates": 840,
         "floquet_cycles": 15,
-        "measured_observable": "ZZ_{d=2}"
+        "measured_observable": "ZZ_{d=2}",
+        "category": "Active candidates"
       },
       {
         "id": "floquet_mixed_field_ising_zzd3_51qx15c",
@@ -66,7 +68,8 @@
         "qubits": 51,
         "gates": 840,
         "floquet_cycles": 15,
-        "measured_observable": "ZZ_{d=3}"
+        "measured_observable": "ZZ_{d=3}",
+        "category": "Active candidates"
       },
       {
         "id": "floquet_mixed_field_ising_mag_51qx16c",
@@ -75,7 +78,7 @@
         "gates": 896,
         "floquet_cycles": 16,
         "measured_observable": "magnetization",
-        "category": "Baseline benchmarks"
+        "category": "Active candidates"
       },
       {
         "id": "floquet_mixed_field_ising_zzd2_51qx16c",
@@ -84,7 +87,7 @@
         "gates": 896,
         "floquet_cycles": 16,
         "measured_observable": "ZZ_{d=2}",
-        "category": "Baseline benchmarks"
+        "category": "Active candidates"
       },
       {
         "id": "floquet_mixed_field_ising_zzd3_51qx16c",
@@ -93,7 +96,7 @@
         "gates": 896,
         "floquet_cycles": 16,
         "measured_observable": "ZZ_{d=3}",
-        "category": "Baseline benchmarks"
+        "category": "Active candidates"
       }
     ]
   }
