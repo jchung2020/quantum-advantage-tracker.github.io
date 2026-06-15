@@ -104,6 +104,32 @@ jobs:
       contains(github.event.changes.body.from, '- [ ] Apply this submission')
 
     steps:
+      - name: Set project Status to Verified
+        env:
+          GH_TOKEN: ${{ secrets.APPLIER_TOKEN }}
+          ISSUE_NODE_ID: ${{ github.event.issue.node_id }}
+          PROJECT_ID: PVT_kwDODnSE-s4BHdcB # Quantum Advantage Tracker
+          FIELD_ID: PVTSSF_lADODnSE-s4BHdcBzg4NXPI # Status
+          OPTION_ID: a8e0681b # Verified
+        run: |
+          set -euo pipefail
+
+          ITEM_ID=$(gh api graphql -f query='
+            mutation($project:ID!,$content:ID!){
+              addProjectV2ItemById(input:{projectId:$project, contentId:$content}){
+                item{ id }
+              }
+            }' -F project="$PROJECT_ID" -F content="$ISSUE_NODE_ID" \
+            --jq '.data.addProjectV2ItemById.item.id')
+
+          gh api graphql -f query='
+            mutation($project:ID!,$item:ID!,$field:ID!,$option:String!){
+              updateProjectV2ItemFieldValue(input:{
+                projectId:$project, itemId:$item, fieldId:$field,
+                value:{ singleSelectOptionId:$option }
+              }){ projectV2Item{ id } }
+            }' -F project="$PROJECT_ID" -F item="$ITEM_ID" -F field="$FIELD_ID" -F option="$OPTION_ID" >/dev/null
+
       - name: Extract submission and path from preview
         id: extract
         env:
