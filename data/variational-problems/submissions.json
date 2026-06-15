@@ -278,5 +278,20 @@
     "runtimeClassical": 5966.2,
     "computeResourcesQuantum": "IBM Heron r2",
     "computeResourcesClassical": "Intel Xeon 6740E 192 cores with 1024 GiB memory"
+  },
+  {
+    "createdAt": "2026-02-27T22:37:28Z",
+    "url": "https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/122",
+    "name": "[N_2] (14e, 28o) 0.9A HI-VQE",
+    "hamiltonian": "n2_0-90_14e_28o",
+    "qubits": 56,
+    "gates": 440,
+    "energy": -109.0625337,
+    "method": "HI-VQE",
+    "institutions": "Qunova Computing, RIKEN",
+    "runtimeQuantum": 30,
+    "runtimeClassical": 10630.19,
+    "computeResourcesQuantum": "IBM Heron r2",
+    "computeResourcesClassical": "Intel Xeon 6740E 192 cores with 1024 GiB memory"
   }
 ]
