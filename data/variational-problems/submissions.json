@@ -173,5 +173,20 @@
     "runtimeClassical": 41652,
     "computeResourcesQuantum": "IBM Heron r2",
     "computeResourcesClassical": "80 Node x AMD Epyc 7713 \\\"Rome\\\" (One node has 128 cores with 256 GiB memory) = 10240 cores"
+  },
+  {
+    "createdAt": "2026-02-27T22:30:53Z",
+    "url": "https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/116",
+    "name": "[N_2] (14e, 28o) 2.5A HI-VQE",
+    "hamiltonian": "n2_2-50_14e_28o",
+    "qubits": 56,
+    "gates": 440,
+    "energy": -108.9640293,
+    "method": "HI-VQE",
+    "institutions": "Qunova Computing, RIKEN",
+    "runtimeQuantum": 70,
+    "runtimeClassical": 23580.08,
+    "computeResourcesQuantum": "IBM Heron r2",
+    "computeResourcesClassical": "Intel Xeon 6740E 192 cores with 1024 GiB memory"
   }
 ]
