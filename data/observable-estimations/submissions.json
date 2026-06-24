@@ -163,7 +163,7 @@
     "errorBoundHigh": 0.005710650099,
     "method": "Loop-string-hadron encoding into qubits, 1st order Trotterization, measurement error mitigation, measurement in Z-basis. differential measurement protocol.",
     "authors": "Fran Ilcic, Ritajit Majumdar,  Emil Mathew, Md. Osama Ali, Nathan Earnest-Noble, Indrakshi Raychowdhury",
-    "institutions": "Birla Institute of Technology and Science Pilani, K K Birla Goa Campus,Goa, India;  IBM Quantum, IBM India Research Lab, India,  IBM Quantum, IBM T.J. Watson Research Center, USA.",
+    "institutions": "Birla Institute of Technology and Science - Pilani, IBM",
     "runtimeQuantum": 20,
     "runtimeClassical": 2485,
     "computeResourcesQuantum": "IBM Boston",
