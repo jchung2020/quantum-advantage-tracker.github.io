@@ -38,7 +38,7 @@
     "hamiltonian": "4fe_4s_54e_36o",
     "energy": -326.81,
     "method": "TrimCI",
-    "institutions": "University of Wisconsin – Madison",
+    "institutions": "University of Wisconsin - Madison",
     "computeResourcesClassical": "Apple M1 Ultra, 20 cores"
   },
   {
@@ -48,7 +48,7 @@
     "hamiltonian": "4fe_4s_54e_36o",
     "energy": -326.913,
     "method": "TrimCI",
-    "institutions": "University of Wisconsin – Madison",
+    "institutions": "University of Wisconsin - Madison",
     "runtimeClassical": 900,
     "computeResourcesClassical": "Apple M1 Ultra, 20 cores"
   },
@@ -59,7 +59,7 @@
     "hamiltonian": "4fe_4s_54e_36o",
     "energy": -327.175,
     "method": "TrimCI",
-    "institutions": "University of Wisconsin – Madison",
+    "institutions": "University of Wisconsin - Madison",
     "runtimeClassical": 50400,
     "computeResourcesClassical": "12 Node × 2 × AMD EPYC 7713 64C 2GHz = 1536 cores"
   },
