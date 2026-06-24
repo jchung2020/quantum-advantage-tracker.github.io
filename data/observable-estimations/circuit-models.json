@@ -21,6 +21,13 @@
         "qubits": 70,
         "gates": 1872,
         "category": "Active candidates"
+      },
+      {
+        "id": "operator_loschmidt_echo_56x1488",
+        "path": "operator_loschmidt_echo_56x1488_alpha_0.15.qasm",
+        "qubits": 56,
+        "gates": 1488,
+        "category": "Active candidates"
       }
     ]
   },
