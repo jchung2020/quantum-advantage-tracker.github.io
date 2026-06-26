@@ -145,7 +145,7 @@ which can be used to rescaled the XEB scores.
 
 The spacetime Pauli checks, in addition to allowing for post-selection of errors and improvements in fidelity, can be used to characterize the rate of logical faults occurring in the circuit. We aim to relate this rate to the fidelity of the circuit and to bound the difference in fidelity between the undoped and doped graph states.
 
-For simplicity, consider the stochastic Pauli fault model. Note that T gates do not disturb the spacetime Pauli checks, implying that the set of logical faults that can be accepted/rejected during post-selection is identical in the undoped and doped cases, and are perfect, implying that the probability of a fault occuring is independent of the T-count.
+For simplicity, consider the stochastic Pauli fault model. Note that T gates do not disturb the spacetime Pauli checks, implying that the set of logical faults that can be accepted/rejected during post-selection is identical in the undoped and doped cases, and are perfect, implying that the probability of a fault occurring is independent of the T-count.
 
 For the set of accepted shots, faults can be separated into two categories: harmless if they commute with stabilizers, and harmful if they do not and result in a logical error. The fidelity $F$ can be expressed in terms of these probabilities:
 
@@ -173,7 +173,7 @@ We conjecture that the harmless faults should not occur often, a fact that we nu
 <p align="center">
 <img width="3680" height="1050" alt="image" src="https://github.com/user-attachments/assets/7d0666d7-6c3d-4245-b0e6-d5cf7686f670" />
 
-<em>Figure 6. Stochastic Pauli fault simulations for the 70 X 70 circuit. The model includes global depolarizing noise, decoherence error (200 μs), and readout error. Left: The probability of acceptance decreases exponentially with error rate. Middle: For accepted shots, the probability of no fault occuring is exponentially suppressed with increasing noise, while the probability of harmless and harmful faults occurring increases. Right: Only a small systematic difference exists between the fidelities of the graph (Clifford) and doped graph states across all error rates.</em>
+<em>Figure 6. Stochastic Pauli fault simulations for the 70 X 70 circuit. The model includes global depolarizing noise, decoherence error (200 μs), and readout error. Left: The probability of acceptance decreases exponentially with error rate. Middle: For accepted shots, the probability of no fault occurring is exponentially suppressed with increasing noise, while the probability of harmless and harmful faults occurring increases. Right: Only a small systematic difference exists between the fidelities of the graph (Clifford) and doped graph states across all error rates.</em>
 
 </p>
 
