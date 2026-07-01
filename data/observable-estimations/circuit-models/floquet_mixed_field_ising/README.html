@@ -177,40 +177,6 @@
 <h1 id="floquet-mixed-field-ising-dynamics">Floquet Mixed-Field Ising
 Dynamics</h1>
 <h2 id="circuit-instances">Circuit Instances</h2>
-<p><code>floquet_mixed_field_ising_mag_51qx15c</code>:</p>
-<p>This instance implements Floquet dynamics corresponding to the
-mixed-field Ising model on a heavy-hex lattice with <span
-class="math inline">\(N=51\)</span> qubits and <span
-class="math inline">\(N_c=15\)</span> Floquet cycles (see details
-below). The measured observable is the magnetization, defined as</p>
-<pre class="math"><code>M = \frac{1}{N}\sum_{i} Z_i,</code></pre>
-<p>where the sum runs over all the qubits of the heavy-hex lattice.</p>
-<p><code>floquet_mixed_field_ising_zzd2_51qx15c</code>:</p>
-<p>This instance implements Floquet dynamics corresponding to the
-mixed-field Ising model on a heavy-hex lattice with <span
-class="math inline">\(N=51\)</span> qubits and <span
-class="math inline">\(N_c=15\)</span> Floquet cycles (see details
-below). The measured observable is the average two-point correlator at
-graph distance <span class="math inline">\(d=2\)</span>, defined as</p>
-<pre class="math"><code>ZZ_{d=2} = \frac{1}{N_{d=2}} \; \sum_{(i,j)\,:\,d(i,j)=2} Z_i Z_j</code></pre>
-<p>where <span class="math inline">\((i, j)\)</span> ranges over all
-pairs of qubits at graph distance <span
-class="math inline">\(d=2\)</span> within the heavy-hex lattice (see
-pair list below), and <span class="math inline">\(N_{d=2}\)</span> is
-the total number of those pairs.</p>
-<p><code>floquet_mixed_field_ising_zzd3_51qx15c</code>:</p>
-<p>This instance implements Floquet dynamics corresponding to the
-mixed-field Ising model on a heavy-hex lattice with <span
-class="math inline">\(N=51\)</span> qubits and <span
-class="math inline">\(N_c=15\)</span> Floquet cycles (see details
-below). The measured observable is the average two-point correlator at
-graph distance <span class="math inline">\(d=3\)</span>, defined as</p>
-<pre class="math"><code>ZZ_{d=3} = \frac{1}{N_{d=3}} \; \sum_{(i,j)\,:\,d(i,j)=3} Z_i Z_j</code></pre>
-<p>where <span class="math inline">\((i, j)\)</span> ranges over all
-pairs of qubits at graph distance <span
-class="math inline">\(d=3\)</span> within the heavy-hex lattice (see
-pair list below), and <span class="math inline">\(N_{d=3}\)</span> is
-the total number of those pairs.</p>
 <p><code>floquet_mixed_field_ising_mag_51qx16c</code>:</p>
 <p>This instance implements Floquet dynamics corresponding to the
 mixed-field Ising model on a heavy-hex lattice with <span
@@ -411,10 +377,9 @@ and <span class="math inline">\(W\)</span> is the maximum Pauli weight
 considered in the tracked Pauli paths.</p></li>
 <li><p><strong>Tensor Networks with Belief Propagation (PEPS-BP)
 :</strong> Based on evolving the wavefunction as a projected entangled
-pair state (PEPS) with belief propagation, following the works: Alkabetz
-&amp; Arad <sup><a href="#ref3">[3]</a></sup>, Tindall &amp; Fishman
-<sup><a href="#ref4">[4]</a></sup>, and Begušić, Gray &amp; Chan <sup><a
-href="#ref5">[5]</a></sup>.</p></li>
+pair state (PEPS) with belief propagation, implemented with the
+open-source package <a
+href="https://JoeyT1994.github.io/TensorNetworkQuantumSimulator.jl/">TensorNetworkQuantumSimulator.jl</a>.</p></li>
 </ul>
 <p>The faded dashed lines correspond to SPP (ORQA) results obtained with
 larger truncation thresholds (<span
@@ -752,11 +717,5 @@ quantum data appears to be incidental rather than being systematic.</p>
 (2025)</p>
 <p><a id="ref2">[2]</a> Broers, Sun &amp; Yunoki, arXiv:2506.13241
 (2025)</p>
-<p><a id="ref3">[3]</a> Alkabetz &amp; Arad, Phys. Rev. Research 3,
-023073 (2021)</p>
-<p><a id="ref4">[4]</a> Tindall &amp; Fishman, SciPost Phys. 15, 222
-(2023)</p>
-<p><a id="ref5">[5]</a> Begušić, Gray &amp; Chan, Science Advances 10,
-eadk4321 (2024)</p>
 </body>
 </html>

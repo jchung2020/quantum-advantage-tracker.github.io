@@ -96,7 +96,7 @@ The figures below show the estimated three observables across $N_c\in [1,16]$ Fl
 
 - **Sparse Pauli Paths (ORQA):** A Sparse Pauli Path (SPP) method based on a scalable parallel implementation of the ORQA formalism <sup>[[2]](#ref2)</sup>, executed on the supercomputer Fugaku. Here $\varepsilon_0$ is the truncation threshold and $W$ is the maximum Pauli weight considered in the tracked Pauli paths.
 
-- **Tensor Networks with Belief Propagation (PEPS-BP) :** Based on evolving the wavefunction as a projected entangled pair state (PEPS) with belief propagation, following the works: Alkabetz & Arad <sup>[[3]](#ref3)</sup>, Tindall & Fishman <sup>[[4]](#ref4)</sup>, and Begušić, Gray & Chan <sup>[[5]](#ref5)</sup>.
+- **Tensor Networks with Belief Propagation (PEPS-BP) :** Based on evolving the wavefunction as a projected entangled pair state (PEPS) with belief propagation, implemented with the open-source package [TensorNetworkQuantumSimulator.jl](https://JoeyT1994.github.io/TensorNetworkQuantumSimulator.jl/).
 
 The faded dashed lines correspond to SPP (ORQA) results obtained with larger truncation thresholds ($\epsilon_0$) and smaller maximum Pauli weights ($W$), while the faded solid lines correspond to PEPS-BP results with smaller bond dimensions (BD).
 
@@ -158,8 +158,3 @@ Qedma, IBM, Riken, BlueQubit
 
 <a id="ref2">[2]</a> Broers, Sun & Yunoki, arXiv:2506.13241 (2025)
 
-<a id="ref3">[3]</a> Alkabetz & Arad, Phys. Rev. Research 3, 023073 (2021)
-
-<a id="ref4">[4]</a> Tindall & Fishman, SciPost Phys. 15, 222 (2023)
-
-<a id="ref5">[5]</a> Begušić, Gray & Chan, Science Advances 10, eadk4321 (2024)
