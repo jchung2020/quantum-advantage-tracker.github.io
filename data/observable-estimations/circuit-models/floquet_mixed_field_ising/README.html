@@ -408,7 +408,7 @@ Cycle
 Method
 </th>
 <th>
-Expectation Value
+Expectation Value (lower, upper)
 </th>
 <th>
 Runtime
@@ -430,7 +430,7 @@ QESEM
 0.396 (0.381, 0.411)
 </td>
 <td>
-3,184s
+3,184s (Q) + 1,774s (C)
 </td>
 <td>
 ibm_boston
@@ -447,7 +447,7 @@ PEPS-BP (BD=700)
 0.3891136
 </td>
 <td>
-52,793s
+52,793s (C)
 </td>
 <td>
 128 vCPUs (AMD EPYC 7R13), 334 GiB RAM
@@ -458,13 +458,13 @@ PEPS-BP (BD=700)
 13
 </td>
 <td>
-SPP (W=11, ε=1e-11)
+SPP (W=11, ε₀=1e-11)
 </td>
 <td>
 0.40829123
 </td>
 <td>
-43,698s
+43,698s (C)
 </td>
 <td>
 12,288 Fugaku nodes (65,536 cores)
@@ -475,13 +475,13 @@ SPP (W=11, ε=1e-11)
 13
 </td>
 <td>
-SPP (W=20, ε=1e-9)
+SPP (W=20, ε₀=1e-9)
 </td>
 <td>
 0.38356027
 </td>
 <td>
-22,228s
+22,228s (C)
 </td>
 <td>
 12,288 Fugaku nodes (65,536 cores)
@@ -498,7 +498,7 @@ QESEM
 0.3751 (0.3611, 0.3891)
 </td>
 <td>
-4,857s
+4,857s (Q) + 2,706s (C)
 </td>
 <td>
 ibm_boston
@@ -515,7 +515,7 @@ PEPS-BP (BD=700)
 0.395225
 </td>
 <td>
-181,760s
+181,760s (C)
 </td>
 <td>
 128 vCPUs (AMD EPYC 7R13), 334 GiB RAM
@@ -526,13 +526,13 @@ PEPS-BP (BD=700)
 14
 </td>
 <td>
-SPP (W=11, ε=1e-11)
+SPP (W=11, ε₀=1e-11)
 </td>
 <td>
 0.42070765
 </td>
 <td>
-47,041s
+47,041s (C)
 </td>
 <td>
 12,288 Fugaku nodes (65,536 cores)
@@ -543,13 +543,13 @@ SPP (W=11, ε=1e-11)
 14
 </td>
 <td>
-SPP (W=20, ε=1e-9)
+SPP (W=20, ε₀=1e-9)
 </td>
 <td>
 0.39211172
 </td>
 <td>
-23,061s
+23,061s (C)
 </td>
 <td>
 12,288 Fugaku nodes (65,536 cores)
@@ -566,7 +566,7 @@ QESEM
 0.3649 (0.3503, 0.3795)
 </td>
 <td>
-8,615s
+8,615s (Q) + 4,801s (C)
 </td>
 <td>
 ibm_boston
@@ -583,7 +583,7 @@ PEPS-BP (BD=700)
 0.4112448
 </td>
 <td>
-317,861s
+317,861s (C)
 </td>
 <td>
 128 vCPUs (AMD EPYC 7R13), 334 GiB RAM
@@ -594,13 +594,13 @@ PEPS-BP (BD=700)
 15
 </td>
 <td>
-SPP (W=11, ε=1e-11)
+SPP (W=11, ε₀=1e-11)
 </td>
 <td>
 0.41982974
 </td>
 <td>
-50,008s
+50,008s (C)
 </td>
 <td>
 12,288 Fugaku nodes (65,536 cores)
@@ -611,13 +611,13 @@ SPP (W=11, ε=1e-11)
 15
 </td>
 <td>
-SPP (W=20, ε=1e-9)
+SPP (W=20, ε₀=1e-9)
 </td>
 <td>
 0.39349978
 </td>
 <td>
-23,734s
+23,734s (C)
 </td>
 <td>
 12,288 Fugaku nodes (65,536 cores)
@@ -634,7 +634,7 @@ QESEM
 0.3904 (0.3691, 0.4117)
 </td>
 <td>
-6,228s (+3,471s CPUs)
+6,228s (Q) + 3,471s (C)
 </td>
 <td>
 ibm_boston
@@ -651,7 +651,7 @@ PEPS-BP (BD=700)
 0.4417984
 </td>
 <td>
-392,770s
+392,770s (C)
 </td>
 <td>
 128 vCPUs (AMD EPYC 7R13), 334 GiB RAM
@@ -662,13 +662,13 @@ PEPS-BP (BD=700)
 16
 </td>
 <td>
-SPP (W=11, ε=1e-11)
+SPP (W=11, ε₀=1e-11)
 </td>
 <td>
 0.41110594
 </td>
 <td>
-52,679s
+52,679s (C)
 </td>
 <td>
 12,288 Fugaku nodes (65,536 cores)
@@ -679,13 +679,13 @@ SPP (W=11, ε=1e-11)
 16
 </td>
 <td>
-SPP (W=20, ε=1e-9)
+SPP (W=20, ε₀=1e-9)
 </td>
 <td>
 0.38697176
 </td>
 <td>
-24,307s
+24,307s (C)
 </td>
 <td>
 12,288 Fugaku nodes (65,536 cores)
@@ -702,7 +702,7 @@ dimensions. Likewise, SPP simulations with <span
 class="math inline">\((W,\varepsilon_0)=(11,10^{-11})\)</span> and <span
 class="math inline">\((20,10^{-9})\)</span>, consuming comparable
 extensive resources, tracking a peak of <span class="math inline">\(\sim
-14\times10^{11}\)</span> and <span class="math inline">\(\sim
+1.4\times10^{12}\)</span> and <span class="math inline">\(\sim
 7\times10^{11}\)</span> Pauli paths, respectively. exhibit large
 discrepancies in addition to a phase offset, and incorrect oscillation
 amplitudes relative to the quantum results. Over the interval <span
