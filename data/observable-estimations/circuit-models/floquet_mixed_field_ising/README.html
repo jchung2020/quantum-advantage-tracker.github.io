@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<h1 id="floquet-mixed-field-ising-dynamics">Floquet Mixed-Field Ising
+Dynamics</h1>
+<h2 id="circuit-instances">Circuit Instances</h2>
+<p><code>floquet_mixed_field_ising_mag_51qx15c</code>:</p>
+<p>This instance implements Floquet dynamics corresponding to the
+mixed-field Ising model on a heavy-hex lattice with <span
+class="math inline">\(N=51\)</span> qubits and <span
+class="math inline">\(N_c=15\)</span> Floquet cycles (see details
+below). The measured observable is the magnetization, defined as</p>
+<pre class="math"><code>M = \frac{1}{N}\sum_{i} Z_i,</code></pre>
+<p>where the sum runs over all the qubits of the heavy-hex lattice.</p>
+<p><code>floquet_mixed_field_ising_zzd2_51qx15c</code>:</p>
+<p>This instance implements Floquet dynamics corresponding to the
+mixed-field Ising model on a heavy-hex lattice with <span
+class="math inline">\(N=51\)</span> qubits and <span
+class="math inline">\(N_c=15\)</span> Floquet cycles (see details
+below). The measured observable is the average two-point correlator at
+graph distance <span class="math inline">\(d=2\)</span>, defined as</p>
+<pre class="math"><code>ZZ_{d=2} = \frac{1}{N_{d=2}} \; \sum_{(i,j)\,:\,d(i,j)=2} Z_i Z_j</code></pre>
+<p>where <span class="math inline">\((i, j)\)</span> ranges over all
+pairs of qubits at graph distance <span
+class="math inline">\(d=2\)</span> within the heavy-hex lattice (see
+pair list below), and <span class="math inline">\(N_{d=2}\)</span> is
+the total number of those pairs.</p>
+<p><code>floquet_mixed_field_ising_zzd3_51qx15c</code>:</p>
+<p>This instance implements Floquet dynamics corresponding to the
+mixed-field Ising model on a heavy-hex lattice with <span
+class="math inline">\(N=51\)</span> qubits and <span
+class="math inline">\(N_c=15\)</span> Floquet cycles (see details
+below). The measured observable is the average two-point correlator at
+graph distance <span class="math inline">\(d=3\)</span>, defined as</p>
+<pre class="math"><code>ZZ_{d=3} = \frac{1}{N_{d=3}} \; \sum_{(i,j)\,:\,d(i,j)=3} Z_i Z_j</code></pre>
+<p>where <span class="math inline">\((i, j)\)</span> ranges over all
+pairs of qubits at graph distance <span
+class="math inline">\(d=3\)</span> within the heavy-hex lattice (see
+pair list below), and <span class="math inline">\(N_{d=3}\)</span> is
+the total number of those pairs.</p>
+<p><code>floquet_mixed_field_ising_mag_51qx16c</code>:</p>
+<p>This instance implements Floquet dynamics corresponding to the
+mixed-field Ising model on a heavy-hex lattice with <span
+class="math inline">\(N=51\)</span> qubits and <span
+class="math inline">\(N_c=16\)</span> Floquet cycles (see details
+below). The measured observable is the magnetization, defined as</p>
+<pre class="math"><code>M = \frac{1}{N}\sum_{i} Z_i,</code></pre>
+<p>where the sum runs over all the qubits of the heavy-hex lattice.</p>
+<p><code>floquet_mixed_field_ising_zzd2_51qx16c</code>:</p>
+<p>This instance implements Floquet dynamics corresponding to the
+mixed-field Ising model on a heavy-hex lattice with <span
+class="math inline">\(N=51\)</span> qubits and <span
+class="math inline">\(N_c=16\)</span> Floquet cycles (see details
+below). The measured observable is the average two-point correlator at
+graph distance <span class="math inline">\(d=2\)</span>, defined as</p>
+<pre class="math"><code>ZZ_{d=2} = \frac{1}{N_{d=2}} \; \sum_{(i,j)\,:\,d(i,j)=2} Z_i Z_j</code></pre>
+<p>where <span class="math inline">\((i, j)\)</span> ranges over all
+pairs of qubits at graph distance <span
+class="math inline">\(d=2\)</span> within the heavy-hex lattice (see
+pair list below), and <span class="math inline">\(N_{d=2}\)</span> is
+the total number of those pairs.</p>
+<p><code>floquet_mixed_field_ising_zzd3_51qx16c</code>:</p>
+<p>This instance implements Floquet dynamics corresponding to the
+mixed-field Ising model on a heavy-hex lattice with <span
+class="math inline">\(N=51\)</span> qubits and <span
+class="math inline">\(N_c=16\)</span> Floquet cycles (see details
+below). The measured observable is the average two-point correlator at
+graph distance <span class="math inline">\(d=3\)</span>, defined as</p>
+<pre class="math"><code>ZZ_{d=3} = \frac{1}{N_{d=3}} \; \sum_{(i,j)\,:\,d(i,j)=3} Z_i Z_j</code></pre>
+<p>where <span class="math inline">\((i, j)\)</span> ranges over all
+pairs of qubits at graph distance <span
+class="math inline">\(d=3\)</span> within the heavy-hex lattice (see
+pair list below), and <span class="math inline">\(N_{d=3}\)</span> is
+the total number of those pairs.</p>
+<ul>
+<li>Each instance here is defined by the number of qubits, <span
+class="math inline">\(N\)</span>, the number of Floquet cycles, <span
+class="math inline">\(N_c\)</span>, as well as the observable measured
+at the end of the circuit. Thus, the name of the instance follows the
+pattern
+<code>floquet_mixed_field_ising_{measured observable}_{N}qx{N_c}c</code>.</li>
+</ul>
+<h2 id="model-description">Model Description</h2>
+<p>The experiment explores non-equilibrium Floquet dynamics of the 2D
+mixed-field Ising model on a heavy-hex lattice of <span
+class="math inline">\(N\)</span> qubits. In those circuits, the qubits
+are initialized in <span class="math display">\[|\psi_0\rangle =
+|0\rangle^{\otimes N}\]</span> and evolved over <span
+class="math inline">\(N_c\)</span> Floquet cycles to</p>
+<p><span class="math display">\[|\psi(N_c)\rangle = U_F^{N_c}
+|\psi_0\rangle.\]</span></p>
+<p>Each Floquet cycle <span class="math inline">\(U_F = U_3 \cdot U_2
+\cdot U_1\)</span> consists of three layers, where:</p>
+<pre class="math"><code>U_m = \prod_{(j,k)\in\mathcal{E}_m} RZZ(\theta_{zz})
+      \prod_{i} RZ\left(\tfrac{\theta_z}{3}\right)
+      \prod_{i} RX\left(\tfrac{\theta_x}{3}\right)</code></pre>
+<p>Here <span class="math inline">\(\mathcal{E}_1, \mathcal{E}_2,
+\mathcal{E}_3\)</span> is a partition of all edges of the <span
+class="math inline">\(N\)</span>-qubit patch into three disjoint
+subsets.</p>
+<h2 id="additional-details">Additional Details</h2>
+<p><strong>Additional details for the circuit instances corresponding to
+the <span class="math inline">\(N=51\)</span>-qubit
+lattice</strong>:</p>
+<ul>
+<li><p>Lattice</p>
+<p>The 51-qubit patch follows the IBM heavy-hex connectivity, with
+qubits indexed 0-50. The lattice is shown below; different edge colors
+correspond to the three edge layers <span
+class="math inline">\(\mathcal{E}_1, \mathcal{E}_2,
+\mathcal{E}_3\)</span> (see the table below).</p></li>
+</ul>
+<p><img src="./figs/heavy_hex_lattice_51q.png" alt="lattice" style="clip-path: inset(0 0 0 0);" width="500"/></p>
+<ul>
+<li><p>Edge Layers</p>
+<table>
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 91%" />
+</colgroup>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Edges</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="math inline">\(\mathcal{E}_1\)</span></td>
+<td>[(0, 1),(3, 4),(5, 9),(10, 11),(6, 13),(16, 19),(20, 21),(17,
+23),(24, 25),(18, 27),(28, 32),(33, 34),(29, 36),(37, 38),(39, 42),(43,
+44),(40, 46),(47, 48),(41, 50)]</td>
+</tr>
+<tr>
+<td><span class="math inline">\(\mathcal{E}_2\)</span></td>
+<td>[(2, 3),(7, 8),(9, 10),(11, 12),(13, 14),(15, 18),(19, 20),(21,
+22),(23, 24),(25, 26),(30, 31),(32, 33),(34, 35),(36, 37),(38, 41),(42,
+43),(44, 45),(46, 47),(48, 49)]</td>
+</tr>
+<tr>
+<td><span class="math inline">\(\mathcal{E}_3\)</span></td>
+<td>[(1, 2),(0, 5),(4, 6),(8, 9),(12, 13),(7, 16),(11, 17),(22, 23),(26,
+27),(21, 28),(25, 29),(31, 32),(35, 36),(30, 39),(34, 40),(45, 46),(49,
+50),(14, 15)]</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Circuit parameters</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="math inline">\(\theta_x\)</span></td>
+<td><span class="math inline">\(1.56567\)</span></td>
+</tr>
+<tr>
+<td><span class="math inline">\(\theta_z\)</span></td>
+<td><span class="math inline">\(0.33879\)</span></td>
+</tr>
+<tr>
+<td><span class="math inline">\(\theta_{zz}\)</span></td>
+<td><span class="math inline">\(\pi/3\)</span></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Pair lists for <span class="math inline">\(ZZ_{d=2}\)</span> and
+<span class="math inline">\(ZZ_{d=3}\)</span> observables</p>
+<table>
+<colgroup>
+<col style="width: 1%" />
+<col style="width: 98%" />
+</colgroup>
+<thead>
+<tr>
+<th>Observable</th>
+<th>Pair list</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="math inline">\(ZZ_{d=2}\)</span></td>
+<td>[[6, 12], [16, 20], [32, 34], [41, 49], [18, 26], [15, 27], [29,
+35], [5, 10], [46, 48], [0, 2], [23, 25], [38, 50], [40, 47], [9, 11],
+[17, 24], [10, 12], [1, 3], [19, 21], [11, 23], [28, 33], [34, 46], [47,
+49], [24, 26], [6, 14], [33, 35], [30, 42], [7, 19], [24, 29], [42, 44],
+[26, 29], [43, 45], [3, 6], [20, 22], [20, 28], [14, 18], [29, 37], [22,
+28], [2, 4], [48, 50], [34, 36], [1, 5], [11, 13], [10, 17], [30, 32],
+[37, 41], [7, 9], [25, 27], [33, 40], [35, 37], [25, 36], [21, 23], [35,
+40], [12, 14], [44, 46], [12, 17], [4, 13], [5, 8], [22, 24], [31, 33],
+[21, 32], [31, 39], [0, 9], [8, 10], [8, 16], [39, 43], [17, 22], [40,
+45], [28, 31], [36, 38], [45, 47], [13, 15]]</td>
+</tr>
+<tr>
+<td><span class="math inline">\(ZZ_{d=3}\)</span></td>
+<td>[[33, 36], [43, 46], [3, 13], [17, 21], [34, 37], [9, 17], [11, 14],
+[28, 30], [13, 17], [6, 11], [7, 10], [32, 39], [44, 47], [29, 34], [8,
+11], [39, 44], [9, 12], [23, 29], [31, 42], [27, 29], [36, 41], [47,
+50], [42, 45], [30, 43], [5, 7], [29, 38], [22, 32], [12, 15], [22, 25],
+[9, 16], [45, 48], [16, 21], [5, 11], [46, 49], [35, 46], [23, 26], [2,
+6], [19, 22], [17, 25], [13, 18], [28, 34], [25, 35], [6, 15], [20, 23],
+[26, 36], [20, 32], [21, 31], [23, 28], [40, 44], [1, 9], [36, 40], [30,
+33], [41, 48], [18, 25], [21, 24], [21, 33], [38, 49], [34, 45], [10,
+23], [11, 22], [37, 50], [33, 46], [12, 23], [1, 4], [8, 19], [19, 28],
+[34, 47], [11, 24], [24, 27], [32, 40], [7, 20], [24, 36], [4, 12], [0,
+8], [2, 5], [15, 26], [35, 38], [25, 37], [4, 14], [31, 34], [0, 10],
+[14, 27], [32, 35], [0, 3], [10, 13], [40, 48]]</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+<h2 id="results">Results</h2>
+<p>The figures below show the estimated three observables across <span
+class="math inline">\(N_c\in [1,16]\)</span> Floquet cycles for <span
+class="math inline">\(N=51\)</span> qubits (same layers and
+configuration as described above), comparing results from three methods
+carried out by the institutions involved in this submission:</p>
+<ul>
+<li><p><strong>QESEM, IBM (unbiased):</strong> Results obtained on
+ibm_boston using Qedma’s error-suppression and error-mitigation software
+(QESEM) <sup><a href="#ref1">[1]</a></sup>. QESEM (unbiased) combines
+high-accuracy characterization, quasi-probabilistic mitigation of
+fractional-angle entangling gates, and active volume identification.
+This approach yields expectation values that are unbiased up to
+characterization error; the error bars reflect the statistical
+uncertainties of the mitigation <sup><a
+href="#ref1">[1]</a></sup>.</p></li>
+<li><p><strong>Sparse Pauli Paths (ORQA):</strong> A Sparse Pauli Path
+(SPP) method based on a scalable parallel implementation of the ORQA
+formalism <sup><a href="#ref2">[2]</a></sup>, executed on the
+supercomputer Fugaku. Here <span
+class="math inline">\(\varepsilon_0\)</span> is the truncation threshold
+and <span class="math inline">\(W\)</span> is the maximum Pauli weight
+considered in the tracked Pauli paths.</p></li>
+<li><p><strong>Tensor Networks with Belief Propagation (PEPS-BP)
+:</strong> Based on evolving the wavefunction as a projected entangled
+pair state (PEPS) with belief propagation, following the works: Alkabetz
+&amp; Arad <sup><a href="#ref3">[3]</a></sup>, Tindall &amp; Fishman
+<sup><a href="#ref4">[4]</a></sup>, and Begušić, Gray &amp; Chan <sup><a
+href="#ref5">[5]</a></sup>.</p></li>
+</ul>
+<p>The faded dashed lines correspond to SPP (ORQA) results obtained with
+larger truncation thresholds (<span
+class="math inline">\(\epsilon_0\)</span>) and smaller maximum Pauli
+weights (<span class="math inline">\(W\)</span>), while the faded solid
+lines correspond to PEPS-BP results with smaller bond dimensions
+(BD).</p>
+<p><strong>Magnetization (M):</strong></p>
+<p><img src="figs/mag_tracker.png" alt="$Magnetization$" style="clip-path: inset(0 0 0 0);" width="800"/></p>
+<p><strong>Average ZIZ (<span
+class="math inline">\(ZZ_{d=2}\)</span>):</strong></p>
+<p><img src="figs/ziz_tracker.png" alt="$ZZ_{d=2}$" style="clip-path: inset(0 0 0 0);" width="800"/></p>
+<p><strong>Average ZIIZ (<span
+class="math inline">\(ZZ_{d=3}\)</span>):</strong></p>
+<p><img src="figs/ziiz_tracker.png" alt="$ZZ_{d=3}$" style="clip-path: inset(0 0 0 0);" width="800"/></p>
+<p>The following table summarizes the expectation values for the
+magnetization, computed using each of the methods above, together with
+their corresponding runtimes and compute resources:</p>
+<table>
+<thead>
+<tr>
+<th>
+Cycle
+</th>
+<th>
+Method
+</th>
+<th>
+Expectation Value
+</th>
+<th>
+Runtime
+</th>
+<th>
+Hardware
+</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 2px solid #d1d5db;">
+<td>
+13
+</td>
+<td>
+QESEM
+</td>
+<td>
+0.396 (0.381, 0.411)
+</td>
+<td>
+3,184s
+</td>
+<td>
+ibm_boston
+</td>
+</tr>
+<tr>
+<td>
+13
+</td>
+<td>
+PEPS-BP (BD=700)
+</td>
+<td>
+0.3891136
+</td>
+<td>
+52,793s
+</td>
+<td>
+128 vCPUs (AMD EPYC 7R13), 334 GiB RAM
+</td>
+</tr>
+<tr>
+<td>
+13
+</td>
+<td>
+SPP (W=11, ε=1e-11)
+</td>
+<td>
+0.40829123
+</td>
+<td>
+43,698s
+</td>
+<td>
+12,288 Fugaku nodes (65,536 cores)
+</td>
+</tr>
+<tr>
+<td>
+13
+</td>
+<td>
+SPP (W=20, ε=1e-9)
+</td>
+<td>
+0.38356027
+</td>
+<td>
+22,228s
+</td>
+<td>
+12,288 Fugaku nodes (65,536 cores)
+</td>
+</tr>
+<tr style="border-top: 2px solid #d1d5db;">
+<td>
+14
+</td>
+<td>
+QESEM
+</td>
+<td>
+0.3751 (0.3611, 0.3891)
+</td>
+<td>
+4,857s
+</td>
+<td>
+ibm_boston
+</td>
+</tr>
+<tr>
+<td>
+14
+</td>
+<td>
+PEPS-BP (BD=700)
+</td>
+<td>
+0.395225
+</td>
+<td>
+181,760s
+</td>
+<td>
+128 vCPUs (AMD EPYC 7R13), 334 GiB RAM
+</td>
+</tr>
+<tr>
+<td>
+14
+</td>
+<td>
+SPP (W=11, ε=1e-11)
+</td>
+<td>
+0.42070765
+</td>
+<td>
+47,041s
+</td>
+<td>
+12,288 Fugaku nodes (65,536 cores)
+</td>
+</tr>
+<tr>
+<td>
+14
+</td>
+<td>
+SPP (W=20, ε=1e-9)
+</td>
+<td>
+0.39211172
+</td>
+<td>
+23,061s
+</td>
+<td>
+12,288 Fugaku nodes (65,536 cores)
+</td>
+</tr>
+<tr style="border-top: 2px solid #d1d5db;">
+<td>
+15
+</td>
+<td>
+QESEM
+</td>
+<td>
+0.3649 (0.3503, 0.3795)
+</td>
+<td>
+8,615s
+</td>
+<td>
+ibm_boston
+</td>
+</tr>
+<tr>
+<td>
+15
+</td>
+<td>
+PEPS-BP (BD=700)
+</td>
+<td>
+0.4112448
+</td>
+<td>
+317,861s
+</td>
+<td>
+128 vCPUs (AMD EPYC 7R13), 334 GiB RAM
+</td>
+</tr>
+<tr>
+<td>
+15
+</td>
+<td>
+SPP (W=11, ε=1e-11)
+</td>
+<td>
+0.41982974
+</td>
+<td>
+50,008s
+</td>
+<td>
+12,288 Fugaku nodes (65,536 cores)
+</td>
+</tr>
+<tr>
+<td>
+15
+</td>
+<td>
+SPP (W=20, ε=1e-9)
+</td>
+<td>
+0.39349978
+</td>
+<td>
+23,734s
+</td>
+<td>
+12,288 Fugaku nodes (65,536 cores)
+</td>
+</tr>
+<tr style="border-top: 2px solid #d1d5db;">
+<td>
+16
+</td>
+<td>
+QESEM
+</td>
+<td>
+0.3904 (0.3691, 0.4117)
+</td>
+<td>
+6,228s (+3,471s CPUs)
+</td>
+<td>
+ibm_boston
+</td>
+</tr>
+<tr>
+<td>
+16
+</td>
+<td>
+PEPS-BP (BD=700)
+</td>
+<td>
+0.4417984
+</td>
+<td>
+392,770s
+</td>
+<td>
+128 vCPUs (AMD EPYC 7R13), 334 GiB RAM
+</td>
+</tr>
+<tr>
+<td>
+16
+</td>
+<td>
+SPP (W=11, ε=1e-11)
+</td>
+<td>
+0.41110594
+</td>
+<td>
+52,679s
+</td>
+<td>
+12,288 Fugaku nodes (65,536 cores)
+</td>
+</tr>
+<tr>
+<td>
+16
+</td>
+<td>
+SPP (W=20, ε=1e-9)
+</td>
+<td>
+0.38697176
+</td>
+<td>
+24,307s
+</td>
+<td>
+12,288 Fugaku nodes (65,536 cores)
+</td>
+</tr>
+</tbody>
+</table>
+<p>From the figures and table above, neither classical method achieves
+convincing convergence despite the substantial computational resources
+employed. PEPS-BP remains reliable only up to <span
+class="math inline">\(N_c\sim 12\)</span>, beyond which convergence is
+lost both relative to the quantum data and across the different bond
+dimensions. Likewise, SPP simulations with <span
+class="math inline">\((W,\varepsilon_0)=(11,10^{-11})\)</span> and <span
+class="math inline">\((20,10^{-9})\)</span>, consuming comparable
+extensive resources, tracking a peak of <span class="math inline">\(\sim
+14\times10^{11}\)</span> and <span class="math inline">\(\sim
+7\times10^{11}\)</span> Pauli paths, respectively. exhibit large
+discrepancies in addition to a phase offset, and incorrect oscillation
+amplitudes relative to the quantum results. Over the interval <span
+class="math inline">\(N_c\in[13,16]\)</span>, neither method reproduces
+two the quantum data consistently, both either overshoot or
+underestimate the quantum results where any local agreement with the
+quantum data appears to be incidental rather than being systematic.</p>
+<h2 id="institutions">Institutions</h2>
+<p>Qedma, IBM, Riken, BlueQubit</p>
+<h2 id="references">References</h2>
+<p><a id="ref1">[1]</a> Aharonov et al. (Qedma), arXiv:2508.10997
+(2025)</p>
+<p><a id="ref2">[2]</a> Broers, Sun &amp; Yunoki, arXiv:2506.13241
+(2025)</p>
+<p><a id="ref3">[3]</a> Alkabetz &amp; Arad, Phys. Rev. Research 3,
+023073 (2021)</p>
+<p><a id="ref4">[4]</a> Tindall &amp; Fishman, SciPost Phys. 15, 222
+(2023)</p>
+<p><a id="ref5">[5]</a> Begušić, Gray &amp; Chan, Science Advances 10,
+eadk4321 (2024)</p>
+</body>
+</html>
