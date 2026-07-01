@@ -120,25 +120,25 @@ together with their corresponding runtimes and compute resources:
 
 <table>
   <thead>
-    <tr><th>Cycle</th><th>Method</th><th>Expectation Value (lower, upper)</th><th>Runtime</th><th>Hardware</th></tr>
+    <tr><th>Cycle</th><th>Method</th><th>Expectation Value<br>(lower, upper)</th><th>Runtime</th><th>Hardware</th></tr>
   </thead>
   <tbody>
     <tr style="border-top: 2px solid #d1d5db;"><td>13</td><td>QESEM</td><td>0.396 (0.381, 0.411)</td><td>3,184s (Q) + 1,774s (C)</td><td>ibm_boston</td></tr>
-    <tr><td>13</td><td>PEPS-BP (BD=700)</td><td>0.3891136</td><td>52,793s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM</td></tr>
-    <tr><td>13</td><td>SPP (W=11, ε₀=1e-11)</td><td>0.40829123</td><td>43,698s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
-    <tr><td>13</td><td>SPP (W=20, ε₀=1e-9)</td><td>0.38356027</td><td>22,228s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr><td>13</td><td>PEPS-BP<br>(BD=700)</td><td>0.3891136</td><td>52,793s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM</td></tr>
+    <tr><td>13</td><td>SPP<br>(W=11, ε₀=1e-11)</td><td>0.40829123</td><td>43,698s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr><td>13</td><td>SPP<br>(W=20, ε₀=1e-9)</td><td>0.38356027</td><td>22,228s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
     <tr style="border-top: 2px solid #d1d5db;"><td>14</td><td>QESEM</td><td>0.3751 (0.3611, 0.3891)</td><td>4,857s (Q) + 2,706s (C)</td><td>ibm_boston</td></tr>
-    <tr><td>14</td><td>PEPS-BP (BD=700)</td><td>0.395225</td><td>181,760s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM</td></tr>
-    <tr><td>14</td><td>SPP (W=11, ε₀=1e-11)</td><td>0.42070765</td><td>47,041s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
-    <tr><td>14</td><td>SPP (W=20, ε₀=1e-9)</td><td>0.39211172</td><td>23,061s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr><td>14</td><td>PEPS-BP<br>(BD=700)</td><td>0.395225</td><td>181,760s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM</td></tr>
+    <tr><td>14</td><td>SPP<br>(W=11, ε₀=1e-11)</td><td>0.42070765</td><td>47,041s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr><td>14</td><td>SPP<br>(W=20, ε₀=1e-9)</td><td>0.39211172</td><td>23,061s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
     <tr style="border-top: 2px solid #d1d5db;"><td>15</td><td>QESEM</td><td>0.3649 (0.3503, 0.3795)</td><td>8,615s (Q) + 4,801s (C)</td><td>ibm_boston</td></tr>
-    <tr><td>15</td><td>PEPS-BP (BD=700)</td><td>0.4112448</td><td>317,861s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM</td></tr>
-    <tr><td>15</td><td>SPP (W=11, ε₀=1e-11)</td><td>0.41982974</td><td>50,008s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
-    <tr><td>15</td><td>SPP (W=20, ε₀=1e-9)</td><td>0.39349978</td><td>23,734s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr><td>15</td><td>PEPS-BP<br>(BD=700)</td><td>0.4112448</td><td>317,861s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM</td></tr>
+    <tr><td>15</td><td>SPP<br>(W=11, ε₀=1e-11)</td><td>0.41982974</td><td>50,008s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr><td>15</td><td>SPP<br>(W=20, ε₀=1e-9)</td><td>0.39349978</td><td>23,734s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
     <tr style="border-top: 2px solid #d1d5db;"><td>16</td><td>QESEM</td><td>0.3904 (0.3691, 0.4117)</td><td>6,228s (Q) + 3,471s (C)</td><td>ibm_boston</td></tr>
-    <tr><td>16</td><td>PEPS-BP (BD=700)</td><td>0.4417984</td><td>392,770s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM</td></tr>
-    <tr><td>16</td><td>SPP (W=11, ε₀=1e-11)</td><td>0.41110594</td><td>52,679s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
-    <tr><td>16</td><td>SPP (W=20, ε₀=1e-9)</td><td>0.38697176</td><td>24,307s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr><td>16</td><td>PEPS-BP<br>(BD=700)</td><td>0.4417984</td><td>392,770s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM</td></tr>
+    <tr><td>16</td><td>SPP<br>(W=11, ε₀=1e-11)</td><td>0.41110594</td><td>52,679s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr><td>16</td><td>SPP<br>(W=20, ε₀=1e-9)</td><td>0.38697176</td><td>24,307s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
   </tbody>
 </table>
 
