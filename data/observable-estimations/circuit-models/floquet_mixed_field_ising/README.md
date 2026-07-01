@@ -115,8 +115,8 @@ The faded dashed lines correspond to SPP (ORQA) results obtained with larger tru
 <img src="figs/ziiz_tracker.png" alt="$ZZ_{d=3}$" style="clip-path: inset(0 0 0 0);" width="800"/>
 
 
-The following table summarizes the expectation values for the magnetization, computed using each of the methods above,
-together with their corresponding runtimes and compute resources:
+The table below summarizes the magnetization expectation values at the last four points of the dynamics shown above, obtained from each method, along with the runtimes and compute resources.
+
 
 <table>
   <thead>
@@ -144,9 +144,8 @@ together with their corresponding runtimes and compute resources:
 
 From the figures and table above, neither classical method achieves convincing convergence despite the substantial computational resources employed.
 PEPS-BP remains reliable only up to $N_c\sim 12$, beyond which convergence is lost both relative to the quantum data and across the different bond dimensions.
-Likewise, SPP simulations with $(W,\varepsilon_0)=(11,10^{-11})$ and $(20,10^{-9})$, consuming comparable extensive resources, tracking a peak of $\sim 1.4\times10^{12}$ and $\sim 7\times10^{11}$ Pauli paths,
-respectively. exhibit large discrepancies in addition to a phase offset, and incorrect oscillation amplitudes relative to the quantum results. Over the interval $N_c\in[13,16]$, neither method reproduces two the quantum data consistently, both either overshoot or underestimate the quantum results where any local agreement with the quantum data appears to be incidental rather than being systematic.
-
+Likewise, SPP simulations with $(W,\varepsilon_0)=(11,10^{-11})$ and $(20,10^{-9})$, consuming comparable extensive resources and tracking a peak of $\sim 1.4\times10^{12}$ and $\sim 7\times10^{11}$ Pauli paths,
+respectively, exhibit large discrepancies relative to the quantum results, including a phase offset, and incorrect oscillation amplitudes. The two SPP simulations also fail to converge with respect to one another over $N_c\in[13,16]$, with each alternately over- and underestimating the quantum results, indicating that any apparent agreement with the quantum data is incidental rather than systematic.
 ## Institutions
 
 Qedma, IBM, Riken, BlueQubit
