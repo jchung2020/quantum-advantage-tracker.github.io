@@ -96,14 +96,18 @@ The figures below show the estimated three observables across $N_c\in [1,16]$ Fl
 
 - **Sparse Pauli Paths (ORQA):** A Sparse Pauli Path (SPP) method based on a scalable parallel implementation of the ORQA formalism <sup>[[2]](#ref2)</sup>, executed on the supercomputer Fugaku. Here $\varepsilon_0$ is the truncation threshold and $W$ is the maximum Pauli weight considered in the tracked Pauli paths.
 
-- **Tensor Networks with Belief Propagation (PEPS-BP) :** Based on evolving the wavefunction as a projected entangled pair state (PEPS) with belief propagation, implemented with the open-source package [TensorNetworkQuantumSimulator.jl](https://JoeyT1994.github.io/TensorNetworkQuantumSimulator.jl/).
+- **Tensor Networks with Belief Propagation (PEPS-BP):** Based on evolving the wavefunction as a projected entangled pair state (PEPS) with belief propagation, implemented with the open-source package [TensorNetworkQuantumSimulator.jl](https://JoeyT1994.github.io/TensorNetworkQuantumSimulator.jl/).
 
-The faded dashed lines correspond to SPP (ORQA) results obtained with larger truncation thresholds ($\epsilon_0$) and smaller maximum Pauli weights ($W$), while the faded solid lines correspond to PEPS-BP results with smaller bond dimensions (BD).
+From the results shown below, neither classical method achieves convincing convergence despite the substantial computational resources employed.
+PEPS-BP remains reliable only up to $N_c\sim 12$, beyond which convergence is lost both relative to the quantum data and across the different bond dimensions.
+Likewise, SPP simulations - for example for the magnetization, with $(W,\varepsilon_0)=(11,10^{-11})$ and $(20,10^{-9})$, consuming comparable extensive resources and tracking a peak of $\sim 1.4\times10^{12}$ and $\sim 7\times10^{11}$ Pauli paths,
+respectively, do not agree with each other beyond $7$ Floquet cycles, exhibiting large discrepancies relative to the quantum results. In particular, the $(W,\varepsilon_0)=(11,10^{-11})$ tends to overestimate the quantum data, most visibly near cycle $15$, and both curves are phase-shifted relative to the quantum data, showing a peak where the quantum results show a dip instead, all together indicating that any apparent agreement with the quantum data is incidental rather than systematic.
+
+**Note:** The faded dashed lines correspond to SPP (ORQA) results obtained with larger truncation thresholds ($\epsilon_0$) and smaller maximum Pauli weights ($W$), while the faded solid lines correspond to PEPS-BP results with smaller bond dimensions (BD).
 
 **Magnetization (M):**
 
 <img src="figs/mag_tracker.png" alt="$Magnetization$" style="clip-path: inset(0 0 0 0);" width="800"/>
-
 
 **Average ZIZ ($ZZ_{d=2}$):**
 
@@ -115,8 +119,9 @@ The faded dashed lines correspond to SPP (ORQA) results obtained with larger tru
 <img src="figs/ziiz_tracker.png" alt="$ZZ_{d=3}$" style="clip-path: inset(0 0 0 0);" width="800"/>
 
 
-The table below summarizes the magnetization expectation values at the last four points of the dynamics shown above, obtained from each method, along with the runtimes and compute resources.
+The tables below summarize the above three observables' expectation values at the last four points of the dynamics shown above, obtained from each method, along with the runtimes and compute resources.
 
+**Magnetization**:
 
 <table>
   <thead>
@@ -142,10 +147,52 @@ The table below summarizes the magnetization expectation values at the last four
   </tbody>
 </table>
 
-From the figures and table above, neither classical method achieves convincing convergence despite the substantial computational resources employed.
-PEPS-BP remains reliable only up to $N_c\sim 12$, beyond which convergence is lost both relative to the quantum data and across the different bond dimensions.
-Likewise, SPP simulations with $(W,\varepsilon_0)=(11,10^{-11})$ and $(20,10^{-9})$, consuming comparable extensive resources and tracking a peak of $\sim 1.4\times10^{12}$ and $\sim 7\times10^{11}$ Pauli paths,
-respectively, exhibit large discrepancies relative to the quantum results, including a phase offset, and incorrect oscillation amplitudes. The two SPP simulations also fail to converge with respect to one another over $N_c\in[13,16]$, with each alternately over- and underestimating the quantum results, indicating that any apparent agreement with the quantum data is incidental rather than systematic.
+**ZIZ**:
+
+<table>
+  <thead>
+    <tr><th>Cycle</th><th>Method</th><th>Expectation Value<br>(lower, upper)</th><th>Runtime</th><th>Hardware</th></tr>
+  </thead>
+  <tbody>
+    <tr style="border-top: 2px solid #d1d5db;"><td>13</td><td>QESEM</td><td>0.2916 (0.2800, 0.3032)</td><td>3,184s (Q) + 1,774s (C)</td><td>ibm_boston</td></tr>
+    <tr><td>13</td><td>PEPS-BP<br>(BD=700)</td><td>0.2798922</td><td>55,186s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM</td></tr>
+    <tr><td>13</td><td>SPP<br>(W=16, ε₀=1e-9)</td><td>0.255711</td><td>27,435s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr style="border-top: 2px solid #d1d5db;"><td>14</td><td>QESEM</td><td>0.2692 (0.2585, 0.2798)</td><td>4,857s (Q) + 2,706s (C)</td><td>ibm_boston</td></tr>
+    <tr><td>14</td><td>PEPS-BP<br>(BD=700)</td><td>0.27823183</td><td>184,210s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM</td></tr>
+    <tr><td>14</td><td>SPP<br>(W=16, ε₀=1e-9)</td><td>0.257173</td><td>28,996s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr style="border-top: 2px solid #d1d5db;"><td>15</td><td>QESEM</td><td>0.2459 (0.2351, 0.2567)</td><td>8,615s (Q) + 4,801s (C)</td><td>ibm_boston</td></tr>
+    <tr><td>15</td><td>PEPS-BP<br>(BD=700)</td><td>0.28312767</td><td>320,324s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM</td></tr>
+    <tr><td>15</td><td>SPP<br>(W=16, ε₀=1e-9)</td><td>0.254728</td><td>30,355s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr style="border-top: 2px solid #d1d5db;"><td>16</td><td>QESEM</td><td>0.2657 (0.2501, 0.2814)</td><td>6,228s (Q) + 3,471s (C)</td><td>ibm_boston</td></tr>
+    <tr><td>16</td><td>PEPS-BP<br>(BD=700)</td><td>0.30682474</td><td>395,319s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM</td></tr>
+    <tr><td>16</td><td>SPP</td><td>0.250253</td><td>31,559s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+  </tbody>
+</table>
+
+**ZIIZ**:
+
+<table>
+  <thead>
+    <tr><th>Cycle</th><th>Method</th><th>Expectation Value<br>(lower, upper)</th><th>Runtime</th><th>Hardware</th></tr>
+  </thead>
+  <tbody>
+    <tr style="border-top: 2px solid #d1d5db;"><td>13</td><td>QESEM</td><td>0.2278 (0.2183, 0.2374)</td><td>3,184s (Q) + 1,774s (C)</td><td>ibm_boston</td></tr>
+    <tr><td>13</td><td>PEPS-BP<br>(BD=700)</td><td>0.21647733</td><td>57,793s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM</td></tr>
+    <tr><td>13</td><td>SPP<br>(W=16, ε₀=5e-8)</td><td>0.1885839</td><td>7,061s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr style="border-top: 2px solid #d1d5db;"><td>14</td><td>QESEM</td><td>0.2020 (0.1935, 0.2106)</td><td>4,857s (Q) + 2,706s (C)</td><td>ibm_boston</td></tr>
+    <tr><td>14</td><td>PEPS-BP<br>(BD=700)</td><td>0.21814969</td><td>187,052s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM</td></tr>
+    <tr><td>14</td><td>SPP<br>(W=16, ε₀=5e-8)</td><td>0.19071564</td><td>7,405s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr style="border-top: 2px solid #d1d5db;"><td>15</td><td>QESEM</td><td>0.1909 (0.1822, 0.1997)</td><td>8,615s (Q) + 4,801s (C)</td><td>ibm_boston</td></tr>
+    <tr><td>15</td><td>PEPS-BP<br>(BD=700)</td><td>0.22427787</td><td>323,166s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM</td></tr>
+    <tr><td>15</td><td>SPP<br>(W=16, ε₀=5e-8)</td><td>0.1884349</td><td>7,699s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr style="border-top: 2px solid #d1d5db;"><td>16</td><td>QESEM</td><td>0.2111 (0.1984, 0.2238)</td><td>6,228s (Q) + 3,471s (C)</td><td>ibm_boston</td></tr>
+    <tr><td>16</td><td>PEPS-BP<br>(BD=700)</td><td>0.2519062</td><td>398,093s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM</td></tr>
+    <tr><td>16</td><td>SPP<br>(W=16, ε₀=5e-8)</td><td>0.18342936</td><td>7,961s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+  </tbody>
+</table>
+
+* (Q) = time on quantum hardware, (C) = classical processing time.
+
 ## Institutions
 
 Qedma, IBM, Riken, BlueQubit
