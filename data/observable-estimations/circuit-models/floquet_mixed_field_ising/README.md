@@ -2,38 +2,95 @@
 
 ## Circuit Instances
 
+[//]: # ()
+[//]: # (`floquet_mixed_field_ising_mag_51qx16c`:)
 
-`floquet_mixed_field_ising_mag_51qx16c`:
+[//]: # ()
+[//]: # (This instance implements Floquet dynamics corresponding to the mixed-field Ising model on a heavy-hex lattice with $N=51$ qubits and $N_c=16$ Floquet cycles &#40;see details below&#41;. The measured observable is)
 
-This instance implements Floquet dynamics corresponding to the mixed-field Ising model on a heavy-hex lattice with $N=51$ qubits and $N_c=16$ Floquet cycles (see details below). The measured observable is
-the magnetization, defined as
+[//]: # (the magnetization, defined as)
+
+[//]: # (```math)
+
+[//]: # (M = \frac{1}{N}\sum_{i} Z_i,)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (where the sum runs over all the qubits of the heavy-hex lattice.)
+
+[//]: # ()
+[//]: # (`floquet_mixed_field_ising_zzd2_51qx16c`:)
+
+[//]: # ()
+[//]: # (This instance implements Floquet dynamics corresponding to the mixed-field Ising model on a heavy-hex lattice with $N=51$ qubits and $N_c=16$ Floquet cycles &#40;see details below&#41;. The measured observable is)
+
+[//]: # (the average two-point correlator at graph distance $d=2$, defined as)
+
+[//]: # (```math)
+
+[//]: # (ZZ_{d=2} = \frac{1}{N_{d=2}} \; \sum_{&#40;i,j&#41;\,:\,d&#40;i,j&#41;=2} Z_i Z_j)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (where $&#40;i, j&#41;$ ranges over all pairs of qubits at graph distance $d=2$ within the heavy-hex lattice &#40;see pair list below&#41;, and $N_{d=2}$ is the total number of those pairs.)
+
+[//]: # ()
+[//]: # (`floquet_mixed_field_ising_zzd3_51qx16c`:)
+
+[//]: # ()
+[//]: # (This instance implements Floquet dynamics corresponding to the mixed-field Ising model on a heavy-hex lattice with $N=51$ qubits and $N_c=16$ Floquet cycles &#40;see details below&#41;. The measured observable is)
+
+[//]: # (the average two-point correlator at graph distance $d=3$, defined as)
+
+[//]: # (```math)
+
+[//]: # (ZZ_{d=3} = \frac{1}{N_{d=3}} \; \sum_{&#40;i,j&#41;\,:\,d&#40;i,j&#41;=3} Z_i Z_j)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (where $&#40;i, j&#41;$ ranges over all pairs of qubits at graph distance $d=3$ within the heavy-hex lattice &#40;see pair list below&#41;, and $N_{d=3}$ is the total number of those pairs.)
+
+[//]: # ()
+[//]: # (- Each instance here is defined by the number of qubits, $N$, the number of Floquet cycles, $N_c$, as well as the observable measured at the end of the circuit. Thus, the name of the instance follows the pattern `floquet_mixed_field_ising_{measured observable}_{N}qx{N_c}c`.)
+
+## Circuit Instances
+
+Each instance implements Floquet dynamics corresponding to the mixed-field Ising model on a heavy-hex lattice with $N=51$ qubits, evolved over $N_c$ Floquet cycles (see [Model Description](#model-description) below). Three observables are measured, corresponding to three instance variants:
+
+- **Magnetization (`mag`):** 
 ```math
 M = \frac{1}{N}\sum_{i} Z_i,
 ```
+  where the sum runs over all the qubits of the heavy-hex lattice.
 
-where the sum runs over all the qubits of the heavy-hex lattice.
-
-`floquet_mixed_field_ising_zzd2_51qx16c`:
-
-This instance implements Floquet dynamics corresponding to the mixed-field Ising model on a heavy-hex lattice with $N=51$ qubits and $N_c=16$ Floquet cycles (see details below). The measured observable is
-the average two-point correlator at graph distance $d=2$, defined as
+- **Average two-point correlator at graph distance $d=2$ (`zzd2`):**
 ```math
 ZZ_{d=2} = \frac{1}{N_{d=2}} \; \sum_{(i,j)\,:\,d(i,j)=2} Z_i Z_j
 ```
+  where $(i, j)$ ranges over all pairs of qubits at graph distance $d=2$ within the heavy-hex lattice (see pair list below), and $N_{d=2}$ is the total number of those pairs.
 
-where $(i, j)$ ranges over all pairs of qubits at graph distance $d=2$ within the heavy-hex lattice (see pair list below), and $N_{d=2}$ is the total number of those pairs.
-
-`floquet_mixed_field_ising_zzd3_51qx16c`:
-
-This instance implements Floquet dynamics corresponding to the mixed-field Ising model on a heavy-hex lattice with $N=51$ qubits and $N_c=16$ Floquet cycles (see details below). The measured observable is
-the average two-point correlator at graph distance $d=3$, defined as
+- **Average two-point correlator at graph distance $d=3$ (`zzd3`):**
 ```math
 ZZ_{d=3} = \frac{1}{N_{d=3}} \; \sum_{(i,j)\,:\,d(i,j)=3} Z_i Z_j
 ```
+  where $(i, j)$ ranges over all pairs of qubits at graph distance $d=3$ within the heavy-hex lattice (see pair list below), and $N_{d=3}$ is the total number of those pairs.
 
-where $(i, j)$ ranges over all pairs of qubits at graph distance $d=3$ within the heavy-hex lattice (see pair list below), and $N_{d=3}$ is the total number of those pairs.
+Each instance is defined by the number of qubits, $N$, the number of Floquet cycles, $N_c$, and the observable measured at the end of the circuit. The instance name follows the pattern `floquet_mixed_field_ising_{observable}_{N}qx{N_c}c`.
 
-- Each instance here is defined by the number of qubits, $N$, the number of Floquet cycles, $N_c$, as well as the observable measured at the end of the circuit. Thus, the name of the instance follows the pattern `floquet_mixed_field_ising_{measured observable}_{N}qx{N_c}c`.
+| Instance name | $N$ | $N_c$ | Observable |
+|---|---|---|---|
+| `floquet_mixed_field_ising_mag_51qx16c` | 51 | 16 | Magnetization |
+| `floquet_mixed_field_ising_zzd2_51qx16c` | 51 | 16 | $ZZ_{d=2}$ |
+| `floquet_mixed_field_ising_zzd3_51qx16c` | 51 | 16 | $ZZ_{d=3}$ |
+| `floquet_mixed_field_ising_mag_51qx26c` | 51 | 26 | Magnetization |
+| `floquet_mixed_field_ising_zzd2_51qx26c` | 51 | 26 | $ZZ_{d=2}$ |
+| `floquet_mixed_field_ising_zzd3_51qx26c` | 51 | 26 | $ZZ_{d=3}$ |
+| `floquet_mixed_field_ising_mag_51qx29c` | 51 | 29 | Magnetization |
+| `floquet_mixed_field_ising_zzd2_51qx29c` | 51 | 29 | $ZZ_{d=2}$ |
+| `floquet_mixed_field_ising_zzd3_51qx29c` | 51 | 29 | $ZZ_{d=3}$ |
 
 ## Model Description
 
@@ -52,7 +109,7 @@ U_m = \prod_{(j,k)\in\mathcal{E}_m} RZZ(\theta_{zz})
       \prod_{i} RX\left(\tfrac{\theta_x}{3}\right)
 ```
 
-Here $\mathcal{E}_1, \mathcal{E}_2, \mathcal{E}_3$ is a partition of all edges
+Here $\mathcal{E}_1, \mathcal{E}_2, \mathcal{E}_3$ form a partition of all edges
 of the $N$-qubit patch into three disjoint subsets.
 
 ## Additional Details
@@ -100,7 +157,7 @@ The figures below show the estimated three observables across $N_c\in [1,16]$ Fl
 
 From the results shown below, neither classical method achieves convincing convergence despite the substantial computational resources employed.
 PEPS-BP remains reliable only up to $N_c\sim 12$, beyond which convergence is lost both relative to the quantum data and across the different bond dimensions.
-Likewise, SPP simulations do not agree with each other or with the quantum data beyond $7$ Floquet cycles. For example for the magnetization observable, the $(W,\varepsilon_0)=(11,10^{-11})$ and $(20,10^{-9})$ runs consume comparably extensive resources, tracking a peak of $\sim 1.4\times10^{12}$ and $\sim 7\times10^{11}$ Pauli paths,
+Likewise, SPP simulations do not agree with each other or with the quantum data beyond $7$ Floquet cycles. For example, for the magnetization observable, the $(W,\varepsilon_0)=(11,10^{-11})$ and $(20,10^{-9})$ runs consume comparably extensive resources, tracking a peak of $\sim 1.4\times10^{12}$ and $\sim 7\times10^{11}$ Pauli paths,
 respectively, yet still diverge from one another. The $(W,\varepsilon_0)=(11,10^{-11})$ curve tends to overestimate the quantum data, most visibly near cycle $15$, and both curves are phase-shifted relative to the quantum data, showing a peak where the quantum results show a dip instead, altogether indicating that any apparent agreement with the quantum data is incidental rather than systematic.
 
 **Note:** The faded dashed lines correspond to SPP (ORQA) results obtained with larger truncation thresholds ($\epsilon_0$) and smaller maximum Pauli weights ($W$), while the faded solid lines correspond to PEPS-BP results with smaller bond dimensions (BD).
