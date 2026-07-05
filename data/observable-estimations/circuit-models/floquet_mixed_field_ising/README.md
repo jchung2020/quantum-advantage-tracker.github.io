@@ -1,7 +1,5 @@
 # Floquet Mixed-Field Ising Dynamics
 
-## Circuit Instances
-
 [//]: # ()
 [//]: # (`floquet_mixed_field_ising_mag_51qx16c`:)
 
