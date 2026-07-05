@@ -122,5 +122,18 @@
     "computeResourcesQuantum": "IBM Heron R3",
     "computeResourcesClassical": "Intel Xeon Gold 6258R 28 cores with 1 TB memory (Qiskit Aer), Apple M1 Max 10 cores with 32 GB memory (Quimb)",
     "notes": "The reported classical runtimes are extrapolated."
+  },
+  {
+    "createdAt": "2026-05-14T04:51:19Z",
+    "url": "https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/153",
+    "name": "mpo_unswapping_cpu_laptop_56_1917",
+    "circuit": "peaked_circuit_P9_Hqap_56x1917",
+    "value": "100",
+    "method": "MPO + Unswapping (CPU)",
+    "authors": "Alexey Galda",
+    "institutions": "Moderna",
+    "runtimeClassical": 734,
+    "computeResourcesClassical": "Apple M5 Pro (T6050) laptop, single Python process, Apple Accelerate BLAS",
+    "notes": "12 min on a consumer Apple Silicon laptop CPU"
   }
 ]
