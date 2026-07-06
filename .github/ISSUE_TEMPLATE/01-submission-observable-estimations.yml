@@ -37,6 +37,12 @@ body:
         - floquet_mixed_field_ising_mag_51qx16c
         - floquet_mixed_field_ising_zzd2_51qx16c
         - floquet_mixed_field_ising_zzd3_51qx16c
+        - floquet_mixed_field_ising_mag_51qx26c
+        - floquet_mixed_field_ising_zzd2_51qx26c
+        - floquet_mixed_field_ising_zzd3_51qx26c
+        - floquet_mixed_field_ising_mag_51qx29c
+        - floquet_mixed_field_ising_zzd2_51qx29c
+        - floquet_mixed_field_ising_zzd3_51qx29c
     validations:
       required: true
 

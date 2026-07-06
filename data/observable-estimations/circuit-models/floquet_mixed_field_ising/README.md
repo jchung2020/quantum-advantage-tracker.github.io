@@ -1,37 +1,94 @@
 # Floquet Mixed-Field Ising Dynamics
 
+[//]: # ()
+[//]: # (`floquet_mixed_field_ising_mag_51qx16c`:)
+
+[//]: # ()
+[//]: # (This instance implements Floquet dynamics corresponding to the mixed-field Ising model on a heavy-hex lattice with $N=51$ qubits and $N_c=16$ Floquet cycles &#40;see details below&#41;. The measured observable is)
+
+[//]: # (the magnetization, defined as)
+
+[//]: # (```math)
+
+[//]: # (M = \frac{1}{N}\sum_{i} Z_i,)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (where the sum runs over all the qubits of the heavy-hex lattice.)
+
+[//]: # ()
+[//]: # (`floquet_mixed_field_ising_zzd2_51qx16c`:)
+
+[//]: # ()
+[//]: # (This instance implements Floquet dynamics corresponding to the mixed-field Ising model on a heavy-hex lattice with $N=51$ qubits and $N_c=16$ Floquet cycles &#40;see details below&#41;. The measured observable is)
+
+[//]: # (the average two-point correlator at graph distance $d=2$, defined as)
+
+[//]: # (```math)
+
+[//]: # (ZZ_{d=2} = \frac{1}{N_{d=2}} \; \sum_{&#40;i,j&#41;\,:\,d&#40;i,j&#41;=2} Z_i Z_j)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (where $&#40;i, j&#41;$ ranges over all pairs of qubits at graph distance $d=2$ within the heavy-hex lattice &#40;see pair list below&#41;, and $N_{d=2}$ is the total number of those pairs.)
+
+[//]: # ()
+[//]: # (`floquet_mixed_field_ising_zzd3_51qx16c`:)
+
+[//]: # ()
+[//]: # (This instance implements Floquet dynamics corresponding to the mixed-field Ising model on a heavy-hex lattice with $N=51$ qubits and $N_c=16$ Floquet cycles &#40;see details below&#41;. The measured observable is)
+
+[//]: # (the average two-point correlator at graph distance $d=3$, defined as)
+
+[//]: # (```math)
+
+[//]: # (ZZ_{d=3} = \frac{1}{N_{d=3}} \; \sum_{&#40;i,j&#41;\,:\,d&#40;i,j&#41;=3} Z_i Z_j)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (where $&#40;i, j&#41;$ ranges over all pairs of qubits at graph distance $d=3$ within the heavy-hex lattice &#40;see pair list below&#41;, and $N_{d=3}$ is the total number of those pairs.)
+
+[//]: # ()
+[//]: # (- Each instance here is defined by the number of qubits, $N$, the number of Floquet cycles, $N_c$, as well as the observable measured at the end of the circuit. Thus, the name of the instance follows the pattern `floquet_mixed_field_ising_{measured observable}_{N}qx{N_c}c`.)
+
 ## Circuit Instances
 
-`floquet_mixed_field_ising_mag_51qx16c`:
+Each instance implements Floquet dynamics corresponding to the mixed-field Ising model on a heavy-hex lattice with $N=51$ qubits, evolved over $N_c$ Floquet cycles (see [Model Description](#model-description) below). Three observables are measured, corresponding to three instance variants:
 
-This instance implements Floquet dynamics corresponding to the mixed-field Ising model on the heavy-hex lattice with $N=51$ qubits and $N_c=16$ Floquet cycles (see details below). The measured observable is
-the average magnetization, defined as
-$$M = \frac{1}{N}\sum_{i} Z_i,$$
-where the sum runs over all the qubits of the heavy-hex lattice.
+- **Magnetization (`mag`):** 
+```math
+M = \frac{1}{N}\sum_{i} Z_i,
+```
+  where the sum runs over all the qubits of the heavy-hex lattice.
 
-`floquet_mixed_field_ising_zzd2_51qx16c`:
-
-This instance implements Floquet dynamics corresponding to the mixed-field Ising model on the heavy-hex lattice with $N=51$ qubits and $N_c=16$ Floquet cycles (see details below). The measured observable is
-the average two-point correlator at graph distance $d=2$, defined as
-
+- **Average two-point correlator at graph distance $d=2$ (`zzd2`):**
 ```math
 ZZ_{d=2} = \frac{1}{N_{d=2}} \; \sum_{(i,j)\,:\,d(i,j)=2} Z_i Z_j
 ```
+  where $(i, j)$ ranges over all pairs of qubits at graph distance $d=2$ within the heavy-hex lattice (see pair list below), and $N_{d=2}$ is the total number of those pairs.
 
-where $(i, j)$ ranges over all pairs of qubits at graph distance $d=2$ within the heavy-hex lattice (see pair list below), and $N_{d=2}$ is the total number of those pairs.
-
-`floquet_mixed_field_ising_zzd3_51qx16c`:
-
-This instance implements Floquet dynamics corresponding to the mixed-field Ising model on the heavy-hex lattice with $N=51$ qubits and $N_c=16$ Floquet cycles (see details below). The measured observable is
-the average two-point correlator at graph distance $d=3$, defined as
-
+- **Average two-point correlator at graph distance $d=3$ (`zzd3`):**
 ```math
 ZZ_{d=3} = \frac{1}{N_{d=3}} \; \sum_{(i,j)\,:\,d(i,j)=3} Z_i Z_j
 ```
+  where $(i, j)$ ranges over all pairs of qubits at graph distance $d=3$ within the heavy-hex lattice (see pair list below), and $N_{d=3}$ is the total number of those pairs.
 
-where $(i, j)$ ranges over all pairs of qubits at graph distance $d=3$ within the heavy-hex lattice (see pair list below), and $N_{d=3}$ is the total number of those pairs.
+Each instance is defined by the number of qubits, $N$, the number of Floquet cycles, $N_c$, and the observable measured at the end of the circuit. The instance name follows the pattern `floquet_mixed_field_ising_{observable}_{N}qx{N_c}c`.
 
-- Each instance here is defined by the number of qubits, $N$, the number of Floquet cycles, $N_c$, as well as the observable measured at the end of the circuit. Thus, the name of the instance follows the pattern `floquet_mixed_field_ising_{measured observable}_{N}qx{N_c}c`.
+| Instance name | $N$ | $N_c$ | Observable |
+|---|---|---|---|
+| `floquet_mixed_field_ising_mag_51qx16c` | 51 | 16 | Magnetization |
+| `floquet_mixed_field_ising_zzd2_51qx16c` | 51 | 16 | $ZZ_{d=2}$ |
+| `floquet_mixed_field_ising_zzd3_51qx16c` | 51 | 16 | $ZZ_{d=3}$ |
+| `floquet_mixed_field_ising_mag_51qx26c` | 51 | 26 | Magnetization |
+| `floquet_mixed_field_ising_zzd2_51qx26c` | 51 | 26 | $ZZ_{d=2}$ |
+| `floquet_mixed_field_ising_zzd3_51qx26c` | 51 | 26 | $ZZ_{d=3}$ |
+| `floquet_mixed_field_ising_mag_51qx29c` | 51 | 29 | Magnetization |
+| `floquet_mixed_field_ising_zzd2_51qx29c` | 51 | 29 | $ZZ_{d=2}$ |
+| `floquet_mixed_field_ising_zzd3_51qx29c` | 51 | 29 | $ZZ_{d=3}$ |
 
 ## Model Description
 
@@ -50,7 +107,7 @@ U_m = \prod_{(j,k)\in\mathcal{E}_m} RZZ(\theta_{zz})
       \prod_{i} RX\left(\tfrac{\theta_x}{3}\right)
 ```
 
-Here $\mathcal{E}_1, \mathcal{E}_2, \mathcal{E}_3$ is a partition of all edges
+Here $\mathcal{E}_1, \mathcal{E}_2, \mathcal{E}_3$ form a partition of all edges
 of the $N$-qubit patch into three disjoint subsets.
 
 ## Additional Details
@@ -94,20 +151,106 @@ The figures below show the estimated three observables across $N_c\in [1,16]$ Fl
 
 - **Sparse Pauli Paths (ORQA):** A Sparse Pauli Path (SPP) method based on a scalable parallel implementation of the ORQA formalism <sup>[[2]](#ref2)</sup>, executed on the supercomputer Fugaku. Here $\varepsilon_0$ is the truncation threshold and $W$ is the maximum Pauli weight considered in the tracked Pauli paths.
 
-- **Tensor Networks with Belief Propagation (PEPS-BP) :** Based on evolving the wavefunction as a projected entangled pair state (PEPS) with belief propagation, following the works: Alkabetz & Arad <sup>[[3]](#ref3)</sup>, Tindall & Fishman <sup>[[4]](#ref4)</sup>, and Begušić, Gray & Chan <sup>[[5]](#ref5)</sup>.
+- **Tensor Networks with Belief Propagation (PEPS-BP):** Based on evolving the wavefunction as a projected entangled pair state (PEPS) with belief propagation, implemented with the open-source package [TensorNetworkQuantumSimulator.jl](https://JoeyT1994.github.io/TensorNetworkQuantumSimulator.jl/).
 
-The faded dashed lines correspond to SPP (ORQA) results obtained with larger truncation thresholds ($\epsilon_0$) and smaller maximum Pauli weights ($W$), while the faded solid lines correspond to PEPS-BP results with smaller bond dimensions (BD).
+From the results shown below, neither classical method achieves convincing convergence despite the substantial computational resources employed.
+PEPS-BP remains reliable only up to $N_c\sim 12$, beyond which convergence is lost both relative to the quantum data and across the different bond dimensions.
+Likewise, SPP simulations do not agree with each other or with the quantum data beyond $7$ Floquet cycles. For example, for the magnetization observable, the $(W,\varepsilon_0)=(11,10^{-11})$ and $(20,10^{-9})$ runs consume comparably extensive resources, tracking a peak of $\sim 1.4\times10^{12}$ and $\sim 7\times10^{11}$ Pauli paths,
+respectively, yet still diverge from one another. The $(W,\varepsilon_0)=(11,10^{-11})$ curve tends to overestimate the quantum data, most visibly near cycle $15$, and both curves are phase-shifted relative to the quantum data, showing a peak where the quantum results show a dip instead, altogether indicating that any apparent agreement with the quantum data is incidental rather than systematic.
+
+**Note:** The faded dashed lines correspond to SPP (ORQA) results obtained with larger truncation thresholds ($\epsilon_0$) and smaller maximum Pauli weights ($W$), while the faded solid lines correspond to PEPS-BP results with smaller bond dimensions (BD).
 
 **Magnetization (M):**
-<img src="./figs/mag_tracker.png" alt="$Magnetization$" style="clip-path: inset(0 0 0 0);" width="900"/>
+
+<img src="figs/mag_tracker.png" alt="$Magnetization$" style="clip-path: inset(0 0 0 0);" width="800"/>
+
 **Average ZIZ ($ZZ_{d=2}$):**
-<img src="./figs/ziz_tracker.png" alt="$ZZ_{d=2}$" style="clip-path: inset(0 0 0 0);" width="900"/>
+
+<img src="figs/ziz_tracker.png" alt="$ZZ_{d=2}$" style="clip-path: inset(0 0 0 0);" width="800"/>
+
+
 **Average ZIIZ ($ZZ_{d=3}$):**
-<img src="./figs/ziiz_tracker.png" alt="$ZZ_{d=3}$" style="clip-path: inset(0 0 0 0);" width="900"/>
+
+<img src="figs/ziiz_tracker.png" alt="$ZZ_{d=3}$" style="clip-path: inset(0 0 0 0);" width="800"/>
+
+
+The tables below summarize the above three observables' expectation values at the last four points of the dynamics shown above, obtained from each method, along with the runtimes and compute resources.
+
+**Magnetization**:
+
+<table>
+  <thead>
+    <tr><th>Cycle</th><th>Method</th><th>Expectation Value<br>(lower, upper)</th><th>Runtime</th><th>Hardware</th></tr>
+  </thead>
+  <tbody>
+    <tr style="border-top: 2px solid #d1d5db;"><td>13</td><td>QESEM</td><td>0.396 (0.381, 0.411)</td><td>3,184s (Q) + 1,774s (C)</td><td>ibm_boston</td></tr>
+    <tr><td>13</td><td>PEPS-BP<br>(BD=700)</td><td>0.3891136</td><td>52,793s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM (allocated)</td></tr>
+    <tr><td>13</td><td>SPP<br>(W=11, ε₀=1e-11)</td><td>0.40829123</td><td>43,698s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr><td>13</td><td>SPP<br>(W=20, ε₀=1e-9)</td><td>0.38356027</td><td>22,228s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr style="border-top: 2px solid #d1d5db;"><td>14</td><td>QESEM</td><td>0.3751 (0.3611, 0.3891)</td><td>4,857s (Q) + 2,706s (C)</td><td>ibm_boston</td></tr>
+    <tr><td>14</td><td>PEPS-BP<br>(BD=700)</td><td>0.395225</td><td>181,760s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM (allocated)</td></tr>
+    <tr><td>14</td><td>SPP<br>(W=11, ε₀=1e-11)</td><td>0.42070765</td><td>47,041s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr><td>14</td><td>SPP<br>(W=20, ε₀=1e-9)</td><td>0.39211172</td><td>23,061s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr style="border-top: 2px solid #d1d5db;"><td>15</td><td>QESEM</td><td>0.3649 (0.3503, 0.3795)</td><td>8,615s (Q) + 4,801s (C)</td><td>ibm_boston</td></tr>
+    <tr><td>15</td><td>PEPS-BP<br>(BD=700)</td><td>0.4112448</td><td>317,861s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM (allocated)</td></tr>
+    <tr><td>15</td><td>SPP<br>(W=11, ε₀=1e-11)</td><td>0.41982974</td><td>50,008s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr><td>15</td><td>SPP<br>(W=20, ε₀=1e-9)</td><td>0.39349978</td><td>23,734s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr style="border-top: 2px solid #d1d5db;"><td>16</td><td>QESEM</td><td>0.3904 (0.3691, 0.4117)</td><td>6,228s (Q) + 3,471s (C)</td><td>ibm_boston</td></tr>
+    <tr><td>16</td><td>PEPS-BP<br>(BD=700)</td><td>0.4417984</td><td>392,770s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM (allocated)</td></tr>
+    <tr><td>16</td><td>SPP<br>(W=11, ε₀=1e-11)</td><td>0.41110594</td><td>52,679s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr><td>16</td><td>SPP<br>(W=20, ε₀=1e-9)</td><td>0.38697176</td><td>24,307s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+  </tbody>
+</table>
+
+**ZIZ**:
+
+<table>
+  <thead>
+    <tr><th>Cycle</th><th>Method</th><th>Expectation Value<br>(lower, upper)</th><th>Runtime</th><th>Hardware</th></tr>
+  </thead>
+  <tbody>
+    <tr style="border-top: 2px solid #d1d5db;"><td>13</td><td>QESEM</td><td>0.2916 (0.2800, 0.3032)</td><td>3,184s (Q) + 1,774s (C)</td><td>ibm_boston</td></tr>
+    <tr><td>13</td><td>PEPS-BP<br>(BD=700)</td><td>0.2798922</td><td>55,186s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM (allocated)</td></tr>
+    <tr><td>13</td><td>SPP<br>(W=16, ε₀=1e-9)</td><td>0.255711</td><td>27,435s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr style="border-top: 2px solid #d1d5db;"><td>14</td><td>QESEM</td><td>0.2692 (0.2585, 0.2798)</td><td>4,857s (Q) + 2,706s (C)</td><td>ibm_boston</td></tr>
+    <tr><td>14</td><td>PEPS-BP<br>(BD=700)</td><td>0.27823183</td><td>184,210s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM (allocated)</td></tr>
+    <tr><td>14</td><td>SPP<br>(W=16, ε₀=1e-9)</td><td>0.257173</td><td>28,996s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr style="border-top: 2px solid #d1d5db;"><td>15</td><td>QESEM</td><td>0.2459 (0.2351, 0.2567)</td><td>8,615s (Q) + 4,801s (C)</td><td>ibm_boston</td></tr>
+    <tr><td>15</td><td>PEPS-BP<br>(BD=700)</td><td>0.28312767</td><td>320,324s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM (allocated)</td></tr>
+    <tr><td>15</td><td>SPP<br>(W=16, ε₀=1e-9)</td><td>0.254728</td><td>30,355s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr style="border-top: 2px solid #d1d5db;"><td>16</td><td>QESEM</td><td>0.2657 (0.2501, 0.2814)</td><td>6,228s (Q) + 3,471s (C)</td><td>ibm_boston</td></tr>
+    <tr><td>16</td><td>PEPS-BP<br>(BD=700)</td><td>0.30682474</td><td>395,319s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM (allocated)</td></tr>
+    <tr><td>16</td><td>SPP<br>(W=16, ε₀=1e-9)</td><td>0.250253</td><td>31,559s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+  </tbody>
+</table>
+
+**ZIIZ**:
+
+<table>
+  <thead>
+    <tr><th>Cycle</th><th>Method</th><th>Expectation Value<br>(lower, upper)</th><th>Runtime</th><th>Hardware</th></tr>
+  </thead>
+  <tbody>
+    <tr style="border-top: 2px solid #d1d5db;"><td>13</td><td>QESEM</td><td>0.2278 (0.2183, 0.2374)</td><td>3,184s (Q) + 1,774s (C)</td><td>ibm_boston</td></tr>
+    <tr><td>13</td><td>PEPS-BP<br>(BD=700)</td><td>0.21647733</td><td>57,793s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM (allocated)</td></tr>
+    <tr><td>13</td><td>SPP<br>(W=16, ε₀=5e-8)</td><td>0.1885839</td><td>7,061s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr style="border-top: 2px solid #d1d5db;"><td>14</td><td>QESEM</td><td>0.2020 (0.1935, 0.2106)</td><td>4,857s (Q) + 2,706s (C)</td><td>ibm_boston</td></tr>
+    <tr><td>14</td><td>PEPS-BP<br>(BD=700)</td><td>0.21814969</td><td>187,052s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM (allocated)</td></tr>
+    <tr><td>14</td><td>SPP<br>(W=16, ε₀=5e-8)</td><td>0.19071564</td><td>7,405s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr style="border-top: 2px solid #d1d5db;"><td>15</td><td>QESEM</td><td>0.1909 (0.1822, 0.1997)</td><td>8,615s (Q) + 4,801s (C)</td><td>ibm_boston</td></tr>
+    <tr><td>15</td><td>PEPS-BP<br>(BD=700)</td><td>0.22427787</td><td>323,166s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM (allocated)</td></tr>
+    <tr><td>15</td><td>SPP<br>(W=16, ε₀=5e-8)</td><td>0.1884349</td><td>7,699s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+    <tr style="border-top: 2px solid #d1d5db;"><td>16</td><td>QESEM</td><td>0.2111 (0.1984, 0.2238)</td><td>6,228s (Q) + 3,471s (C)</td><td>ibm_boston</td></tr>
+    <tr><td>16</td><td>PEPS-BP<br>(BD=700)</td><td>0.2519062</td><td>398,093s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM (allocated)</td></tr>
+    <tr><td>16</td><td>SPP<br>(W=16, ε₀=5e-8)</td><td>0.18342936</td><td>7,961s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
+  </tbody>
+</table>
+
+* (Q) = time on quantum hardware, (C) = classical processing time.
 
 ## Institutions
 
-Qedma, IBM, Riken, BlueQubit
+Qedma, IBM, RIKEN, BlueQubit
 
 ## References
 
@@ -115,8 +258,3 @@ Qedma, IBM, Riken, BlueQubit
 
 <a id="ref2">[2]</a> Broers, Sun & Yunoki, arXiv:2506.13241 (2025)
 
-<a id="ref3">[3]</a> Alkabetz & Arad, Phys. Rev. Research 3, 023073 (2021)
-
-<a id="ref4">[4]</a> Tindall & Fishman, SciPost Phys. 15, 222 (2023)
-
-<a id="ref5">[5]</a> Begušić, Gray & Chan, Science Advances 10, eadk4321 (2024)
