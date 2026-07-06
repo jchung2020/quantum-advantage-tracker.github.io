@@ -8,7 +8,6 @@
 
 `operator_loschmidt_echo_56x1488`: This circuit instance computes the Operator Loschmidt Echo (see below for description) for a 56-qubit lattice at $L = 6$, $\delta = 0.30$, $b = 0.125$, and scattering potential $\alpha = 0.15$. The observable is $O = Z_{131} Z_{132} Z_{133}Z_{134} Z_{135} Z_{138} Z_{139} Z_{151} Z_{152} Z_{153} Z_{154} Z_{155}$. The circuits corresponding to different values of $\alpha$ from 0 (no scattering) to $0.25$ can be found in the same folder.
 
-
 # `operator_loschmidt_echo`
 
 The aim of this experiment is to compute the Operator Loschmidt Echo (OLE):

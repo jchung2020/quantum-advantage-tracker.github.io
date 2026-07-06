@@ -58,37 +58,43 @@
 
 Each instance implements Floquet dynamics corresponding to the mixed-field Ising model on a heavy-hex lattice with $N=51$ qubits, evolved over $N_c$ Floquet cycles (see [Model Description](#model-description) below). Three observables are measured, corresponding to three instance variants:
 
-- **Magnetization (`mag`):** 
+- **Magnetization (`mag`):**
+
 ```math
 M = \frac{1}{N}\sum_{i} Z_i,
 ```
-  where the sum runs over all the qubits of the heavy-hex lattice.
+
+where the sum runs over all the qubits of the heavy-hex lattice.
 
 - **Average two-point correlator at graph distance $d=2$ (`zzd2`):**
+
 ```math
 ZZ_{d=2} = \frac{1}{N_{d=2}} \; \sum_{(i,j)\,:\,d(i,j)=2} Z_i Z_j
 ```
-  where $(i, j)$ ranges over all pairs of qubits at graph distance $d=2$ within the heavy-hex lattice (see pair list below), and $N_{d=2}$ is the total number of those pairs.
+
+where $(i, j)$ ranges over all pairs of qubits at graph distance $d=2$ within the heavy-hex lattice (see pair list below), and $N_{d=2}$ is the total number of those pairs.
 
 - **Average two-point correlator at graph distance $d=3$ (`zzd3`):**
+
 ```math
 ZZ_{d=3} = \frac{1}{N_{d=3}} \; \sum_{(i,j)\,:\,d(i,j)=3} Z_i Z_j
 ```
-  where $(i, j)$ ranges over all pairs of qubits at graph distance $d=3$ within the heavy-hex lattice (see pair list below), and $N_{d=3}$ is the total number of those pairs.
+
+where $(i, j)$ ranges over all pairs of qubits at graph distance $d=3$ within the heavy-hex lattice (see pair list below), and $N_{d=3}$ is the total number of those pairs.
 
 Each instance is defined by the number of qubits, $N$, the number of Floquet cycles, $N_c$, and the observable measured at the end of the circuit. The instance name follows the pattern `floquet_mixed_field_ising_{observable}_{N}qx{N_c}c`.
 
-| Instance name | $N$ | $N_c$ | Observable |
-|---|---|---|---|
-| `floquet_mixed_field_ising_mag_51qx16c` | 51 | 16 | Magnetization |
-| `floquet_mixed_field_ising_zzd2_51qx16c` | 51 | 16 | $ZZ_{d=2}$ |
-| `floquet_mixed_field_ising_zzd3_51qx16c` | 51 | 16 | $ZZ_{d=3}$ |
-| `floquet_mixed_field_ising_mag_51qx26c` | 51 | 26 | Magnetization |
-| `floquet_mixed_field_ising_zzd2_51qx26c` | 51 | 26 | $ZZ_{d=2}$ |
-| `floquet_mixed_field_ising_zzd3_51qx26c` | 51 | 26 | $ZZ_{d=3}$ |
-| `floquet_mixed_field_ising_mag_51qx29c` | 51 | 29 | Magnetization |
-| `floquet_mixed_field_ising_zzd2_51qx29c` | 51 | 29 | $ZZ_{d=2}$ |
-| `floquet_mixed_field_ising_zzd3_51qx29c` | 51 | 29 | $ZZ_{d=3}$ |
+| Instance name                            | $N$ | $N_c$ | Observable    |
+| ---------------------------------------- | --- | ----- | ------------- |
+| `floquet_mixed_field_ising_mag_51qx16c`  | 51  | 16    | Magnetization |
+| `floquet_mixed_field_ising_zzd2_51qx16c` | 51  | 16    | $ZZ_{d=2}$    |
+| `floquet_mixed_field_ising_zzd3_51qx16c` | 51  | 16    | $ZZ_{d=3}$    |
+| `floquet_mixed_field_ising_mag_51qx26c`  | 51  | 26    | Magnetization |
+| `floquet_mixed_field_ising_zzd2_51qx26c` | 51  | 26    | $ZZ_{d=2}$    |
+| `floquet_mixed_field_ising_zzd3_51qx26c` | 51  | 26    | $ZZ_{d=3}$    |
+| `floquet_mixed_field_ising_mag_51qx29c`  | 51  | 29    | Magnetization |
+| `floquet_mixed_field_ising_zzd2_51qx29c` | 51  | 29    | $ZZ_{d=2}$    |
+| `floquet_mixed_field_ising_zzd3_51qx29c` | 51  | 29    | $ZZ_{d=3}$    |
 
 ## Model Description
 
@@ -168,11 +174,9 @@ respectively, yet still diverge from one another. The $(W,\varepsilon_0)=(11,10^
 
 <img src="figs/ziz_tracker.png" alt="$ZZ_{d=2}$" style="clip-path: inset(0 0 0 0);" width="800"/>
 
-
 **Average ZIIZ ($ZZ_{d=3}$):**
 
 <img src="figs/ziiz_tracker.png" alt="$ZZ_{d=3}$" style="clip-path: inset(0 0 0 0);" width="800"/>
-
 
 The tables below summarize the above three observables' expectation values at the last four points of the dynamics shown above, obtained from each method, along with the runtimes and compute resources.
 
@@ -246,7 +250,7 @@ The tables below summarize the above three observables' expectation values at th
   </tbody>
 </table>
 
-* (Q) = time on quantum hardware, (C) = classical processing time.
+- (Q) = time on quantum hardware, (C) = classical processing time.
 
 ## Institutions
 
@@ -257,4 +261,3 @@ Qedma, IBM, RIKEN, BlueQubit
 <a id="ref1">[1]</a> Aharonov et al. (Qedma), arXiv:2508.10997 (2025)
 
 <a id="ref2">[2]</a> Broers, Sun & Yunoki, arXiv:2506.13241 (2025)
-

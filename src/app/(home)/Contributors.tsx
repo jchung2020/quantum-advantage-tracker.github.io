@@ -3,7 +3,7 @@ import submissionsOE from '../../../data/observable-estimations/submissions.json
 import submissionsVP from '../../../data/variational-problems/submissions.json' with { type: 'json' };
 
 function getInstitutions() {
-  const extras = ['Caltech', 'Los Alamos National Lab', 'Moderna', 'Qedma'];
+  const extras = ['Caltech', 'Los Alamos National Laboratory', 'Moderna', 'Qedma'];
   const submissions = [...submissionsCVP, ...submissionsOE, ...submissionsVP];
   const set = new Set<string>(extras);
   for (const submission of submissions) {

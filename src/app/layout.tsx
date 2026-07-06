@@ -1,8 +1,8 @@
+import { TooltipProvider } from '@/components/ui/tooltip';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
-import { TooltipProvider } from '@/components/ui/tooltip';
 import { NavMenu } from './NavMenu';
 
 import './globals.css';
