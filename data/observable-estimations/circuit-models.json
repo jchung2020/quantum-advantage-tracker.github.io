@@ -38,14 +38,14 @@
         "path": "x_100_SCV.qasm",
         "qubits": 120,
         "gates": 60000,
-        "category": "Baseline benchmarks"
+        "category": "Active candidates"
       },
       {
         "id": "su2_hadron_dynamics_lsh_x_100_meson",
         "path": "x_100_meson.qasm",
         "qubits": 120,
         "gates": 60000,
-        "category": "Baseline benchmarks"
+        "category": "Active candidates"
       }
     ]
   },
