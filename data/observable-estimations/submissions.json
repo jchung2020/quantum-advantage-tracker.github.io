@@ -157,7 +157,7 @@
     "createdAt": "2026-04-01T16:52:17Z",
     "url": "https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/149",
     "name": "Simulating SU(2) Hadron dynamics on a 60 site lattice using 120 qubits",
-    "circuit": "SU(2)Hadron-LSH-x_100_meson",
+    "circuit": "su2_hadron_dynamics_lsh_x_100_meson",
     "observableValue": 59.99402699,
     "errorBoundLow": -0.005710650099,
     "errorBoundHigh": 0.005710650099,
