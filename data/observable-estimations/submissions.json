@@ -165,9 +165,7 @@
     "authors": "Fran Ilcic, Ritajit Majumdar,  Emil Mathew, Md. Osama Ali, Nathan Earnest-Noble, Indrakshi Raychowdhury",
     "institutions": "Birla Institute of Technology and Science - Pilani, IBM",
     "runtimeQuantum": 20,
-    "runtimeClassical": 2485,
     "computeResourcesQuantum": "IBM Boston",
-    "computeResourcesClassical": "NVIDIA RTX 5000 Ada GPU(AD102GL)",
     "notes": "Only one instance is submitted here. The reported result is out come of both the circuits SCV and Meson, and the difference between observables are calculated to obtain physical results."
   },
   {
