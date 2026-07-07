@@ -169,5 +169,20 @@
     "computeResourcesQuantum": "IBM Boston",
     "computeResourcesClassical": "NVIDIA RTX 5000 Ada GPU(AD102GL)",
     "notes": "Only one instance is submitted here. The reported result is out come of both the circuits SCV and Meson, and the difference between observables are calculated to obtain physical results."
+  },
+  {
+    "createdAt": "2026-07-01T03:43:05Z",
+    "url": "https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/202",
+    "name": "Simulating SU(2) Hadron dynamics on a 60 site lattice using 120 qubits",
+    "circuit": "su2_hadron_dynamics_lsh_x_100_meson",
+    "observableValue": 60.00538161,
+    "errorBoundLow": -0.005,
+    "errorBoundHigh": 0.005,
+    "method": "Pauli Propagation method on a CPU",
+    "runtimeClassical": 2485,
+    "computeResourcesClassical": "HP Z2 Tower G9 Workstation",
+    "notes": "Duplicate submission of Quantum Simulation of High Energy Physics (a non-Abelian lattice gauge theory) #149 - reports only classical runtime",
+    "authors": "Fran Ilcic, Ritajit Majumdar, Emil Mathew, Md. Osama Ali, Nathan Earnest-Noble, Indrakshi Raychowdhury",
+    "institutions": "Birla Institute of Technology and Science - Pilani, IBM"
   }
 ]
