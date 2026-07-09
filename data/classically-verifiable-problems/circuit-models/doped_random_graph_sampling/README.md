@@ -1,6 +1,6 @@
 # Circuit instance description (Doped Random Graph State Sampling):
 
-`nq70_depth70_checks27_doped.qasm`: This prepares a T-doped random graph state on a 70 X 70 circuit (70 qubits with CZ-depth 70). The 70 logical qubits are arranged on a 1D lattice (LNN) and 27 ancilla qubits are used for error detection. A maximum of 468 nontrivial T gates can be placed throughout the circuit. The best known Schmidt rank is $2^{30}$ and the best known stabilizer rank is $2^{185.5}$. After post-selection, 0.038% of the shots remain, and the state fidelity is 0.26 $\pm$ 0.02 (bounded above 0.036 with 95% confidence).
+`nq70_depth70_checks27_doped.qasm`: This prepares a T-doped random graph state on a 70 X 70 circuit (70 qubits with CZ-depth 70). The 70 logical qubits are arranged on a 1D lattice (LNN) and 27 ancilla qubits are used for error detection. A maximum of 468 nontrivial T gates can be placed throughout the circuit. The best known Schmidt rank is $2^{30}$ and the best known stabilizer rank is $2^{185.5}$. After post-selection, 0.059% of the shots remain, and the state fidelity is 0.32 $\pm$ 0.01 (bounded above 0.044 with 95% confidence).
 
 - `nq70_depth70_checks27_doped_checks.qasm`: This includes the ancillas and spacetime Pauli checks for the above circuit.
 
@@ -32,7 +32,7 @@ To maximize the entanglement in our graph state, we use an ansatz of repeating l
 By taking the minimum over 100 million random bipartitions, we numerically verify that our circuit nearly saturates the entanglement upper bound with a Schmidt rank of $2^{30}$.
 
 <p align="center">
-  <img width="590" height="455" alt="image" src="https://github.com/user-attachments/assets/53d47789-5109-4678-995d-26dd1b5368dc" />
+  <img width="590" height="455" alt="image" src="https://github.com/user-attachments/assets/619e1f7d-77c1-4477-bddc-856a6706ec65" />
 
 <em>Figure 1. Quimb matrix product state (MPS) contraction times for the 70 X 70 circuit with increasing depth (maximum depth 24). Linear extrapolation from a logarithmic plot of the data (R<sup>2</sup> > 0.98) yields a predicted contraction time of 10<sup>25</sup> seconds.</em>
 
@@ -53,7 +53,8 @@ So, as claimed, the nonstabilizerness increases exponentially with the system si
 (Recall that for random graph state sampling, we instead characterized the nonstabilizerness with the [stabilizer extent](https://arxiv.org/pdf/1808.00128), the minimum $\lVert c \rVert^2$ over all stabilizer decompositions. We do not use this metric here as the stabilizer rank lower bounds this quantity for approximate error simulations.)
 
 <p align="center">
-  <img width="570" height="476" alt="image" src="https://github.com/user-attachments/assets/1dea42a2-5c21-4ae4-b0d4-72f78d859e55" />
+  <img width="570" height="476" alt="image" src="https://github.com/user-attachments/assets/f84b0143-1b2c-43c7-b9f4-dcfa4b8f0677" />
+
 
 <em>Figure 2. Extended stabilizer simulation timing in quizx for 70 X 70 circuits with various T-counts (maximum 85). Linear extrapolation from a logarithmic plot of the data (R<sup>2</sup> > 0.98) yields a predicted time of 10<sup>42</sup> seconds to find the probability of one bitstring.</em>
 
@@ -108,12 +109,15 @@ For non-stabilizer states, expectation values can become arbitrarily small, whic
 
 As in RGS, the equality between undoped and doped graph state fidelities requires that:
 
-- The undoped and doped states share the same gates, the only exception being the angle of Z rotations, which toggles between I and T gates.
+- The undoped and doped states share the same gates, the only exception being the angle of Z rotations. This toggles between I, S, Z and T gates.
 - On IBM's devices, Z rotations are [virtually implemented](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.96.022330) as framechanges, hence are noiseless.
 - We employ Pauli twirling, or randomized compiling, on the graph state preparation circuit. With the assumption of independent error on the single qubit gates, this is enough to ensure that the [process fidelity](https://arxiv.org/pdf/2503.05943) of the doped graph state is equal (up to first order) to the average graph state process fidelity.
 
-We highlight a subtle point when doping our circuits: inserting T gates into the circuit, even if done perfectly, can change the interference between coherent errors within the circuit. When implementing Pauli twirling then, we first separate the circuit into layers of Clifford $C_i$ and T gate $T_i$ layers: $C_L...T_1C_1T_0C_0$. Twirling these Clifford layers (including the ancilla qubits) suppresses the buildup of coherent errors, ensuring that the angle of the T-layer gates does not affect the underlying noise.
+To suppress the buildup of coherent errors in our circuit, we use randomized compiling for each of the CZ gates individually. By not enforcing that CZ gates occur in the same layer, we maintain the random scheduling of gates in our circuit.
 
+To build confidence that doping with RZ gates does not degrade fidelity, we use direct fidelity estimation for 0 doping, 468 S-gate doping, and 468 Z-gate doping. Note that for Z-gate doping, only the phase of the stabilizers can change, hence we measure the same stabilizers (up to sign) as in 0 doping.
+
+<!---
 To build confidence in this experimentally, we measure the state fidelity (or a proxy) in a few different regimes, aiming to demonstrate that this unaffected by the T-count:
 
 - Regime 1: Zero T gates, for which we use direct fidelity estimation.
@@ -121,17 +125,24 @@ To build confidence in this experimentally, we measure the state fidelity (or a 
   - In this regime, there is still relatively low overhead in measuring the fidelity. Classical simulations are done to sample random Pauli observables in an unbiased manner and calculate the corresponding expectation values.
 - Regime 3: $O(N)$ T gates, for which we use XEB as a proxy for fidelity.
   - After $O(N)$ T gates, the second moment converges closely to a Porter-Thomas distribution, making XEB a reasonable metric. The number of T gates is chosen such that classical simulations are still tractable.
+-->
 
 Provided that classical simulations fail to faithfully sample from our state, we can certify quantum advantage by showing that the fidelity of the graph state - and consequently the T-doped graph state - is bounded above zero.
 
 <p align="center">
-  <img width="752" height="530" alt="image" src="https://github.com/user-attachments/assets/b4d5a8bf-b659-4863-8cbd-2747ac1af9db" />
+  <img width="625" height="456" alt="image" src="https://github.com/user-attachments/assets/db6686f3-84f2-43b2-9758-6ab072339618" />
+  
+  <img width="617" height="456" alt="image" src="https://github.com/user-attachments/assets/f39d83d9-98f1-481a-94e4-21843610aec4" />
 
-<em>Figure 4. Fidelity for the 70 X 70 circuit on IBM Boston at various T-counts. For T-count=0,5 we utilize direct fidelity estimation with 120 randomly drawn Paulis, and for T-count=70,80 we measure the linear cross entropy of the resultant samples. After rescaling for readout error, we note no negative trend in fidelity is observed as T-count increases. </em>
+<em>Figure 4. Fidelity for the 70 X 70 circuit on IBM Boston when doping with 0, 468 S, and 468 Z gates. We utilize direct fidelity estimation with 80 randomly drawn Paulis. Fidelities are all consistent within one standard deviation, even after readout error mitigation. </em>
 
 </p>
 
-Addendum: In Fig. 4 the fidelities are rescaled by readout error. For points using direct fidelity estimation, the observables are rescaled according to [readout error mitigation](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.105.032620). For XEB, we assume that the probability distribution with readout error is uncorrelated with the ideal probability distribution, separate circuit fidelity $F$ into
+Addendum: In Fig. 4 the fidelities are rescaled by readout error. For points using direct fidelity estimation, the observables are rescaled according to [readout error mitigation](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.105.032620).
+
+<!---
+
+For XEB, we assume that the probability distribution with readout error is uncorrelated with the ideal probability distribution, separate circuit fidelity $F$ into
 
 $$F = F_{ideal}F_{readout}$$
 
@@ -140,6 +151,7 @@ where $F_{ideal}$ is the circuit fidelity with perfect readout error, and $F_{re
 $$F_{readout} = \Pi_{i=1}^{N} (1 - p_i)$$
 
 which can be used to rescaled the XEB scores.
+-->
 
 ### `Verifiability with Logical Fault Rate`
 
@@ -151,14 +163,14 @@ For the set of accepted shots, faults can be separated into two categories: harm
 
 $$ F = P(id\ | accept) + P(harmless\ | accept) $$
 
-where $P(accept), P(id),\ P(harmless)$ respectively are the probabilities of acceptance, no fault occurring, and a harmless fault occurring.
+where $P(accept)$, $P(id)$, $P(harmless)$ respectively are the probabilities of acceptance, no fault occurring, and a harmless fault occurring.
 
 As stated above, T gates do not affect the set of accepted faults nor the probability of a fault occurring, hence $P(id\ | accept)$ is equal for the undoped and doped cases.
 
 <p align="center">
-  <img width="1011" height="511" alt="image" src="https://github.com/user-attachments/assets/90562100-1b92-4274-a100-8c4607ad7d0e" />
+  <img width="699" height="472" alt="image" src="https://github.com/user-attachments/assets/b5eaf9c1-8353-4504-ba00-e63dd58da873" />
 
-<em>Figure 5. Post-selection rate for the 70 X 70 circuit on IBM Boston shows no dependence on T-count across the measured values. </em>
+<em>Figure 5. Post-selection rate for the 70 X 70 circuit on IBM Boston shows no dependence on S or Z doping count across the measured values. </em>
 
 </p>
 
