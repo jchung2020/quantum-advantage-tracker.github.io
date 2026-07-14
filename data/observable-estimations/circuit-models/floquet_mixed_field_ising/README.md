@@ -206,7 +206,7 @@ respectively, yet still diverge from one another. The $(W,\varepsilon_0)=(11,10^
 
 The tables below summarize the above three observables' expectation values at the last four points of the dynamics shown above, obtained from each method, along with the runtimes and compute resources.
 
-**Magnetization**:
+**Magnetization ($N=51$)**:
 
 <table>
   <thead>
@@ -245,7 +245,7 @@ The tables below summarize the above three observables' expectation values at th
 </tbody>
 </table>
 
-**ZIZ**:
+**ZIZ ($N=51$)**:
 
 <table>
   <thead>
@@ -277,7 +277,7 @@ The tables below summarize the above three observables' expectation values at th
 </tbody>
 </table>
 
-**ZIIZ**:
+**ZIIZ ($N=51$)**:
 
 <table>
   <thead>
@@ -310,7 +310,7 @@ The tables below summarize the above three observables' expectation values at th
 
 Lastly, the tables below summarize the quantum results for the three observables for $N_c=25,$ and $27$ Floquet cycles for $N=74$ qubits (same layers and configuration as described above), obtained using QESEM, IBM (ZNE) error-mitigation method. 
 
-**Magnetization**:
+**Magnetization ($N=74$)**:
 <table>
   <thead>
     <tr><th>Cycle</th><th>Method</th><th>Expectation Value<br>(lower, upper)</th><th>Runtime</th><th>Hardware</th></tr>
@@ -321,7 +321,7 @@ Lastly, the tables below summarize the quantum results for the three observables
   </tbody>
 </table>
 
-**ZIZ**:
+**ZIZ ($N=74$)**:
 <table>
   <thead>
     <tr><th>Cycle</th><th>Method</th><th>Expectation Value<br>(lower, upper)</th><th>Runtime</th><th>Hardware</th></tr>
@@ -332,7 +332,7 @@ Lastly, the tables below summarize the quantum results for the three observables
   </tbody>
 </table>
 
-**ZIIZ**:
+**ZIIZ ($N=74$)**:
 <table>
   <thead>
     <tr><th>Cycle</th><th>Method</th><th>Expectation Value<br>(lower, upper)</th><th>Runtime</th><th>Hardware</th></tr>
