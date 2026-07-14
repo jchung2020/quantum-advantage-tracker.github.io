@@ -44,3 +44,9 @@ If you change a submission field, update **all** of: the relevant issue template
 - Prettier config is inside `package.json` (`singleQuote`, `printWidth: 100`) plus three plugins: `organize-imports`, `packagejson`, `tailwindcss` — running `npm run format` will reorder imports and Tailwind classes.
 - Tailwind v4 (no `tailwind.config`); design tokens live in `src/app/globals.css`. UI primitives in `src/components/ui/` follow the shadcn/Radix pattern (see `components.json`).
 - Client components live where they're used; the shared `SubmissionsTable` is `'use client'` because of `nuqs` and `useState`. Tracker page entry points stay server components and pass JSON data down.
+
+## Analytics (GDPR)
+
+Google Analytics 4 is loaded under **Google Consent Mode v2** (`src/components/analytics/`, shared logic in `src/lib/consent.ts`). gtag boots with every consent category defaulted to `denied`; only `analytics_storage` upgrades to `granted` after the user clicks Accept in the `CookieConsent` banner, and the choice is persisted in `localStorage`. All of it is inert unless `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID` (a GA4 `G-XXXXXXXX` id) is set at build time — provided in production via the `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID` GitHub Actions repository variable (see `deploy.yml`). To test locally, set `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID` in `.env.local` before `npm run dev`.
+
+**Page views on in-app navigation.** The app navigates via `next/link` (soft navigation using the History API), so there is no full page reload between routes. Client-side navigations are counted by GA4's **Enhanced Measurement** ("Page changes based on browser history events", enabled on the property) — `page_view` fires "each time the page loads _or_ the browser history state is changed". There is deliberately **no** manual route-change tracking in the code; adding one would double-count every soft navigation. Keep the Enhanced Measurement option enabled on the GA4 property.

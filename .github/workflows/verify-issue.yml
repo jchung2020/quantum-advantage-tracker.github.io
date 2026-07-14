@@ -16,7 +16,7 @@ jobs:
       github.event.action == 'created' &&
       github.event.issue.pull_request == null &&
       contains(github.event.issue.labels.*.name, 'submission') &&
-      contains(github.event.comment.body, 'I verified this submission') &&
+      (contains(github.event.comment.body, 'I verified the submission') || contains(github.event.comment.body, 'I verified this submission')) &&
       contains(github.event.issue.assignees.*.login, github.event.comment.user.login)
 
     steps:

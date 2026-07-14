@@ -31,21 +31,21 @@
       }
     ]
   },
-  "SU(2)Hadron-LSH": {
+  "su2_hadron_dynamics_lsh": {
     "instances": [
       {
-        "id": "SU(2)Hadron-LSH-x_100_SCV",
+        "id": "su2_hadron_dynamics_lsh_x_100_SCV",
         "path": "x_100_SCV.qasm",
         "qubits": 120,
         "gates": 60000,
-        "category": "Baseline benchmarks"
+        "category": "Active candidates"
       },
       {
-        "id": "SU(2)Hadron-LSH-x_100_meson",
+        "id": "su2_hadron_dynamics_lsh_x_100_meson",
         "path": "x_100_meson.qasm",
         "qubits": 120,
         "gates": 60000,
-        "category": "Baseline benchmarks"
+        "category": "Active candidates"
       }
     ]
   },

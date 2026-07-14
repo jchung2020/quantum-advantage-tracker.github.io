@@ -61,7 +61,7 @@ runs:
     # Workaround for https://github.com/issue-ops/parser/issues/216:
     # the parser does not yet support `type: upload`, so we rewrite it to
     # `type: textarea` in the checked-out template.
-    - name: "Patch unsupported `type: upload` in template"
+    - name: 'Patch unsupported `type: upload` in template'
       shell: bash
       env:
         TEMPLATE: .github/ISSUE_TEMPLATE/${{ steps.path_selector.outputs.selected_issue_template }}

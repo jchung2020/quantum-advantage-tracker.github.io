@@ -188,5 +188,16 @@
     "runtimeClassical": 23179,
     "computeResourcesQuantum": "IBM Heron r2",
     "computeResourcesClassical": "Intel Xeon 6740E 192 cores with 1024 GiB memory"
+  },
+  {
+    "createdAt": "2026-06-16T05:08:32Z",
+    "url": "https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/187",
+    "name": "[2Fe-2S] (30e, 20o) HCI",
+    "hamiltonian": "2fe_2s_30e_20o",
+    "energy": -116.605425,
+    "method": "HCI",
+    "runtimeClassical": 43422.66,
+    "computeResourcesClassical": "40 Node x Intel Xeon Platinum 8480+ (One node has 112 cores with 110 GiB memory) = 4480 cores",
+    "institutions": "Qunova Computing, RIKEN"
   }
 ]

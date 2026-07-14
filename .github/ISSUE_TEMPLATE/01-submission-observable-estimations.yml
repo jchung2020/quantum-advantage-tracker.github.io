@@ -32,8 +32,8 @@ body:
         - operator_loschmidt_echo_49x648
         - operator_loschmidt_echo_49x1296
         - operator_loschmidt_echo_56x1488
-        - SU(2)Hadron-LSH-x_100_SCV
-        - SU(2)Hadron-LSH-x_100_meson
+        - su2_hadron_dynamics_lsh_x_100_SCV
+        - su2_hadron_dynamics_lsh_x_100_meson
         - floquet_mixed_field_ising_mag_51qx16c
         - floquet_mixed_field_ising_zzd2_51qx16c
         - floquet_mixed_field_ising_zzd3_51qx16c
