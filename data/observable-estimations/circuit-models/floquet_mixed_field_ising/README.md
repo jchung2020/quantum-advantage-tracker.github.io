@@ -56,7 +56,7 @@
 
 ## Circuit Instances
 
-Each instance implements Floquet dynamics corresponding to the mixed-field Ising model on a heavy-hex lattice with $N=51$ or $N=74$ qubits, evolved over $N_c$ Floquet cycles (see [Model Description](#model-description) below). Three observables are measured, corresponding to three instance variants:
+Each instance implements Floquet dynamics corresponding to the mixed-field Ising model on a heavy-hex lattice with $N=51$ or $N=74$ qubits, evolved over $N_c$ Floquet cycles (see [Model Description](#model-description) below). Three observables are measured, corresponding to different instance variants:
 
 - **Magnetization (`mag`):** 
 ```math
@@ -186,7 +186,7 @@ For the later Floquet cycles reported here, the sampling overhead of the unbiase
 From the results shown below, neither classical method achieves convincing convergence despite the substantial computational resources employed.
 PEPS-BP remains reliable only up to $N_c\sim 12$, beyond which convergence is lost both relative to the quantum data and across the different bond dimensions.
 Likewise, SPP simulations do not agree with each other or with the quantum data beyond $7$ Floquet cycles. For example, for the magnetization observable, the $(W,\varepsilon_0)=(11,10^{-11})$ and $(20,10^{-9})$ runs consume comparably extensive resources, tracking a peak of $\sim 1.4\times10^{12}$ and $\sim 7\times10^{11}$ Pauli paths,
-respectively, yet still diverge from one another. The $(W,\varepsilon_0)=(11,10^{-11})$ curve tends to overestimate the quantum data, most visibly near cycle $15$, and both curves are phase-shifted relative to the quantum data, showing a peak where the quantum results show a dip instead, altogether indicating that any apparent agreement with the quantum data is incidental rather than systematic.
+respectively, yet still diverge from one another. The $(W,\varepsilon_0)=(11,10^{-11})$ curve tends to overestimate the quantum data, most visibly near cycle $15$, and both curves are phase-shifted relative to the quantum data, showing a peak where the quantum results show a dip instead, altogether indicating that any apparent agreement with the quantum data is incidental rather than systematic. The classical methods face a similar, and even more severe, difficulty at the late time steps, as shown in the table below (26, 29 and 30 cycles).
 
 **Note:** The faded dashed lines correspond to SPP (ORQA) results obtained with larger truncation thresholds ($\epsilon_0$) and smaller maximum Pauli weights ($W$), while the faded solid lines correspond to PEPS-BP results with smaller bond dimensions (BD).
 
@@ -310,7 +310,7 @@ The tables below summarize the above three observables' expectation values at th
 
 Lastly, the tables below summarize the quantum results for the three observables for $N_c=25,$ and $27$ Floquet cycles for $N=74$ qubits (same layers and configuration as described above), obtained using QESEM, IBM (ZNE) error-mitigation method. 
 
-Magnetization:
+**Magnetization**:
 <table>
   <thead>
     <tr><th>Cycle</th><th>Method</th><th>Expectation Value<br>(lower, upper)</th><th>Runtime</th><th>Hardware</th></tr>
@@ -321,7 +321,7 @@ Magnetization:
   </tbody>
 </table>
 
-ZIZ:
+**ZIZ**:
 <table>
   <thead>
     <tr><th>Cycle</th><th>Method</th><th>Expectation Value<br>(lower, upper)</th><th>Runtime</th><th>Hardware</th></tr>
@@ -332,7 +332,7 @@ ZIZ:
   </tbody>
 </table>
 
-ZIIZ:
+**ZIIZ**:
 <table>
   <thead>
     <tr><th>Cycle</th><th>Method</th><th>Expectation Value<br>(lower, upper)</th><th>Runtime</th><th>Hardware</th></tr>
