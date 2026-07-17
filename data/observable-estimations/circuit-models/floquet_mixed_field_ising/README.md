@@ -238,7 +238,7 @@ The tables below summarize the above three observables' expectation values at th
     <tr><td>29</td><td>SPP<br>(W=11, ε₀=1e-11)</td><td>0.387118</td><td>77,204s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
     <tr><td>29</td><td>SPP<br>(W=20, ε₀=1e-9)</td><td>0.351997</td><td>29,464s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
     <tr style="border-top: 2px solid #d1d5db;"><td>30</td><td>QESEM, IBM<br>(ZNE)</td><td>0.3662 (0.3596, 0.3727)</td><td>1470 (Q) + 819s (C)</td><td>ibm_boston</td></tr>
-    <tr><td>30</td><td>PEPS-BP<br>(BD=512)</td><td>0.548851</td><td>127,669s (C)</td><td>96 vCPUs (AMD EPYC 7571)</td></tr>
+    <tr><td>30</td><td>PEPS-BP<br>(BD=700)</td><td>0.54108</td><td>2,160,025s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM (allocated)</td></tr>
     <tr><td>30</td><td>SPP<br>(W=11, ε₀=1e-11)</td><td>0.385073</td><td>78,738.4s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
     <tr><td>30</td><td>SPP<br>(W=20, ε₀=1e-9)</td><td>0.349819</td><td>29,812.34s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
 </tbody>
@@ -270,7 +270,7 @@ The tables below summarize the above three observables' expectation values at th
         <tr><td>29</td><td>PEPS-BP<br>(BD=700)</td><td>0.3891584</td><td>2,030,803s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM (allocated)</td></tr>
 <tr><td>29</td><td>SPP<br>(W=16, ε₀=1e-9)</td><td>0.250253</td><td>42,506s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
     <tr style="border-top: 2px solid #d1d5db;"><td>30</td><td>QESEM, IBM<br>(ZNE)</td><td>0.2523 (0.2476, 0.2571)</td><td>1470s (Q) + 819s (C)</td><td>ibm_boston</td></tr>
-    <tr><td>30</td><td>PEPS-BP<br>(BD=512)</td><td>0.4098</td><td>127,853s (C)</td><td>96 vCPUs (AMD EPYC 7571)</td></tr>
+    <tr><td>30</td><td>PEPS-BP<br>(BD=700)</td><td>0.40201</td><td>2,162,380s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM (allocated)</td></tr>
     <tr><td>30</td><td>SPP<br>(W=16, ε₀=1e-9)</td><td>0.23</td><td>43,200s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
 
 </tbody>
@@ -302,7 +302,7 @@ The tables below summarize the above three observables' expectation values at th
     <tr><td>29</td><td>PEPS-BP<br>(BD=700)</td><td>0.341418</td><td>2,033,583s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM (allocated)</td></tr>
     <tr><td>29</td><td>SPP<br>(W=16, ε₀=5e-8)</td><td>0.1643</td><td>10,629s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
     <tr style="border-top: 2px solid #d1d5db;"><td>30</td><td>QESEM, IBM<br>(ZNE)</td><td>0.1993 (0.1948, 0.2039)</td><td>1470s (Q) + 819s (C)</td><td>ibm_boston</td></tr>
-    <tr><td>30</td><td>PEPS-BP<br>(BD=512)</td><td>0.3658</td><td>128,947s (C)</td><td>96 vCPUs (AMD EPYC 7571)</td></tr>
+    <tr><td>30</td><td>PEPS-BP<br>(BD=700)</td><td>0.356932</td><td>2,165,184s (C)</td><td>128 vCPUs (AMD EPYC 7R13), 334 GiB RAM (allocated)</td></tr>
     <tr><td>30</td><td>SPP<br>(W=16, ε₀=5e-8)</td><td>0.163156</td><td>10,800s (C)</td><td>12,288 Fugaku nodes (65,536 cores)</td></tr>
   </tbody>
 </table>
