@@ -199,5 +199,16 @@
     "runtimeClassical": 43422.66,
     "computeResourcesClassical": "40 Node x Intel Xeon Platinum 8480+ (One node has 112 cores with 110 GiB memory) = 4480 cores",
     "institutions": "Qunova Computing, RIKEN"
+  },
+  {
+    "createdAt": "2026-06-16T05:10:21Z",
+    "url": "https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/188",
+    "name": "[N_2] (14e, 28o) 3.0A HCI",
+    "hamiltonian": "n2_3-00_14e_28o",
+    "energy": -108.9614962,
+    "method": "HCI",
+    "runtimeClassical": 4844.57,
+    "computeResourcesClassical": "40 Node x Intel Xeon Platinum 8480+ (One node has 112 cores with 110 GiB memory) = 4480 cores",
+    "institutions": "Qunova Computing, RIKEN"
   }
 ]
