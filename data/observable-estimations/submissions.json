@@ -182,5 +182,20 @@
     "notes": "Duplicate submission of Quantum Simulation of High Energy Physics (a non-Abelian lattice gauge theory) #149 - reports only classical runtime",
     "authors": "Fran Ilcic, Ritajit Majumdar, Emil Mathew, Md. Osama Ali, Nathan Earnest-Noble, Indrakshi Raychowdhury",
     "institutions": "Birla Institute of Technology and Science - Pilani, IBM"
+  },
+  {
+    "createdAt": "2026-05-22T08:40:23Z",
+    "url": "https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/173",
+    "name": "QESEM (unbiased), ibm_boston, ZZd3, 51qx16c",
+    "circuit": "floquet_mixed_field_ising_zzd3_51qx16c",
+    "observableValue": 0.2111,
+    "errorBoundLow": 0.1984,
+    "errorBoundHigh": 0.2238,
+    "method": "QESEM, IBM (unbiased)",
+    "institutions": "Qedma, IBM, Riken, BlueQubit",
+    "runtimeQuantum": 6228,
+    "runtimeClassical": 3471,
+    "computeResourcesQuantum": "ibm_boston",
+    "computeResourcesClassical": "32 CPUS 32 GB"
   }
 ]
