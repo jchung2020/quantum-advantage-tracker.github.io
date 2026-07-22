@@ -197,5 +197,16 @@
     "runtimeClassical": 3471,
     "computeResourcesQuantum": "ibm_boston",
     "computeResourcesClassical": "32 CPUS 32 GB"
+  },
+  {
+    "createdAt": "2026-05-22T08:32:32Z",
+    "url": "https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/171",
+    "name": "SPP, ORQA (eps0=5e-8, W=16), ZZd3, 51qx16c",
+    "circuit": "floquet_mixed_field_ising_zzd3_51qx16c",
+    "observableValue": 0.183429,
+    "method": "SPP, ORQA  with eps0=5e-8 and W=16",
+    "institutions": "Qedma, IBM, Riken, BlueQubit",
+    "runtimeClassical": 7960,
+    "computeResourcesClassical": "12,288 Fugaku nodes (utilizing 65,536 Fugaku cores)"
   }
 ]
