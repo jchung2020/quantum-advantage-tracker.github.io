@@ -49,10 +49,10 @@
       }
     ]
   },
-  "doped_random_graph_sampling": {
+  "doped_clifford_sampling": {
     "instances": [
       {
-        "id": "doped_random_graph_sampling_nq70_depth70_checks27",
+        "id": "doped_clifford_sampling_nq70_depth70_checks27",
         "path": "nq70_depth70_checks27_doped.qasm",
         "qubits": 70,
         "gates": 2415,

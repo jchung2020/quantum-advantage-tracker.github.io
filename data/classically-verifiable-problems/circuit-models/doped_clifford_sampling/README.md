@@ -4,21 +4,9 @@
 
 - `nq70_depth70_checks27_doped_checks.qasm`: This includes the ancillas and spacetime Pauli checks for the above circuit.
 
-<<<<<<< Updated upstream
-
 ## Doped Clifford Sampling
 
-# We present circuits for Doped Clifford Sampling (DCS) below. For more detailed description and for proofs of hardness, please reference the preprint ["Sampling hard circuits with verifiably high fidelity"](https://arxiv.org/abs/2607.25941).
-
-We provide a summary of Doped Clifford Sampling (DCS) below, for a more detailed explanation please reference the preprint ["Sampling hard circuits with verifiably high fidelity"](https://arxiv.org/abs/2607.25941).
-
-## Doped Clifford Sampling
-
-We present circuits for Doped Clifford Sampling. This generalizes [random graph state sampling (RGS)](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/tree/main/data/classically-verifiable-problems/circuit-models/random_graph_sampling) by inserting non-Clifford gates throughout the circuit, instead of reserving them for a final basis rotation. This increases the amount of magic and therefore the complexity of extended stabilizer simulations.
-
-The arguments for computational complexity largely follow that of RGS, although we highlight differences in the proof of verifiability (see section C).
-
-> > > > > > > Stashed changes
+We present circuits for Doped Clifford Sampling (DCS) below. For more detailed description and for proofs of hardness, please reference the preprint ["Sampling hard circuits with verifiably high fidelity"](https://arxiv.org/abs/2607.25941).
 
 ## A. Computational Complexity
 
@@ -52,8 +40,8 @@ While we have evidence that the Schmidt rank of the doped Clifford states should
 
 <p align="center">
 
-<img width="576" height="360" alt="image" src="https://github.com/user-attachments/assets/7bc32ff8-d156-4a80-8d8e-13225336e5d1" />
-<img width="864" height="360" alt="image" src="https://github.com/user-attachments/assets/e90ae9c7-c684-4bf2-8973-70346c6f1391" />
+  <img width="576" height="360" alt="image" src="https://github.com/user-attachments/assets/7bc32ff8-d156-4a80-8d8e-13225336e5d1" />
+  <img width="864" height="360" alt="image" src="https://github.com/user-attachments/assets/e90ae9c7-c684-4bf2-8973-70346c6f1391" />
 
 <em>Figure 2. (Top) Quimb matrix product state (MPS) simulations for the doped 70 X 70 circuit and a brickwork circuit interleaved with Haar single qubit random gates. We use a maximum bond dimension of 4096 and record the depth at which truncation error exceeds the experimental measured infidelity 1 - 0.32. (Bottom) The singular value spectrum is flat for the the Clifford skeleton of a 14 X 14 circuit, has a strong exponential decay for a brickwork Haar-random circuit, and a weaker exponential decay for the doped 14 X 14 and 70 X 14 circuits. Similarly, when estimating the fidelity from truncation error, the 14 X 14 Clifford skeleton shows the most adverse scaling, being linearly dependent on bond dimension, while the Haar-random circuit maintains high fidelity at lower bond dimensions. </em>
 
@@ -76,7 +64,7 @@ So, as claimed, the nonstabilizerness increases exponentially with the system si
 <p align="center">
   <img width="651" height="501" src="https://github.com/user-attachments/assets/c26e231b-9127-46ff-80b6-47d7d5a881ea" />
   
-<em>Figure 2. Simulations of the doped 70 X 70 circuit in QuiZX with a maximum of 70 T gates (dots). The solid curve is an exponential fit on those data points with α = 0.327 and β = 2.07e-5. The dashed curve corresponds to the conjectured best possible scaling for stabilizer extent with α = 0.228. </em>
+<em>Figure 3. Simulations of the doped 70 X 70 circuit in QuiZX with a maximum of 70 T gates (dots). The solid curve is an exponential fit on those data points with α = 0.327 and β = 2.07e-5. The dashed curve corresponds to the conjectured best possible scaling for stabilizer extent with α = 0.228. </em>
 
 </p>
 
@@ -111,7 +99,7 @@ Our circuits are mapped onto a one dimensional chain with ancillas attached to e
 <p align="center">
   <img width="594" height="483" alt="image" src="https://github.com/user-attachments/assets/1624d6ee-c943-4fb5-801a-9ad1fb3ac94c" />
 
-<em>Figure 3. Physical layout for the 70 X 70 circuit (with 27 ancilla qubits) on IBM Boston, a Heron R3 device with heavy-hex architecture. The logical qubits (green) are arranged on a 1D chain with dangling ancilla qubits (red).</em>
+<em>Figure 4. Physical layout for the 70 X 70 circuit (with 27 ancilla qubits) on IBM Boston, a Heron R3 device with heavy-hex architecture. The logical qubits (green) are arranged on a 1D chain with dangling ancilla qubits (red).</em>
 
 </p>
 
@@ -154,7 +142,7 @@ Therefore, the drop in fidelity of any doped Clifford state (that commutes with 
 <p align="center">
   <img width="319" height="311" alt="image" src="https://github.com/user-attachments/assets/f01f7a2e-26b1-45b6-bf22-ac8432bdfdd2" />
 
-<em>Figure 4. Numerical simulations of the probability of harmless, accepted errors under a Pauli noise model at various strengths and polarizations. The maximum probability is 0.013(1).</em>
+<em>Figure 5. Numerical simulations of the probability of harmless, accepted errors under a Pauli noise model at various strengths and polarizations. The maximum probability is 0.013(1).</em>
 
 </p>
 
@@ -175,13 +163,13 @@ To build confidence in this experimentally, we can measure the state fidelity (o
 <p align="center">
   <img width="1020" height="442" alt="image" src="https://github.com/user-attachments/assets/6f56f8e9-8718-47ef-bf7a-16ed22bbb42d" />
 
-<em>Figure 5. (a) Fidelity for the 70 X 70 circuit on IBM Boston with 0 doping and doping with T and S gates in the same 5, 75, and 468 locations (468 T fidelity is not shown). All values are consistent up to normal 95% confidence intervals. (b) The syndromes for each experiment show good agreement and no systematic dependence on T or S count. </em>
+<em>Figure 6. (a) Fidelity for the 70 X 70 circuit on IBM Boston with 0 doping and doping with T and S gates in the same 5, 75, and 468 locations (468 T fidelity is not shown). All values are consistent up to normal 95% confidence intervals. (b) The syndromes for each experiment show good agreement and no systematic dependence on T or S count. </em>
 
 </p>
 
-The consistency between syndromes additionally is evidence that $T$ gates are noiseless (see Supplementary S2.1 in the paper).
+Additionally, the consistency between syndromes provides evidence that $T$ gates are noiseless (see Supplementary S2.1 in the paper).
 
-Addendum: In Figure 5 the XEB is corrected for readout error.
+Addendum: In Figure 6 the XEB is corrected for readout error.
 
 For XEB, we assume that the probability distribution with readout error is uncorrelated with the ideal probability distribution, separate circuit fidelity $F$ into
 
@@ -191,7 +179,7 @@ where $F_{ideal}$ is the circuit fidelity with perfect readout error, and $F_{re
 
 $$F_{readout} = \prod_{i=1}^{N} (1 - p_i)$$
 
-which can be used to rescaled the XEB scores. In Figure 5, we additional rescale using [readout error mitigation](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.105.032620) values for random stabilizers.
+which can be used to rescaled the XEB scores. In Figure 6, we additional rescale using [readout error mitigation](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.105.032620) values for random stabilizers.
 
 ## Institutions
 
