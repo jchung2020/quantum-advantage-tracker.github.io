@@ -135,5 +135,19 @@
     "runtimeClassical": 734,
     "computeResourcesClassical": "Apple M5 Pro (T6050) laptop, single Python process, Apple Accelerate BLAS",
     "notes": "12 min on a consumer Apple Silicon laptop CPU"
+  },
+  {
+    "createdAt": "2026-07-09T18:49:42Z",
+    "url": "https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/228",
+    "name": "ibm_boston_dcs_nq70_depth70_checks27",
+    "circuit": "doped_random_graph_sampling_nq70_depth70_checks27",
+    "value": "0.32",
+    "method": "Quantum",
+    "runtimeQuantum": 17900,
+    "computeResourcesQuantum": "IBM Heron R3",
+    "computeResourcesClassical": "Apple M1 Max 10 cores with 32 GB memory (Quimb), Intel Xeon Gold 6258R 28 cores with 1 TB memory (quizx Clifford + T)",
+    "notes": "The reported classical runtimes are extrapolated.",
+    "authors": "Ali Javadi-Abhari, Simon Martiel, Jay-U Chung, Alireza Seif, Ian Hincks, Jay Gambetta, Soumik Ghosh, Bill Fefferman",
+    "institutions": "IBM, UChicago"
   }
 ]
