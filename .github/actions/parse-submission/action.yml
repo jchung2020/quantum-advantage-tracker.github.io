@@ -1,0 +1,130 @@
+name: Parse submission
+description: >-
+  Determine the submission path from issue labels, parse the issue body with the
+  matching issue-form template, post-process the JSON, and run npm typecheck on
+  it. Assumes the repository is already checked out. Typecheck failure does not
+  fail the action — the result is exposed via outputs so the caller can render
+  it back to the user.
+
+outputs:
+  path_label:
+    description: The submission path label (e.g. observable-estimations).
+    value: ${{ steps.path_selector.outputs.path_label }}
+  submission:
+    description: The parsed and post-processed submission JSON.
+    value: ${{ steps.modify_json.outputs.submission }}
+  typecheck_passed:
+    description: '"true" if `npm run typecheck` exited 0, "false" otherwise.'
+    value: ${{ steps.typecheck.outputs.rc == '0' }}
+  typecheck_errors:
+    description: Captured stdout+stderr of `npm run typecheck` (empty when passed).
+    value: ${{ steps.typecheck.outputs.output }}
+
+runs:
+  using: composite
+  steps:
+    - name: Determine path based on labels
+      id: path_selector
+      shell: bash
+      run: |
+        declare -A TEMPLATES=(
+          ["observable-estimations:regular"]="01-submission-observable-estimations.yml"
+          ["observable-estimations:problem"]="02-submission-observable-estimations-problem.yml"
+          ["variational-problems:regular"]="03-submission-variational-problems.yml"
+          ["variational-problems:problem"]="04-submission-variational-problems-problem.yml"
+          ["classically-verifiable-problems:regular"]="05-submission-classically-verifiable-problems.yml"
+          ["classically-verifiable-problems:problem"]="06-submission-classically-verifiable-problems-problem.yml"
+        )
+
+        JSON_LABELS='${{ toJSON(github.event.issue.labels.*.name) }}'
+        readarray -t LABELS <<< "$(echo "$JSON_LABELS" | jq -r '.[]')"
+
+        PATH_LABEL=""
+        KIND="regular"
+        for LABEL in "${LABELS[@]}"; do
+          case "$LABEL" in
+            "path: "*)            PATH_LABEL="${LABEL#path: }" ;;
+            "problem submission") KIND="problem" ;;
+          esac
+        done
+
+        ISSUE_TEMPLATE_PATH="${TEMPLATES[${PATH_LABEL}:${KIND}]:-}"
+
+        if [ -z "$ISSUE_TEMPLATE_PATH" ]; then
+          echo "::error::No valid template label was found on the issue."
+          exit 1
+        fi
+
+        echo "path_label=$PATH_LABEL" >> $GITHUB_OUTPUT
+        echo "selected_issue_template=$ISSUE_TEMPLATE_PATH" >> $GITHUB_OUTPUT
+
+    # Workaround for https://github.com/issue-ops/parser/issues/216:
+    # the parser does not yet support `type: upload`, so we rewrite it to
+    # `type: textarea` in the checked-out template.
+    - name: 'Patch unsupported `type: upload` in template'
+      shell: bash
+      env:
+        TEMPLATE: .github/ISSUE_TEMPLATE/${{ steps.path_selector.outputs.selected_issue_template }}
+      run: |
+        sed -i 's/type: upload/type: textarea/g' "$TEMPLATE"
+
+    - name: Parse issue body
+      id: issue_form_parser
+      uses: issue-ops/parser@v5
+      with:
+        body: ${{ github.event.issue.body }}
+        issue-form-template: ${{ steps.path_selector.outputs.selected_issue_template }}
+
+    - name: Revert template patch
+      shell: bash
+      env:
+        TEMPLATE: .github/ISSUE_TEMPLATE/${{ steps.path_selector.outputs.selected_issue_template }}
+      run: |
+        git checkout -- "$TEMPLATE"
+
+    - name: Modify parsed JSON
+      id: modify_json
+      shell: bash
+      env:
+        INPUT_JSON: ${{ steps.issue_form_parser.outputs.json }}
+        ISSUE_CREATED_AT: ${{ github.event.issue.created_at }}
+        ISSUE_URL: ${{ github.event.issue.html_url }}
+      run: |
+        SUBMISSION=$(node "$GITHUB_ACTION_PATH/parse-submission.js" "$INPUT_JSON")
+        echo "submission=$SUBMISSION" >> $GITHUB_OUTPUT
+
+    # Append the parsed submission to its data file so the next step's `tsc`
+    # can see it. The runner workspace is ephemeral, so this never reaches main.
+    - name: Apply submission to data file (for typecheck)
+      shell: bash
+      env:
+        PATH_LABEL: ${{ steps.path_selector.outputs.path_label }}
+        SUBMISSION: ${{ steps.modify_json.outputs.submission }}
+      run: |
+        SUBMISSIONS_PATH="data/${PATH_LABEL}/submissions.json"
+        tmp_file=$(mktemp)
+        jq ". += [${SUBMISSION}]" "$SUBMISSIONS_PATH" > "$tmp_file" && mv "$tmp_file" "$SUBMISSIONS_PATH"
+
+    - uses: actions/setup-node@v6
+      with:
+        node-version-file: 'package.json'
+        cache: 'npm'
+
+    - name: Install deps
+      shell: bash
+      run: npm ci
+
+    - name: Typecheck
+      id: typecheck
+      shell: bash
+      run: |
+        set +e
+        npm run typecheck > /tmp/typecheck-output.txt 2>&1
+        RC=$?
+        set -e
+        echo "rc=$RC" >> $GITHUB_OUTPUT
+        {
+          echo "output<<__TC_EOF__"
+          cat /tmp/typecheck-output.txt
+          echo "__TC_EOF__"
+        } >> $GITHUB_OUTPUT

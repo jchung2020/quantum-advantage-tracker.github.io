@@ -54,7 +54,7 @@
     "value": "100%",
     "method": "TNS + BP on GPUs (extrapolated)",
     "institutions": "BlueQubit, University of Toronto, Vector Institute",
-    "runtimeClassical": 1E+14,
+    "runtimeClassical": 1e14,
     "computeResourcesClassical": "cluster of NVIDIA H100 GPUs",
     "notes": "Classical runtime is extrapolated."
   },
@@ -81,7 +81,7 @@
     "method": "TNS + BP (extrapolated)",
     "authors": "Nicholas E. Sherman",
     "institutions": "BlueQubit",
-    "runtimeClassical": 1E+7,
+    "runtimeClassical": 1e7,
     "computeResourcesClassical": "H100 GPU",
     "notes": "Classical runtime is extrapolated."
   },
@@ -108,5 +108,46 @@
     "institutions": "IBM",
     "runtimeClassical": 4059,
     "computeResourcesClassical": "Nvidia A100 80GB"
+  },
+  {
+    "createdAt": "2026-04-29T23:24:42Z",
+    "url": "https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/151",
+    "name": "ibm_boston_rgs_nq70_depth70_checks27_basis_fstate",
+    "circuit": "random_graph_sampling_nq70_depth70_checks27_basis_fstate",
+    "value": "0.37",
+    "method": "Quantum",
+    "authors": "Ali Javadi-Abhari, Simon Martiel, Jay-U Chung, Alireza Seif, Soumik Ghosh",
+    "institutions": "IBM, University of Chicago",
+    "runtimeQuantum": 1950,
+    "computeResourcesQuantum": "IBM Heron R3",
+    "computeResourcesClassical": "Intel Xeon Gold 6258R 28 cores with 1 TB memory (Qiskit Aer), Apple M1 Max 10 cores with 32 GB memory (Quimb)",
+    "notes": "The reported classical runtimes are extrapolated."
+  },
+  {
+    "createdAt": "2026-05-14T04:51:19Z",
+    "url": "https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/153",
+    "name": "mpo_unswapping_cpu_laptop_56_1917",
+    "circuit": "peaked_circuit_P9_Hqap_56x1917",
+    "value": "100",
+    "method": "MPO + Unswapping (CPU)",
+    "authors": "Alexey Galda",
+    "institutions": "Moderna",
+    "runtimeClassical": 734,
+    "computeResourcesClassical": "Apple M5 Pro (T6050) laptop, single Python process, Apple Accelerate BLAS",
+    "notes": "12 min on a consumer Apple Silicon laptop CPU"
+  },
+  {
+    "createdAt": "2026-07-09T18:49:42Z",
+    "url": "https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/228",
+    "name": "ibm_boston_dcs_nq70_depth70_checks27",
+    "circuit": "doped_random_graph_sampling_nq70_depth70_checks27",
+    "value": "0.32",
+    "method": "Quantum",
+    "runtimeQuantum": 17900,
+    "computeResourcesQuantum": "IBM Heron R3",
+    "computeResourcesClassical": "Apple M1 Max 10 cores with 32 GB memory (Quimb), Intel Xeon Gold 6258R 28 cores with 1 TB memory (quizx Clifford + T)",
+    "notes": "The reported classical runtimes are extrapolated.",
+    "authors": "Ali Javadi-Abhari, Simon Martiel, Jay-U Chung, Alireza Seif, Ian Hincks, Jay Gambetta, Soumik Ghosh, Bill Fefferman",
+    "institutions": "IBM, UChicago"
   }
 ]

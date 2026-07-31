@@ -1,11 +1,15 @@
 const inputJsonString = process.argv[2];
 const data = JSON.parse(inputJsonString);
 
-if (data.circuit) {
+delete data.problemFiles;
+delete data.problemCategory;
+delete data.problemDescription;
+
+if (Array.isArray(data.circuit)) {
   data.circuit = data.circuit[0];
 }
 
-if (data.hamiltonian) {
+if (Array.isArray(data.hamiltonian)) {
   data.hamiltonian = data.hamiltonian[0];
 }
 

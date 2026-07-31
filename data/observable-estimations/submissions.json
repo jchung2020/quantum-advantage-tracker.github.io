@@ -152,5 +152,61 @@
     "institutions": "IBM, Algorithmiq, Flatiron Institute",
     "runtimeQuantum": 4120,
     "computeResourcesQuantum": "ibm_pittsburgh"
+  },
+  {
+    "createdAt": "2026-04-01T16:52:17Z",
+    "url": "https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/149",
+    "name": "Simulating SU(2) Hadron dynamics on a 60 site lattice using 120 qubits",
+    "circuit": "su2_hadron_dynamics_lsh_x_100_meson",
+    "observableValue": 59.99402699,
+    "errorBoundLow": -0.005710650099,
+    "errorBoundHigh": 0.005710650099,
+    "method": "Loop-string-hadron encoding into qubits, 1st order Trotterization, measurement error mitigation, measurement in Z-basis. differential measurement protocol.",
+    "authors": "Fran Ilcic, Ritajit Majumdar,  Emil Mathew, Md. Osama Ali, Nathan Earnest-Noble, Indrakshi Raychowdhury",
+    "institutions": "Birla Institute of Technology and Science - Pilani, IBM",
+    "runtimeQuantum": 20,
+    "computeResourcesQuantum": "IBM Boston",
+    "notes": "Only one instance is submitted here. The reported result is out come of both the circuits SCV and Meson, and the difference between observables are calculated to obtain physical results."
+  },
+  {
+    "createdAt": "2026-07-01T03:43:05Z",
+    "url": "https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/202",
+    "name": "Simulating SU(2) Hadron dynamics on a 60 site lattice using 120 qubits",
+    "circuit": "su2_hadron_dynamics_lsh_x_100_meson",
+    "observableValue": 60.00538161,
+    "errorBoundLow": -0.005,
+    "errorBoundHigh": 0.005,
+    "method": "Pauli Propagation method on a CPU",
+    "runtimeClassical": 2485,
+    "computeResourcesClassical": "HP Z2 Tower G9 Workstation",
+    "notes": "Duplicate submission of Quantum Simulation of High Energy Physics (a non-Abelian lattice gauge theory) #149 - reports only classical runtime",
+    "authors": "Fran Ilcic, Ritajit Majumdar, Emil Mathew, Md. Osama Ali, Nathan Earnest-Noble, Indrakshi Raychowdhury",
+    "institutions": "Birla Institute of Technology and Science - Pilani, IBM"
+  },
+  {
+    "createdAt": "2026-05-22T08:40:23Z",
+    "url": "https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/173",
+    "name": "QESEM (unbiased), ibm_boston, ZZd3, 51qx16c",
+    "circuit": "floquet_mixed_field_ising_zzd3_51qx16c",
+    "observableValue": 0.2111,
+    "errorBoundLow": 0.1984,
+    "errorBoundHigh": 0.2238,
+    "method": "QESEM, IBM (unbiased)",
+    "institutions": "Qedma, IBM, Riken, BlueQubit",
+    "runtimeQuantum": 6228,
+    "runtimeClassical": 3471,
+    "computeResourcesQuantum": "ibm_boston",
+    "computeResourcesClassical": "32 CPUS 32 GB"
+  },
+  {
+    "createdAt": "2026-05-22T08:32:32Z",
+    "url": "https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/171",
+    "name": "SPP, ORQA (eps0=5e-8, W=16), ZZd3, 51qx16c",
+    "circuit": "floquet_mixed_field_ising_zzd3_51qx16c",
+    "observableValue": 0.183429,
+    "method": "SPP, ORQA  with eps0=5e-8 and W=16",
+    "institutions": "Qedma, IBM, Riken, BlueQubit",
+    "runtimeClassical": 7960,
+    "computeResourcesClassical": "12,288 Fugaku nodes (utilizing 65,536 Fugaku cores)"
   }
 ]

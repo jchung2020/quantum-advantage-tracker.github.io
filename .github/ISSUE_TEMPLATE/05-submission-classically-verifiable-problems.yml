@@ -1,13 +1,11 @@
-name: 🗝️ Path 3 - Classically verifiable problems submission
+name: 🗝️ Classically verifiable problems submission (existing problem)
 description: Submit a problem solution for the classically verifiable problems tracker
 labels: ['path: classically-verifiable-problems', 'submission']
 body:
   - type: markdown
     attributes:
       value: |
-        ## 🗝️ Path 3 - Classically verifiable problems
-
-        Thank you for submitting a solution to the **classically verifiable problems tracker**!
+        ## 🗝️ Classically verifiable problems
 
         Please provide detailed information about your submission below.
 
@@ -28,8 +26,10 @@ body:
 
         You can find information about all the available ones here: [/data/classically-verifiable-problems/circuit-models](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/tree/main/data/classically-verifiable-problems/circuit-models).
 
-        If your instance is not listed, please follow the instructions in [/data/README.md](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/tree/main/data/README.md) to submit a new one.
+        Don't see your circuit? [Submit it as a new problem](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/new?template=06-submission-classically-verifiable-problems-problem.yml).
       options:
+        - peaked_circuit_P12_Hqap_98x2457
+        - peaked_circuit_P11_Hqap_98x1999
         - peaked_circuit_heavy_hex_49x4020
         - peaked_circuit_heavy_hex_49x5072
         - peaked_circuit_P9_Hqap_56x1917
@@ -66,22 +66,6 @@ body:
         - Paper/preprint: https://arxiv.org/abs/...
         - Code repository: https://github.com/...
         - Method explanation: Detailed description of the approach
-    validations:
-      required: true
-
-  - type: input
-    id: authors
-    attributes:
-      label: Authors
-      description: The author(s) or individual(s) involved in the submission, separated by commas
-    validations:
-      required: false
-
-  - type: input
-    id: institutions
-    attributes:
-      label: Institutions
-      description: The institution(s) or organization(s) involved in the submission, separated by commas
     validations:
       required: true
 
@@ -129,17 +113,18 @@ body:
     validations:
       required: false
 
-  - type: markdown
+  - type: input
+    id: authors
     attributes:
-      value: |
-        ---
+      label: Authors
+      description: The author(s) or individual(s) involved in the submission, separated by commas
+    validations:
+      required: false
 
-        ### What happens next?
-
-        Maintainers will review your submission for:
-        - ✅ Reproducibility
-        - ✅ Compliance with validation criteria (efficient verification)
-        - ✅ Data fidelity and traceability
-        - ✅ Transparent documentation of assumptions and uncertainties
-
-        Thank you for contributing to the Quantum Advantage Tracker! 🚀
+  - type: input
+    id: institutions
+    attributes:
+      label: Institutions
+      description: The institution(s) or organization(s) involved in the submission, separated by commas
+    validations:
+      required: true

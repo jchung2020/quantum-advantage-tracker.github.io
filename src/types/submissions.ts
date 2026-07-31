@@ -1,4 +1,4 @@
-type BaseSubmission = {
+export type BaseSubmission = {
   createdAt: string;
   url: string;
   name: string;

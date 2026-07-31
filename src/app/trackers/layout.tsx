@@ -1,12 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { ChevronRightIcon } from 'lucide-react';
-import type { Metadata } from 'next';
 import Link from 'next/link';
-
-export const metadata: Metadata = {
-  description:
-    'Track verifiable quantum advantage claims across three pathways, with clear evidence requirements and contributing institutions.',
-};
 
 export default function TrackersLayout(props: LayoutProps<'/trackers'>) {
   return (
@@ -18,7 +12,7 @@ export default function TrackersLayout(props: LayoutProps<'/trackers'>) {
           <h3 className="text-4xl">Participate</h3>
           <p className="mx-auto max-w-xl">
             Have a quantum advantage candidate? Contribute it using the provided problem instances
-            or your own circuit specifications, and help expand the list of verified candidates.
+            or your own circuit specifications, and help expand the list of benchmark candidates.
           </p>
 
           <div>

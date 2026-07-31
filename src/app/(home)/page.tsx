@@ -1,44 +1,165 @@
 import { Button } from '@/components/ui/button';
+import { isCategory, type Category } from '@/lib/categories';
+import type { BaseSubmission } from '@/types/submissions';
+import { buildInstanceOptions, flattenInstances, stripType } from '@/utils';
 import { ChevronRightIcon } from 'lucide-react';
 import Link from 'next/link';
+import cvpCircuitModels from '../../../data/classically-verifiable-problems/circuit-models.json' with { type: 'json' };
+import cvpSubmissions from '../../../data/classically-verifiable-problems/submissions.json' with { type: 'json' };
+import oeCircuitModels from '../../../data/observable-estimations/circuit-models.json' with { type: 'json' };
+import oeSubmissions from '../../../data/observable-estimations/submissions.json' with { type: 'json' };
+import vpHamiltonians from '../../../data/variational-problems/hamiltonians.json' with { type: 'json' };
+import vpSubmissions from '../../../data/variational-problems/submissions.json' with { type: 'json' };
 import { Contributors } from './Contributors';
+import { TrackerSummary, type ActiveCard } from './TrackerSummary';
+
+function computeCounts<T extends BaseSubmission>(
+  submissions: T[],
+  instances: { id: string; category: string }[],
+  getInstanceId: (s: T) => string,
+): Record<Category, number> {
+  const counts: Record<Category, number> = {
+    'Active candidates': 0,
+    'Superseded candidates': 0,
+    'Baseline benchmarks': 0,
+  };
+  const withSubmissions = new Set(submissions.map(getInstanceId));
+  for (const instance of instances) {
+    if (withSubmissions.has(instance.id) && isCategory(instance.category)) {
+      counts[instance.category]++;
+    }
+  }
+  return counts;
+}
+
+function computeActiveCards<
+  T extends BaseSubmission,
+  I extends { id: string; type: string; category: string },
+>(submissions: T[], instances: I[], getInstanceId: (s: T) => string): ActiveCard[] {
+  return buildInstanceOptions(submissions, instances, getInstanceId, 'Active candidates')
+    .slice(0, 2)
+    .map((inst) => ({
+      id: inst.id,
+      type: inst.type,
+      instanceLabel: stripType(inst.id, inst.type),
+      entries: inst.entries,
+    }));
+}
 
 export default function Home() {
+  const oeInstances = flattenInstances(oeCircuitModels);
+  const vpInstances = flattenInstances(vpHamiltonians);
+  const cvpInstances = flattenInstances(cvpCircuitModels);
+
   return (
     <>
       <header className="bg-hero-gradient">
-        <div className="px-6 py-20 text-center">
+        <div className="px-6 pt-20 pb-12 text-center">
           <h1 className="mx-auto max-w-lg text-5xl">Benchmarking quantum advantage</h1>
           <h2 className="mx-auto my-6 max-w-xl">
             As claims of quantum advantage emerge, this project provides a platform-agnostic
-            framework to collect, validate, and compare experimental results.
+            framework to collect, validate, and compare results.
           </h2>
-          <div>
-            <Button size="lg" asChild>
-              <Link href="/trackers">
-                View trackers <ChevronRightIcon />
-              </Link>
-            </Button>
-          </div>
         </div>
 
         <div className="px-6 pb-20 text-center">
           <div className="text-secondary-foreground text-sm">
-            Contributors include researchers from 10+ organizations
+            Contributors include researchers from 15+ organizations
           </div>
           <Contributors />
         </div>
       </header>
 
+      <section className="mx-auto px-6 py-20 text-center">
+        <div className="mx-auto max-w-2xl px-6">
+          <h3 className="mb-6 text-4xl">Active advantage candidates</h3>
+          <p>
+            Active candidates represent the highest bar, where quantum methods are credible
+            contenders but reliable classical benchmarks have yet to catch up.
+          </p>
+        </div>
+        <ul className="mx-auto grid max-w-7xl gap-12 pt-10 md:grid-cols-3">
+          <TrackerSummary
+            title="Observable estimations"
+            href="/trackers/observable-estimations"
+            counts={computeCounts(oeSubmissions, oeInstances, (s) => s.circuit)}
+            activeCards={computeActiveCards(oeSubmissions, oeInstances, (s) => s.circuit)}
+          />
+          <TrackerSummary
+            title="Variational problems"
+            href="/trackers/variational-problems"
+            counts={computeCounts(vpSubmissions, vpInstances, (s) => s.hamiltonian)}
+            activeCards={computeActiveCards(vpSubmissions, vpInstances, (s) => s.hamiltonian)}
+          />
+          <TrackerSummary
+            title="Classically verifiable problems"
+            href="/trackers/classically-verifiable-problems"
+            counts={computeCounts(cvpSubmissions, cvpInstances, (s) => s.circuit)}
+            activeCards={computeActiveCards(cvpSubmissions, cvpInstances, (s) => s.circuit)}
+          />
+        </ul>
+      </section>
+
+      <section className="mx-auto px-6 py-20 text-center">
+        <h3 className="mb-16 text-4xl">Submission categories</h3>
+        <div className="relative mx-auto max-w-7xl">
+          <div
+            aria-hidden
+            className="border-foreground/30 absolute top-2 right-0 left-0 hidden border-t border-dashed md:block"
+          />
+          <ul className="grid gap-12 md:grid-cols-3">
+            <li className="relative flex flex-col items-center px-6">
+              <div
+                aria-hidden
+                className="border-foreground/30 absolute top-2 right-0 left-0 border-t border-dashed md:hidden"
+              />
+              <div className="bg-primary ring-background relative mb-8 size-4 rounded-full ring-8" />
+              <h4 className="mb-4 font-semibold">Active candidates</h4>
+              <p>
+                Problem instances where quantum computations currently appear to challenge leading
+                classical methods, and where further benchmarking is needed to determine whether an
+                advantage exists.
+              </p>
+            </li>
+            <li className="relative flex flex-col items-center px-6">
+              <div
+                aria-hidden
+                className="border-foreground/30 absolute top-2 right-0 left-0 border-t border-dashed md:hidden"
+              />
+              <div className="bg-foreground ring-background relative mb-8 size-4 rounded-full ring-8" />
+              <h4 className="mb-4 font-semibold">Superseded candidates</h4>
+              <p>
+                Problem instances where quantum computations once appeared to challenge leading
+                classical methods, but for which subsequent classical progress has closed or
+                reversed the apparent gap.
+              </p>
+            </li>
+            <li className="relative flex flex-col items-center px-6">
+              <div
+                aria-hidden
+                className="border-foreground/30 absolute top-2 right-0 left-0 border-t border-dashed md:hidden"
+              />
+              <div className="bg-foreground ring-background relative mb-8 size-4 rounded-full ring-8" />
+              <h4 className="mb-4 font-semibold">Baseline benchmarks</h4>
+              <p>
+                Problem instances that provide useful reference points for comparing quantum and
+                classical methods, including examples where the state-of-the-art solutions are
+                classical.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-2xl px-6 py-20 text-center">
         <h3 className="mb-6 text-4xl">What is quantum advantage?</h3>
         <p>
-          Quantum advantage refers to performing an information processing task more efficiently,
+          Quantum advantage refers to an information processing task performed more efficiently,
           cost-effectively, or accurately using a quantum computer than is known to be possible with
           classical computers alone.
         </p>
         <p className="mt-4">
-          But achieving this milestone requires more than raw performance - it demands trust in the
+          Achieving this milestone requires more than raw performance. It demands trust in the
           output of noisy quantum devices and scientific rigor in how we validate results.
         </p>
       </section>
@@ -47,11 +168,10 @@ export default function Home() {
         <div className="mx-auto max-w-2xl px-6">
           <h3 className="mb-6 text-4xl">Why is it hard to verify?</h3>
           <p>
-            Quantum advantage isn’t a single milestone - it’s a falsifiable scientific hypothesis
-            that must be tested through rigorous experimentation. Because quantum computers tackle
-            problems that classical systems can’t easily replicate, direct comparison is
-            challenging. Verifying any claim of advantage therefore demands multiple points of
-            analysis.
+            Quantum advantage is a falsifiable scientific hypothesis that must be tested through
+            rigorous experimentation. Because quantum computers tackle problems in ways that
+            classical systems can’t easily replicate, direct comparison is challenging. Verifying
+            any claim of advantage therefore demands several multiple points of analysis.
           </p>
         </div>
         <div className="mx-auto max-w-3xl px-6">
@@ -70,10 +190,9 @@ export default function Home() {
         <ul className="mx-auto mt-20 grid max-w-7xl gap-4 text-left md:grid-cols-3">
           <li className="bg-secondary flex flex-col items-start gap-8 rounded-md border p-6">
             <div className="text-3xl md:max-w-72">Observable estimations 📊</div>
-            <div className="font-semibold">Trust through rigorous error control.</div>
             <div className="flex-1">
-              Explore submissions that report expectation values for observables, and include
-              mathematically grounded error bars for validating quantum computations.
+              Submissions in this tracker report expectation values for observables alongside
+              rigorous error bars for validation.
             </div>
             <Button asChild size="lg">
               <Link href="/trackers/observable-estimations">
@@ -83,12 +202,9 @@ export default function Home() {
           </li>
           <li className="bg-secondary flex flex-col items-start gap-8 rounded-md border p-6">
             <div className="text-3xl md:max-w-72">Variational problems 🌀</div>
-            <div className="font-semibold">
-              Certifiable quantum solutions via the variational principle.
-            </div>
             <div className="flex-1">
-              Variational algorithm submissions offer guaranteed solution bounds and enable
-              benchmarking against classical methods - even when exact answers are unknown.
+              Submissions must provide upper bounds on the ground-state energy. Verified entries
+              include evidence that the algorithm respects the variational principle.
             </div>
             <Button asChild size="lg">
               <Link href="/trackers/variational-problems">
@@ -98,12 +214,9 @@ export default function Home() {
           </li>
           <li className="bg-secondary flex flex-col items-start gap-8 rounded-md border p-6">
             <div className="text-3xl md:max-w-80">Classically verifiable problems 🗝️</div>
-            <div className="font-semibold">
-              Leveraging classical resources to validate quantum outputs.
-            </div>
             <div className="flex-1">
-              Submissions in this path enable efficient validation of quantum outputs without
-              requiring full classical simulation of the quantum process.
+              Submissions must demonstrate quantum advantage by scoring solutions against known
+              answers or efficiently checkable witnesses.
             </div>
             <Button asChild size="lg">
               <Link href="/trackers/classically-verifiable-problems">
