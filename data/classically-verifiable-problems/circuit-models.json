@@ -56,7 +56,7 @@
         "path": "nq70_depth70_checks27_doped.qasm",
         "qubits": 70,
         "gates": 2415,
-        "category": "Baseline benchmarks"
+        "category": "Active candidates"
       }
     ]
   }
