@@ -1,16 +1,16 @@
 # Circuit instance description (Doped Clifford Sampling):
 
-`nq70_depth70_checks27_doped.qasm`: This prepares a $T$-doped random graph state on a 70 X 70 circuit (70 qubits with CZ-depth 70). The 70 logical qubits are arranged on a 1D lattice (LNN) and 27 ancilla qubits are used for error detection. A maximum of 468 nontrivial T gates can be placed throughout the circuit. The best known Schmidt rank is $2^{30}$ and the best known stabilizer rank is $2^{185.5}$. After post-selection, 0.059% of the shots remain, and the state fidelity is 0.32 $\pm$ 0.01 (bounded above 0.044 with 95% confidence).
+`nq70_depth70_checks27_doped.qasm`: This prepares a $T$-doped random graph state on a 70 X 70 circuit (70 qubits with CZ-depth 70). The 70 logical qubits are arranged on a 1D lattice (LNN) and 27 ancilla qubits are used for error detection. A maximum of 468 nontrivial $T$ gates can be placed throughout the circuit. The best known Schmidt rank is $2^{30}$ and the best known stabilizer rank is $2^{185.5}$. After post-selection, 0.059% of the shots remain, and the state fidelity is 0.32 $\pm$ 0.01 (bounded above 0.044 with 95% confidence).
 
 - `nq70_depth70_checks27_doped_checks.qasm`: This includes the ancillas and spacetime Pauli checks for the above circuit.
 
 ## Doped Clifford Sampling
 
-We present circuits for Doped Clifford Sampling (DCS) below. For more detailed description and for proofs of hardness, please reference the preprint ["Sampling hard circuits with verifiably high fidelity"](https://arxiv.org/abs/2607.25941).
+We present circuits for Doped Clifford Sampling (DCS) below. For more detailed descriptions and proofs, please reference the preprint ["Sampling hard circuits with verifiably high fidelity"](https://arxiv.org/abs/2607.25941).
 
 ## A. Computational Complexity
 
-Sampling-based proposals for quantum advantage rely on the asymptotic hardness of random quantum state sampling for classical algorithms. Indeed, we show that sampling from brickwork Clifford circuits interleaved with programmable single qubit rotations (notably we use $T$ gates) satisfies this property. This family of circuits is universal at polynomial depth, which implies #P-hardness in the worst case, and permits a worst to average case reduction (see Supplementary S8 in the paper). Unlike prior proposals that prepare Haar-random states, such as [random circuit sampling (RCS)](https://www.nature.com/articles/s41586-019-1666-5), we leverage the added structure from Clifford circuits. Crucially, this enables a spacetime encoding and consequently an argument for verifiability.
+Sampling-based proposals for quantum advantage rely on the asymptotic hardness of random quantum state sampling for classical algorithms. Indeed, we show that sampling from brickwork Clifford circuits interleaved with programmable single qubit rotations (in practice we use $T$ gates) satisfies this property. This family of circuits is universal at polynomial depth, which implies #P-hardness in the worst case, and permits a worst to average case reduction (see Supplementary S8 in the paper). Unlike prior proposals that prepare Haar-random states, such as [random circuit sampling (RCS)](https://www.nature.com/articles/s41586-019-1666-5), we leverage the added structure from Clifford circuits. Crucially, this enables a spacetime encoding and consequently an argument for verifiability.
 
 This proposal bears similarity to [random graph state sampling (RGS)](https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/tree/main/data/classically-verifiable-problems/circuit-models/random_graph_sampling), which samples random _regular_ graph states in a random product basis. However, the magic gates are reserved in a single layer at the end, which may require scaling to large system sizes to become intractable for classical simulations.
 
@@ -23,16 +23,16 @@ In doped Clifford sampling, both of these properties scale with the system size,
 
 ### `Quantifying Entanglement`
 
-We quantify the entanglement of the underlying graph state by estimating the Schmidt rank, the $GF(2)$ rank of its adjacency matrix, across random bipartitions. For an $N$-qubit graph state, the Schmidt rank is upper bounded by $2^{n/2}$. As this corresponds exactly to the bond dimension, the contraction cost of tensor network simulations will scale exponentially with this quantity.
+We quantify the entanglement of the underlying graph state by estimating the Schmidt rank, the $GF(2)$ rank of its adjacency matrix, across random bipartitions. For an $n$-qubit graph state, the Schmidt rank is upper bounded by $2^{n/2}$. As this corresponds exactly to the bond dimension, the contraction cost of tensor network simulations will scale exponentially with this quantity.
 
-To maximize the entanglement in our graph state, we use an ansatz of repeating layers of odd/even CZ gates (brickwork layout), followed by random $\sqrt{X}$ or $S;\ \sqrt{X}$ rotations on each qubit. We do this until the circuit reaches a CZ-depth of $n$. It is known that this depth is enough to prepare _any_ graph state on an LNN architecture (to appear).
+To maximize the entanglement in our graph state, we use an ansatz of repeating layers of odd/even $CZ$ gates (brickwork layout), followed by random $\sqrt{X}$ or $S;\ \sqrt{X}$ rotations on each qubit. We do this until the circuit reaches a $CZ$-depth of $n$. It is known that this depth is enough to prepare _any_ graph state on an LNN architecture (to appear).
 
 By taking the minimum over $10^8$ random bipartitions, we numerically verify that our circuit nearly saturates the entanglement upper bound with a Schmidt rank of $2^{30}$.
 
 <p align="center">
   <img width="864" height="540" alt="image" src="https://github.com/user-attachments/assets/a1f6713e-bed6-4230-b1a1-336f8f6fa5c2" />
 
-<em>Figure 1. Quimb matrix product state (MPS) contraction times for the doped 70 X 70 circuit with increasing depth (maximum depth 24) and a maximum bond dimension of 4096. Dots represent measured simulation times, while the solid curve is an exponential fit with b=1.64 and c=-24. We have strong evidence that simulating the Clifford skeleton of our experiment would require a bond dimensions exceeding Frontier’s full available memory. </em>
+<em>Figure 1. Quimb matrix product state (MPS) contraction times for the doped 70 X 70 circuit with increasing depth (maximum depth 24) and a maximum bond dimension of 4096. Dots represent measured simulation times, while the solid curve is an exponential fit with b=1.64 and c=-24. We have strong evidence that simulating the Clifford skeleton of our experiment would require a bond dimension exceeding Frontier’s full available memory. </em>
 
 </p>
 
@@ -43,36 +43,34 @@ While we have evidence that the Schmidt rank of the doped Clifford states should
   <img width="576" height="360" alt="image" src="https://github.com/user-attachments/assets/7bc32ff8-d156-4a80-8d8e-13225336e5d1" />
   <img width="864" height="360" alt="image" src="https://github.com/user-attachments/assets/e90ae9c7-c684-4bf2-8973-70346c6f1391" />
 
-<em>Figure 2. (Top) Quimb matrix product state (MPS) simulations for the doped 70 X 70 circuit and a brickwork circuit interleaved with Haar single qubit random gates. We use a maximum bond dimension of 4096 and record the depth at which truncation error exceeds the experimental measured infidelity 1 - 0.32. (Bottom) The singular value spectrum is flat for the the Clifford skeleton of a 14 X 14 circuit, has a strong exponential decay for a brickwork Haar-random circuit, and a weaker exponential decay for the doped 14 X 14 and 70 X 14 circuits. Similarly, when estimating the fidelity from truncation error, the 14 X 14 Clifford skeleton shows the most adverse scaling, being linearly dependent on bond dimension, while the Haar-random circuit maintains high fidelity at lower bond dimensions. </em>
+<em>Figure 2. (Top) Quimb matrix product state (MPS) simulations for the doped 70 X 70 circuit and a brickwork circuit interleaved with Haar single qubit random gates. We use a maximum bond dimension of 4096 and record the depth at which truncation error exceeds the experimentally measured infidelity 1 - 0.32. (Bottom) The singular value spectrum is flat for the the Clifford skeleton of a 14 X 14 circuit, has a strong exponential decay for a brickwork Haar-random circuit, and has a weaker exponential decay for the doped Clifford 14 X 14 and 70 X 14 circuits. Similarly, when estimating the fidelity from truncation error, the 14 X 14 Clifford skeleton shows the most adverse scaling, being linearly dependent on bond dimension, while the Haar-random circuit maintains high fidelity at lower bond dimensions. </em>
 
 </p>
 
-As seen in Figure 2, one-dimensional Haar-random circuits do have strongly decaying singular values and can be represented at high fidelities at lower bond dimensions. The doped Clifford circuits, however, have a flatter singular value spectrum more akin to the undoped Clifford circuit and still appear to require large bond dimensions to reach experimentally accessible fidelities.
+As seen in Figure 2, one-dimensional Haar-random circuits do have strongly decaying singular values and can be represented at high fidelities at lower bond dimensions. The doped Clifford circuits, however, have flatter singular value spectrums that are closer to that of the undoped Clifford circuit and still appear to require large bond dimensions to reach experimentally accessible fidelities.
 
 ### `Quantifying Non-stabilizerness`
 
 Alternatively, stabilizer rank algorithms can be used, which are oblivious to the amount of entanglement, but scale exponentially with the amount of magic (non-stabilizerness) in the circuit. These methods decompose quantum states into a sum of stabilizers which can be efficiently simulated.
 
-The complexity therefore scales with the minimum number of states used in this decomposition, i. e. the stabilizer rank. For circuits consisting only of Clifford and T gates, the [best known upper bound](https://arxiv.org/pdf/2106.07740v1) is given by
+The complexity therefore scales with the minimum number of states used in this decomposition, i. e. the stabilizer rank. For circuits consisting only of Clifford and $T$ gates, the [best known upper bound](https://arxiv.org/pdf/2106.07740v1) is given by
 
 $$stabilizer\ rank \leq 2^{0.3963 \cdot (T\ count)}$$
 
 So, as claimed, the nonstabilizerness increases exponentially with the system size.
 
-(Recall that for random graph state sampling, we instead characterized the nonstabilizerness with the [stabilizer extent](https://arxiv.org/pdf/1808.00128), the minimum $\lVert c \rVert^2$ over all stabilizer decompositions. We do not use this metric here as the stabilizer rank lower bounds this quantity for approximate error simulations.)
-
 <p align="center">
   <img width="651" height="501" src="https://github.com/user-attachments/assets/c26e231b-9127-46ff-80b6-47d7d5a881ea" />
   
-<em>Figure 3. Simulations of the doped 70 X 70 circuit in QuiZX with a maximum of 70 T gates (dots). The solid curve is an exponential fit on those data points with α = 0.327 and β = 2.07e-5. The dashed curve corresponds to the conjectured best possible scaling for stabilizer extent with α = 0.228. </em>
+<em>Figure 3. Simulations of the doped 70 X 70 circuit in QuiZX with a maximum of 70 T gates (dots). The solid curve is an exponential fit on those data points with α=0.327 and β=2.07e-5. The dashed curve corresponds to the conjectured best possible scaling for stabilizer extent with α=0.228. </em>
 
 </p>
 
-Furthermore, by doping on a square $n$ X $n$ circuit, non-Clifford gates can be placed across depth $n$, yielding a maximum of $O(n^2)$ (instead of O(n)) magic resources - which further increases the complexity of extended stabilizer simulations.
+Furthermore, by doping on a square $n$ X $n$ circuit, non-Clifford gates can be placed across depth $n$, yielding a maximum of $O(n^2)$ (instead of $O(n)$) magic resources - which further increases the complexity of extended stabilizer simulations.
 
 We also make note of [Clifford Augmented Matrix Product State (CAMPS) simulators](https://arxiv.org/pdf/2412.17209), which combine tensor networks with Clifford tableau simulators. These algorithms reduce the bond dimension necessary to represent the state by propagating magic gates to the front of the circuit, using a tableau for the entangled Clifford bulk and a smaller bond dimension MPS for the magic layer. After the first $n$ magic gates however, the upper bound on the bond dimension necessary for the MPS increases exponentially, as well as the maximum bond dimension necessary to sample bitstring probabilities.
 
-To the best of our knowledge, then, the large Schmidt rank and stabilizer extent of our $T$-doped graph states will be adversarial for exact or naïve approximate simulations. For more detail on the attempted classical simulations, please reference Supplementary S9 in the paper.
+To the best of our knowledge, then, the large Schmidt rank and stabilizer extent of our $T$-doped graph states will be adversarial for exact or naïve approximate simulations. For more details on the attempted classical simulations, please reference Supplementary S9 in the paper.
 
 ## C. Verifiability
 
@@ -80,7 +78,7 @@ For sampling-based experiments, it suffices to show that samples can be drawn fr
 
 For comparison, RCS uses the fact that the outcome probabilties of Haar-random states is described by the Porter-Thomas distribution, a distinctly non-classical model. The closeness of the sample distribution to the Porter-Thomas is quantified with the linear cross-entropy benchmarking (XEB) score, which compares the output distribution (in the Z-basis) of $M$ sample outputs $x$ to their quantum probabilities:
 
-$$F_{XEB} =  \frac{2^N}{M} \sum_i^M | \bra{0} C \ket{x_i} |^2 - 1$$
+$$F_{XEB} =  \frac{2^n}{M} \sum_i^M | \bra{0} C \ket{x_i} |^2 - 1$$
 
 As samples drawn noiselessly from the Porter-Thomas distribution have $F_{XEB} = 1$ and samples drawn from the (classical) uniform distribution have $F_{XEB} = 0$, a non-zero fidelity is evidence of quantum behavior.
 
@@ -90,7 +88,7 @@ A key detail is that XEB requires classical simulations for the outcome probabil
 
 ### `Error detection`
 
-To avoid the problem of vanishing fidelities with large circuits, we use the [spacetime error detection protocol](https://arxiv.org/pdf/2504.15725) and mitigate noise in our samples. As the graph state is prepared with Clifford gates, it is possible to augment the circuit with ancilla qubits and insert spacetime Pauli checks on their support at various depths. While these Pauli checks collectively stabilize the circuit, errors will not generally commute with these checks, manifesting as a "syndrome" error on the ancillas. These errored shots can be detected and post-selected out which, as illustrated in the reference above, can result in order of magnitude improvements over bare state fidelity, all with a significantly lower sampling overhead than PEC.
+To avoid the problem of vanishing fidelities with large circuits, we use the [spacetime error detection protocol](https://arxiv.org/pdf/2504.15725) to mitigate noise in our samples. As the graph state is prepared with Clifford gates, it is possible to augment the circuit with ancilla qubits and insert spacetime Pauli checks on their support at various depths. While these Pauli checks collectively stabilize the circuit, errors will not generally commute with these checks, manifesting as a "syndrome" error on the ancillas. These errored shots can be detected and post-selected out which, result in a $29 X$ increase over the bare unencoded state fidelity at the cost of an $860 X$ overhead in sampling.
 
 With these spacetime Pauli checks, $T$ gates can not be arbitrarily placed, being restricted to locations in which they will simultaenously commute with all the stabilizers of the checks. In spite of this restriction, we find that a large number of $T$-gates remain available for the circuit sizes presented.
 
@@ -121,9 +119,9 @@ Under the following assumptions, we can construct a lower bound for the fidelity
 - Noiseless $T$ gates. On IBM's devices, this is possible as $Z$ rotations are [virtually implemented](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.96.022330) as zero width framechanges.
 - Stochastic circuit-independent noise, i.e. Pauli noise that is not correlated to the structure of the circuit. Notably this noise does not have to be weak and can have strong correlations. To achieve this in experiment we employ Pauli twirling, or randomized compiling, on each of the $CZ$ gates individually.
 
-In particular, with Pauli noise, we can characterize the fidelity of the doped circuit with the logical faults that occur on the Clifford circuit. To see this, note that by construction, doping does not disturb the spacetime Pauli checks. This implies that the set of logical faults that are accepted or rejected are preserved. As they are also noiseless, the probability of no fault is also identical.
+In particular, with Pauli noise, we can characterize the fidelity of the doped circuit with the logical faults that occur on the Clifford circuit. To see this, note that, by construction, doping does not disturb the spacetime Pauli checks. This implies that our doping preserves the set of logical faults that are accepted or rejected. As they are also noiseless, the probability of no fault occurring is also identical.
 
-Let us focus first on the Clifford circuit. When any accepted fault $E$ occurring in the circuit is forward propagated, it either is harmless, meaning it stabilizes the state, or is harmful, meaning it maps the state to one outside the stabilizer group. The contribution to the fidelity from $E$ is the l2-norm of the overlap between the original state and the state are fault propagation. Denote this $f_1(E)$, which is 1 for harmless faults $H$ and 0 for harmful faults $L$.
+Let us focus first on the Clifford circuit. When any accepted fault $E$ occurring in the circuit is forward propagated, it either is harmless, meaning it stabilizes the state, or is harmful, meaning it rotates the state outside the stabilizer group. The contribution to the fidelity from the state after fault $E$ is the L2-norm of its overlap with the original faultless state. Denote this $f_1(E)$, which takes value 1 for harmless faults $H$ and 0 for harmful faults $L$. (The full details of this proof can be found in Supplementary S2.2 in the paper.)
 
 For the doped Clifford circuit, similarly define $f_2(E)$, which can now take on any value between 0 and 1 for harmless or harmful faults.
 
@@ -133,7 +131,7 @@ $$ F*1 - F_2 = \frac{\sum*{E \in H \cup L }p(E) f*2(E)}{p*{acc}} - \frac{\sum*{E
 
 Using that $f_1(E) = 1$ for $E \in H$ and $f_1(E) = 0$ for $E \in L$
 
-$$ F*1 - F_2 = \frac{\sum*{E \in H} p(E)(f*2(E) - 1)}{p*{acc}} + \frac{\sum*{E \in L} p(E)f_2(E)}{p*{acc}} \geq -\frac{\sum*{E \in H} p(E)}{p*{acc}} = -Pr(E \in H \|\ E \in A) $$
+$$ F*1 - F_2 = \frac{\sum*{E \in H} p(E)(f*2(E) - 1)}{p*{acc}} + \frac{\sum*{E \in L} p(E)f_2(E)}{p\*{acc}} \geq -\frac{\sum*{E \in H} p(E)}{p\_{acc}} = -Pr(E \in H | E \in A) $$
 
 where the bounds follow from the fact that only the first term can be negative.
 
@@ -146,24 +144,24 @@ Therefore, the drop in fidelity of any doped Clifford state (that commutes with 
 
 </p>
 
-We can show that the probability of accepted faults being harmless is at least inverse polynomially and at worst exponentially unlikely to occur with respect to $n$ (see Supplementary S2.3 in the paper). Moreover, with numerical simulations at various Pauli noise strengths and we obtain that this drop is at most $\approx$ 1.3%. So, despite the fact that the fidelity of the doped Clifford state cannot be efficiently measured or simulated, we can obtain a lower bound just from (efficient) measurements of the Clifford state fidelity.
+We can show that the probability of accepted faults being harmless is unlikely, having at least an inverse polynomial and at worst exponential dependence on $n$ (see Supplementary S2.3 in the paper). Moreover, in Figure 5. we conduct numerical simulations at various Pauli noise strengths and obtain that this drop is at most $\approx$ 1.3%. So, despite the fact that the fidelity of the doped Clifford state cannot be efficiently measured or simulated, we can obtain a lower bound just from (efficient) measurements of the Clifford state fidelity.
 
 Provided that classical simulations fail to faithfully sample from our state, we can certify quantum advantage by showing that this lower bound is sufficently bounded above zero.
 
 ### `Confidence in Verifiability`
 
-To build confidence in this experimentally, we can measure the state fidelity (or a proxy) and the post-selection rate and show that they do not degrade with $T$ count. We perform one check by comparing different fidelity metrics across the entire range of doping:
+To build confidence in this experimentally, we can measure the state fidelity (or a proxy) and the post-selection rate and show that they do not degrade with $T$ count. One experiment compares different fidelity metrics across the entire range of doping:
 
 - Regime 1: Zero $T$ gates, for which we use direct fidelity estimation.
-- Regime 2: Small constant number $(\ll O(N))$ of $T$ gates, for which we also use direct fidelity estimation.
+- Regime 2: Small constant number $(\ll O(n))$ of $T$ gates, for which we also use direct fidelity estimation.
   - In this regime, there is still relatively low overhead in measuring the fidelity. Classical simulations are done to sample random Pauli observables in an unbiased manner and calculate the corresponding expectation values.
-- Regime 3: $O(N)$ $T$ gates, for which we use XEB as a proxy for fidelity.
-  - After $O(N)$ $T$ gates, the second moment converges closely to a Porter-Thomas distribution, making XEB a reasonable metric. The number of $T$ gates is chosen such that classical simulations are still tractable.
+- Regime 3: $O(n)$ $T$ gates, for which we use XEB as a proxy for fidelity.
+  - After $O(n)$ $T$ gates, the second moment converges closely to a Porter-Thomas distribution, making XEB a reasonable metric. The number of $T$ gates is chosen such that classical simulations are still tractable.
 
 <p align="center">
   <img width="1020" height="442" alt="image" src="https://github.com/user-attachments/assets/6f56f8e9-8718-47ef-bf7a-16ed22bbb42d" />
 
-<em>Figure 6. (a) Fidelity for the 70 X 70 circuit on IBM Boston with 0 doping and doping with T and S gates in the same 5, 75, and 468 locations (468 T fidelity is not shown). All values are consistent up to normal 95% confidence intervals. (b) The syndromes for each experiment show good agreement and no systematic dependence on T or S count. </em>
+<em>Figure 6. (a) Fidelity for the 70 X 70 circuit on IBM Boston with 0 doping and doping with T and S gates in the same 5, 75, and 468 locations (468 T fidelity is not directly measured), shown with normally approximated 95% confidence intervals. All differences in the values are consistent up to these confidence intervals. (b) The syndromes for each experiment show good agreement and no systematic dependence on T or S count. </em>
 
 </p>
 
@@ -177,9 +175,9 @@ $$F = F_{ideal}F_{readout}$$
 
 where $F_{ideal}$ is the circuit fidelity with perfect readout error, and $F_{readout}$ is the fidelity of the readout (see supplementary by [Arute et. al](https://arxiv.org/pdf/1910.11333)). After readout error mitigation, each qubit should have symmetric 0 and 1 state error $p_i$, which yields
 
-$$F_{readout} = \prod_{i=1}^{N} (1 - p_i)$$
+$$F_{readout} = \prod_{i=1}^{n} (1 - p_i)$$
 
-which can be used to rescaled the XEB scores. In Figure 6, we additional rescale using [readout error mitigation](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.105.032620) values for random stabilizers.
+which can be used to rescaled the XEB scores. In Figure 6, we additionally rescale by multiplying the [readout error mitigation](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.105.032620) factor over random stabilizers.
 
 ## Institutions
 

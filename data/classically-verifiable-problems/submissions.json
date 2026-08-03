@@ -140,7 +140,7 @@
     "createdAt": "2026-07-09T18:49:42Z",
     "url": "https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/228",
     "name": "ibm_boston_dcs_nq70_depth70_checks27",
-    "circuit": "doped_random_graph_sampling_nq70_depth70_checks27",
+    "circuit": "doped_clifford_sampling_nq70_depth70_checks27",
     "value": "0.32",
     "method": "Quantum",
     "runtimeQuantum": 17900,
