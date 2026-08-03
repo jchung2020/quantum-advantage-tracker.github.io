@@ -66,7 +66,7 @@ So, as claimed, the nonstabilizerness increases exponentially with the system si
 
 </p>
 
-Furthermore, by doping on a square $n$ X $n$ circuit, non-Clifford gates can be placed across depth $n$, yielding a maximum of $O(n^2)$ (instead of $O(n)$) magic resources - which further increases the complexity of extended stabilizer simulations.
+Furthermore, by doping on a square $n$ X $n$ circuit, non-Clifford gates can be placed across depth $n$, yielding a maximum of $O(n^2)$ (instead of O(n)) magic resources - which further increases the complexity of extended stabilizer simulations.
 
 We also make note of [Clifford Augmented Matrix Product State (CAMPS) simulators](https://arxiv.org/pdf/2412.17209), which combine tensor networks with Clifford tableau simulators. These algorithms reduce the bond dimension necessary to represent the state by propagating magic gates to the front of the circuit, using a tableau for the entangled Clifford bulk and a smaller bond dimension MPS for the magic layer. After the first $n$ magic gates however, the upper bound on the bond dimension necessary for the MPS increases exponentially, as well as the maximum bond dimension necessary to sample bitstring probabilities.
 
@@ -88,7 +88,7 @@ A key detail is that XEB requires classical simulations for the outcome probabil
 
 ### `Error detection`
 
-To avoid the problem of vanishing fidelities with large circuits, we use the [spacetime error detection protocol](https://arxiv.org/pdf/2504.15725) to mitigate noise in our samples. As the graph state is prepared with Clifford gates, it is possible to augment the circuit with ancilla qubits and insert spacetime Pauli checks on their support at various depths. While these Pauli checks collectively stabilize the circuit, errors will not generally commute with these checks, manifesting as a "syndrome" error on the ancillas. These errored shots can be detected and post-selected out which, result in a $29 X$ increase over the bare unencoded state fidelity at the cost of an $860 X$ overhead in sampling.
+To avoid the problem of vanishing fidelities with large circuits, we use the [spacetime error detection protocol](https://arxiv.org/pdf/2504.15725) to mitigate noise in our samples. As the graph state is prepared with Clifford gates, it is possible to augment the circuit with ancilla qubits and insert spacetime Pauli checks on their support at various depths. While these Pauli checks collectively stabilize the circuit, errors will not generally commute with these checks, manifesting as a "syndrome" error on the ancillas. These errored shots can be detected and post-selected out which, result in a $29 \times$ increase over the bare unencoded state fidelity at the cost of an $860 \times$ overhead in sampling.
 
 With these spacetime Pauli checks, $T$ gates can not be arbitrarily placed, being restricted to locations in which they will simultaenously commute with all the stabilizers of the checks. In spite of this restriction, we find that a large number of $T$-gates remain available for the circuit sizes presented.
 
@@ -127,11 +127,11 @@ For the doped Clifford circuit, similarly define $f_2(E)$, which can now take on
 
 With probability of acceptance $p_{acc}$, the difference in fidelity between the undoped circuit $F_1$ and the doped circuit $F_2$ can be expressed as
 
-$$ F*1 - F_2 = \frac{\sum*{E \in H \cup L }p(E) f*2(E)}{p*{acc}} - \frac{\sum*{E \in H \cup L} p(E) f_1(E)}{p*{acc}} = \frac{\sum*{E \in H} p(E)(f_2(E) - f_1(E))}{p*{acc}} + \frac{\sum*{E \in L} p(E)(f_2(E) - f_1(E))}{p*{acc}} $$
+$$ F\_1 - F\_2 = \frac{\sum\_{E \in H \cup L }p(E) f\_2(E)}{p\_{acc}} - \frac{\sum\_{E \in H \cup L} p(E) f\_1(E)}{p\_{acc}} = \frac{\sum\_{E \in H} p(E)(f\_2(E) - f\_1(E))}{p\_{acc}} + \frac{\sum\_{E \in L} p(E)(f\_2(E) - f\_1(E))}{p\_{acc}} $$
 
 Using that $f_1(E) = 1$ for $E \in H$ and $f_1(E) = 0$ for $E \in L$
 
-$$ F*1 - F_2 = \frac{\sum*{E \in H} p(E)(f*2(E) - 1)}{p*{acc}} + \frac{\sum*{E \in L} p(E)f_2(E)}{p\*{acc}} \geq -\frac{\sum*{E \in H} p(E)}{p\_{acc}} = -Pr(E \in H | E \in A) $$
+$$ F\_1 - F\_2 = \frac{\sum\_{E \in H} p(E)(f\_2(E) - 1)}{p\_{acc}} + \frac{\sum\_{E \in L} p(E)f\_2(E)}{p\_{acc}} \geq -\frac{\sum\_{E \in H} p(E)}{p\_{acc}} = -Pr(E \in H | E \in A) $$
 
 where the bounds follow from the fact that only the first term can be negative.
 
